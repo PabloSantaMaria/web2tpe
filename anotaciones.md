@@ -1,7 +1,7 @@
-<?php
+# anotaciones
 
-// esto va en otro php que se encargue de conectarse a la db y traer acciones
-//require_once "acciones.php";
+esto va en otro php que se encargue de conectarse a la db y traer acciones
+require_once "acciones.php";
 
 function connect() {
     return new PDO('mysql:host=localhost;'.'dbname=tabrokers;charset=utf8', 'root', '');
@@ -9,7 +9,8 @@ function connect() {
 
 $db = connect();
 
-//traer acciones
+## traer acciones
+
 $sentencia = $db->prepare( "select * from accion");
 $sentencia->execute();
 
@@ -19,24 +20,23 @@ foreach ($acciones as $accion) {
     echo $accion['nombre'] . ', ' . $accion['precio'];
 }
 
-//insertar accion
+## insertar accion
+
 $sentencia = $db->prepare("INSERT INTO accion(nombre, precio) VALUES(?, ?)");
 $sentencia->execute(array('test2', '9,50'));
 
-//traer del form lo que se va a insertar
+## traer del form lo que se va a insertar
 
 $nombre = $_POST['nombre']; //name del input
 $precio = $_POST['precio'];
 $sentencia->execute(array($nombre, $precio));
 
-//ponerle a todos el isset, si no se rompe
+**ponerle a todos el isset, si no se rompe**
 
 if (isset($_POST['nombre'])) {
     $nombre = $_POST['nombre'];
 }
 
-//para volver a la home
-// Redirect browser
+## para volver a la home
+**Redirect browser**
 header("Location: http://" . $_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']));
-
-?>
