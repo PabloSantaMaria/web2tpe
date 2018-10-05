@@ -22,5 +22,15 @@ class AccionesModel {
     $sentencia = $this->db->prepare("INSERT INTO accion(nombre, precio) VALUES(?, ?)");
     $sentencia->execute(array($nombre, $precio));
   }
+
+  function deleteAccion($id_accion) {
+    $sentencia = $this->db->prepare("DELETE FROM accion WHERE id_accion=?");
+    $sentencia->execute(array($id_accion));
+  }
+
+  function updateAccion($id_accion) {
+    //$sentencia = $this->db->prepare("UPDATE accion SET Finalizada=1 WHERE id_accion=?");
+    $sentencia->execute(array($id_accion));
+  }
 }
 ?>

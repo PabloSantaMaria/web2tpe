@@ -8,7 +8,7 @@ class AccionesView {
 
   function mostrar($acciones) {
     foreach ($acciones as $accion) {
-        echo $accion['nombre'] . ', ' . $accion['precio'];
+        echo '[' . $accion['id_accion'] . ', ' . $accion['nombre'] . ', ' . $accion['precio'] . ']';
     }
   }
 }

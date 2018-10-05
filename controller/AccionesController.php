@@ -15,7 +15,7 @@ class AccionesController {
     $acciones = $this->model->getAcciones();
     $this->view->mostrar($acciones);
   }
-  
+
   //estoy probando solo con 2 campos
   function insert() {
     //poner los isset
@@ -24,6 +24,17 @@ class AccionesController {
 
     $this->model->insertAccion($nombre, $precio);
 
+    header("Location: http://" . $_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']));
+  }
+
+  function delete($id_accion) {
+    $this->model->deleteAccion($id_accion);
+    header("Location: http://" . $_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']));
+  }
+
+  function update($id_accion) {
+    //como se que campo cambiar?
+    $this->model->updateAccion($id_accion);
     header("Location: http://" . $_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']));
   }
 }
