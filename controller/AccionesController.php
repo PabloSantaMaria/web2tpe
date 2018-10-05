@@ -15,6 +15,16 @@ class AccionesController {
     $acciones = $this->model->getAcciones();
     $this->view->mostrar($acciones);
   }
-}
+  
+  //estoy probando solo con 2 campos
+  function insert() {
+    //poner los isset
+    $nombre = $_POST['nombre']; //name del input
+    $precio = $_POST['precio'];
 
- ?>
+    $this->model->insertAccion($nombre, $precio);
+
+    header("Location: http://" . $_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']));
+  }
+}
+?>

@@ -8,7 +8,9 @@ if ($url[0] == '') {
   $controller->home();
 }
 else {
-  echo "error";
+  if ($url[0] == 'agregar') {
+    $controller->insert();
+  }
 }
 
- ?>
+?>
