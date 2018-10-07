@@ -1,24 +1,33 @@
 <?php
+require_once "config/ConfigApp.php";
 require_once "controller/AccionesController.php";
 
-$controller = new AccionesController();
+function parseURL($url) {
+    $explodedURL = explode('/', $url);
+    $array[ConfigApp::$ACTION] = $explodedURL[0];
+    $array[ConfigApp::$PARAMS] = isset($explodedURL[1]) ? array_slice($explodedURL, 1) : null;
+    return $array;
 
-// localhost/web2tpe/action/id_accion
-//                     [0]    [1]
-$url = explode('/', $_GET['action']);
-
-if ($url[0] == '') {
-  $controller->home();
 }
-else {
-  if ($url[0] == 'agregar') {
-    $controller->insert();
-  }
-  elseif ($url[0] == 'borrar') {
-    $controller->delete($url[1]);
-  }
-  elseif ($url[0] == 'modificar') {
-    $controller->update($url[1]);
-  }
+
+if (isset($_GET['action'])) {
+    $url = parseURL($_GET['action']);
+    $action = $url[ConfigApp::$ACTION];
+    if (array_key_exists($action, ConfigApp::$ACTIONS)) {
+        $params = $url[ConfigApp::$PARAMS];
+        $action = explode('#', ConfigApp::$ACTIONS[$action]);
+        $controller = new $action[0]();
+        $metodo = $action[1];
+        if (isset($params) && $params != null) {
+            echo $controller->$metodo($params);
+        } else {
+            echo $controller->$metodo();
+        }
+    } else {
+        //esto esta feo
+        //depende de como quede la pagina
+        $controller = new AccionesController();
+        echo $controller->home();
+    }
 }
 ?>

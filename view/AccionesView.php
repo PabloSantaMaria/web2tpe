@@ -6,10 +6,15 @@ class AccionesView {
 
   }
 
-  function mostrar($acciones) {
+  function mostrarAcciones($acciones) {
     foreach ($acciones as $accion) {
-        echo '[' . $accion['id_accion'] . ', ' . $accion['nombre'] . ', ' . $accion['precio'] . ']';
+      echo '<li>' . $accion['nombre'] . ': ' . $accion['precio'] . '<a href="borrar/' . $accion['id_accion'] . '">BORRAR</a> | <a href="completada/' . $accion['id_accion'] . '">COMPLETADA</a></li>';
+      //echo '[' . $accion['id_accion'] . ', ' . $accion['nombre'] . ', ' . $accion['precio'] . ']';
     }
+  }
+
+  function mostrarAccion($accion)  {
+    echo '[' . $accion['id_accion'] . ', ' . $accion['nombre'] . ', ' . $accion['precio'] . ']';
   }
 }
 ?>
