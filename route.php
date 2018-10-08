@@ -1,6 +1,6 @@
 <?php
 require_once "config/ConfigApp.php";
-require_once "controller/AccionesController.php";
+require_once "controllers/AccionesController.php";
 
 function parseURL($url) {
     $explodedURL = explode('/', $url);

@@ -1,6 +1,6 @@
 <?php
-require_once "./view/AccionesView.php";
-require_once "./model/AccionesModel.php";
+require_once "./views/AccionesView.php";
+require_once "./models/AccionesModel.php";
 
 class AccionesController {
   private $view;
