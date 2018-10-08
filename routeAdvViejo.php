@@ -1,6 +1,5 @@
 <?php
 require_once "config/ConfigApp.php";
-require_once "controllers/NavController.php";
 require_once "controllers/AccionesController.php";
 
 function parseURL($url) {
@@ -8,6 +7,7 @@ function parseURL($url) {
     $array[ConfigApp::$ACTION] = $explodedURL[0];
     $array[ConfigApp::$PARAMS] = isset($explodedURL[1]) ? array_slice($explodedURL, 1) : null;
     return $array;
+
 }
 
 if (isset($_GET['action'])) {
@@ -24,7 +24,9 @@ if (isset($_GET['action'])) {
             echo $controller->$metodo();
         }
     } else {
-        $controller = new NavController();
+        //esto esta feo
+        //depende de como quede la pagina
+        $controller = new AccionesController();
         echo $controller->home();
     }
 }
