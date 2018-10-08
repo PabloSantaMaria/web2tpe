@@ -20,8 +20,8 @@ class AccionesView {
   
   function mostrarAcciones($acciones) {
     
-      $this->smarty->assign('titulo', 'TAbrokers');
-      $this->smarty->display('./templates/index.tpl');
+      $this->smarty->assign('titulo', 'TAbrokers - Cotizaciones');
+      $this->smarty->display('./templates/cotizaciones.tpl');
 
     //   foreach ($acciones as $accion) {
     //   echo '<li>' . $accion['nombre'] . ': ' . $accion['precio'] . '<a href="borrar/' . $accion['id_accion'] . '">BORRAR</a> | <a href="completada/' . $accion['id_accion'] . '">COMPLETADA</a></li>';

@@ -1,3 +1,5 @@
+{include file="header.tpl"}
+
 <div class="cuerpoCotizaciones">
     <!-- TABLA -->
     <div class="tabla container">
@@ -157,3 +159,5 @@
         </div>
     </div>
 </div>
+
+{include file="footer.tpl"}

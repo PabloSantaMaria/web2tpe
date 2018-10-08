@@ -27,9 +27,9 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
                 <div class="btn-group" role="group" aria-label="Basic example">
                     <a href="home"><button type="button" id="home" class="btn btn-outline-info">Home</button></a>
-                    <button type="button" id="tablacotiz" class="btn btn-outline-info">Cotizaciones</button>
-                    <button type="button" id="operar" class="btn btn-outline-info">Operar</button>
-                    <button type="button" id="acerca" class="btn btn-outline-info">Acerca de nosotros</button>
+                    <a href="cotizaciones"><button type="button" id="tablacotiz" class="btn btn-outline-info">Cotizaciones</button></a>
+                    <a href="operar"><button type="button" id="operar" class="btn btn-outline-info">Operar</button></a>
+                    <a href="acerca"><button type="button" id="acerca" class="btn btn-outline-info">Acerca de nosotros</button></a>
                 </div>
             </div>
         </nav>

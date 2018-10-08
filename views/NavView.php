@@ -9,8 +9,16 @@ class NavView {
   }
 
   function home() {
-      $this->smarty->assign('titulo', 'TAbrokers');
+      $this->smarty->assign('titulo', 'TAbrokers - Home');
       $this->smarty->display('./templates/home.tpl');
+  }
+  function operar() {
+      $this->smarty->assign('titulo', 'TAbrokers - Operaciones');
+      $this->smarty->display('./templates/operar.tpl');
+  }
+  function acerca() {
+      $this->smarty->assign('titulo', 'TAbrokers - Acerca de nosotros');
+      $this->smarty->display('./templates/acerca.tpl');
   }
 }
 ?>

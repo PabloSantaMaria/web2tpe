@@ -1,3 +1,5 @@
+{include file="header.tpl"}
+
 <div class="jumbotron cuerpoAcerca text-white bg-secondary">
     <div class="row">
         <p>Desde Tandil, Argentina, estamos a la vanguardia en el desarrollo y aplicación de la tecnología en el mundo financiero y nos destacamos por el cumplimiento de los estándares de seguridad y transparencia más altos a escala mundial. Nuestro desempeño es reconocido por los principales medios especializados del mundo.</p>
@@ -20,3 +22,5 @@
         </div>
     </div>
 </div>
+
+{include file="footer.tpl"}

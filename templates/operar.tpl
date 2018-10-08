@@ -1,3 +1,5 @@
+{include file="header.tpl"}
+
 <div class="operaciones bg-dark">
     <div class="row">
         <div class="ingreso col-sm">
@@ -74,3 +76,5 @@
         </div>
     </div>
 </div>
+
+{include file="footer.tpl"}

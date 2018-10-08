@@ -11,7 +11,7 @@ class AccionesController {
     $this->model = new AccionesModel();
   }
 
-  function home() {
+  function getAcciones() {
     $acciones = $this->model->getAcciones();
     $this->view->mostrarAcciones($acciones);
   }

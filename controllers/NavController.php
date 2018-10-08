@@ -3,7 +3,6 @@ require_once "./views/NavView.php";
 
 class NavController {
   private $view;
-  private $model;
 
   function __construct() {
     $this->view = new NavView();
@@ -11,6 +10,12 @@ class NavController {
 
   function home() {
     $this->view->home();
+  }
+  function operar() {
+    $this->view->operar();
+  }
+  function acerca() {
+    $this->view->acerca();
   }
 }
 ?>
