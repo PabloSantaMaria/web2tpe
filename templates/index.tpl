@@ -4,17 +4,18 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Page Title</title>
+    <title>{$titulo}</title>
+    {* {$base} *}
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="../css/bootstrap.min.css" crossorigin="anonymous">
-    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
     <div class="container-fluid">
         <header>
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
                 <a class="navbar-brand" href="html/home.html">
-                    <img src="../images/hs.svg" width="80" class="d-inline-block align-center" alt="logo">
+                    <img src="images/hs.svg" width="80" class="d-inline-block align-center" alt="logo">
                     TABrokers
                     <span class="navbar-text font-italic font-weight-light">
                         Tandil Asset Brokers
@@ -46,10 +47,10 @@
         </footer>
     </div>
     
-    <script src="../js/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
-    <script src="../js/popper.min.js" crossorigin="anonymous"></script>
-    <script src="../js/bootstrap.min.js" crossorigin="anonymous"></script>
-    <script src="../js/partialrender.js"></script>
-    <script src="../js/rest.js"></script>
+    <script src="js/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <script src="js/popper.min.js" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="js/partialrender.js"></script>
+    <script src="js/rest.js"></script>
 </body>
 </html>
