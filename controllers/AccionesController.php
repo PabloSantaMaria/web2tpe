@@ -15,6 +15,12 @@ class AccionesController {
     $acciones = $this->model->getAcciones();
     $this->view->mostrarAcciones($acciones);
   }
+  function deleteAccion($params) {
+    $id_accion = $params[0];
+    $this->model->deleteAccion($id_accion);
+    $this->getAcciones();
+    //header("Location: http://" . $_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']));
+  }
 
   //estoy probando solo con 2 campos
   function insert() {
@@ -27,12 +33,7 @@ class AccionesController {
     header("Location: http://" . $_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']));
   }
 
-  function delete($params) {
-    $id_accion = $params[0];
-    $this->model->deleteAccion($id_accion);
-    header("Location: http://" . $_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']));
-    echo $id_accion;
-  }
+  
 
   function update($params) {
     $id_accion = $params[0];

@@ -16,6 +16,10 @@ class AccionesModel {
     $acciones = $sentencia->fetchAll(PDO::FETCH_ASSOC);
     return $acciones;
   }
+  function deleteAccion($id_accion) {
+    $sentencia = $this->db->prepare("DELETE FROM accion WHERE id_accion=?");
+    $sentencia->execute(array($id_accion));
+  }
 
   function getAccion($id_accion) {
     $sentencia = $this->db->prepare("SELECT * FROM `accion` WHERE `id_accion`=?");
@@ -30,10 +34,7 @@ class AccionesModel {
     $sentencia->execute(array($nombre, $precio));
   }
 
-  function deleteAccion($id_accion) {
-    $sentencia = $this->db->prepare("DELETE FROM accion WHERE id_accion=?");
-    $sentencia->execute(array($id_accion));
-  }
+  
 
   function updateAccion($id_accion) {
     //$sentencia = $this->db->prepare("UPDATE accion SET nombre=? WHERE id_accion=?");

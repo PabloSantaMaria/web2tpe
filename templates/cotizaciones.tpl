@@ -7,16 +7,30 @@
             <table class="table table-sm table-hover table-dark">
                 <thead>
                     <tr>
-                        <th scope="col">Ticker</th>
+                        <th scope="col">Nombre</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Var %</th>
                         <th scope="col">Volumen</th>
                         <th scope="col">MAX</th>
                         <th scope="col">MIN</th>
-                        <th scope="col">Cierre</th>
                     </tr>    
                 </thead>
-                <tbody id="tabla" class="cotizaciones">  
+                <tbody id="tabla" class="cotizaciones">
+	                {foreach from=$acciones item=accion}
+                        <tr id='row{$accion['id_accion']}'>
+                            <td>{$accion['nombre']}</td>
+                            <td>$ {$accion['precio']}</td>
+                            <td>{$accion['variacion']}</td>
+                            <td>$ {$accion['volumen']}</td>
+                            <td>$ {$accion['maximo']}</td>
+                            <td>$ {$accion['minimo']}</td>
+                            <td><div class="btn-group" role="group">
+                                    <a href="borrar/{$accion['id_accion']}"><button type="button" class="btn btn-outline-danger btn-sm">Borrar</button></a>
+                                    <a href="editar/{$accion['id_accion']}"><button type="button" class="btn btn-outline-warning btn-sm" data-toggle="collapse" data-target="#collapseExample">Editar</button></a>
+                                </div>
+                            </td>
+                        </tr>
+                    {/foreach}
                 </tbody>
             </table>
         </div>

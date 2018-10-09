@@ -6,11 +6,11 @@ class ConfigApp
     public static $ACTIONS = [
         '' => 'NavController#home',
         'home' => 'NavController#home',
-        'cotizaciones' => 'AccionesController#getAcciones',
+        'cotizaciones' => 'NavController#cotizaciones',
         'operar' => 'NavController#operar',
         'acerca' => 'NavController#acerca',
+        'borrar' => 'AccionesController#deleteAccion',
         'agregar' => 'AccionesController#insert',
-        'borrar' => 'AccionesController#delete',
         'completada' => 'AccionesController#update'
     ];
 }
