@@ -13,6 +13,7 @@
 <body>
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            
             <a class="navbar-brand" href="home">
                 <img src="images/hs.svg" width="80" class="d-inline-block align-center" alt="logo">
                     TABrokers
@@ -20,18 +21,37 @@
                     Tandil Asset Brokers
                 </span>
             </a>
-                    
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
             </button>
+
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="home"><button type="button" id="home" class="btn btn-outline-info">Home</button><span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" id="tablacotiz" class="btn btn-outline-info">Cotizzaciones</button>
+                        </a>
+                        <div class="dropdown-menu btn-outline-info bg-dark " aria-labelledby="navbarDropdownMenuLink">
+                        <a class="dropdown-item text-info" href="acciones">Todas</a>
+                        <a class="dropdown-item text-info" href="cotizaciones/Argentina">Argentina</a>
+                        <a class="dropdown-item text-info" href="cotizaciones/Resto_de_America">Resto de América</a>
+                        <a class="dropdown-item text-info" href="cotizaciones/Europa">Europa</a>
+                        <a class="dropdown-item text-info" href="cotizaciones/Asia">Asia</a>
+                        <a class="dropdown-item text-info" href="cotizaciones/Africa">África</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="operar"><button type="button" id="operar" class="btn btn-outline-info">Operar</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="acerca"><button type="button" id="acerca" class="btn btn-outline-info">Acerca de nosotros</button></a>
+                    </li>
                     
-            <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
-                <div class="btn-group" role="group" aria-label="Basic example">
-                    <a href="home"><button type="button" id="home" class="btn btn-outline-info">Home</button></a>
-                    <a href="cotizaciones"><button type="button" id="tablacotiz" class="btn btn-outline-info">Cotizaciones</button></a>
-                    <a href="operar"><button type="button" id="operar" class="btn btn-outline-info">Operar</button></a>
-                    <a href="acerca"><button type="button" id="acerca" class="btn btn-outline-info">Acerca de nosotros</button></a>
-                </div>
+                </ul>
             </div>
         </nav>
     </header>

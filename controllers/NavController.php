@@ -13,10 +13,6 @@ class NavController {
   function home() {
     $this->view->home();
   }
-  function cotizaciones() {
-    $this->controller = new AccionesController();
-    $this->controller->getAcciones();
-  }
   function operar() {
     $this->view->operar();
   }

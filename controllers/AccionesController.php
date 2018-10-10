@@ -15,6 +15,18 @@ class AccionesController {
     $acciones = $this->model->getAcciones();
     $this->view->mostrarAcciones($acciones);
   }
+
+  function getRegion($params) {
+      $region = $params[0];
+      $acciones = $this->model->getRegion($region);
+      $this->view->mostrarAcciones($acciones);
+    }
+      
+   
+   
+    
+  
+
   function deleteAccion($params) {
     $id_accion = $params[0];
     $this->model->deleteAccion($id_accion);

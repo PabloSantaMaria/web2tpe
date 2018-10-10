@@ -8,6 +8,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Nombre</th>
+                        <th scope="col">País</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Var %</th>
                         <th scope="col">Volumen</th>
@@ -18,7 +19,8 @@
                 <tbody id="tabla" class="cotizaciones">
 	                {foreach from=$acciones item=accion}
                         <tr id='row{$accion['id_accion']}'>
-                            <td>{$accion['nombre']}</td>
+                            <td>{$accion['accion']}</td>
+                            <td>{$accion['pais']}</td>
                             <td>$ {$accion['precio']}</td>
                             <td>{$accion['variacion']}</td>
                             <td>$ {$accion['volumen']}</td>
