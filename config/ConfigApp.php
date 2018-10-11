@@ -13,7 +13,6 @@ class ConfigApp
         'editar' => 'AccionesController#editar',
         'updateRegistro' => 'AccionesController#updateRegistro',
         'borrar' => 'AccionesController#deleteAccion',
-        'agregar' => 'AccionesController#insert'
     ];
 }
 ?>

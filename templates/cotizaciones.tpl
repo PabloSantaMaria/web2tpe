@@ -175,5 +175,5 @@
         </div>
     </div>
 </div>
-<script src="js/variacion.js" crossorigin="anonymous"></script>
 {include file="footer.tpl"}
+<script src="js/tablajs.js" crossorigin="anonymous"></script>

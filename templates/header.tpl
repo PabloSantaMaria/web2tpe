@@ -50,8 +50,8 @@
                     <li class="nav-item">
                         <a class="nav-link" href="acerca"><button type="button" id="acerca" class="btn btn-outline-info">Acerca de nosotros</button></a>
                     </li>
-                    
                 </ul>
             </div>
+            
         </nav>
     </header>
