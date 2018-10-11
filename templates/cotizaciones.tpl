@@ -22,7 +22,7 @@
                             <td>{$accion['accion']}</td>
                             <td>{$accion['pais']}</td>
                             <td>$ {$accion['precio']}</td>
-                            <td>{$accion['variacion']}</td>
+                            <td class="vari">{$accion['variacion']}</td>
                             <td>$ {$accion['volumen']}</td>
                             <td>$ {$accion['maximo']}</td>
                             <td>$ {$accion['minimo']}</td>
@@ -175,5 +175,5 @@
         </div>
     </div>
 </div>
-
+<script src="js/variacion.js" crossorigin="anonymous"></script>
 {include file="footer.tpl"}
