@@ -11,16 +11,17 @@ class AccionesView {
   }
 
   function mostrarAcciones($acciones) {
-      $this->smarty->assign('titulo', 'TAbrokers - Cotizaciones');
-      $this->smarty->assign('acciones', $acciones);
-      $this->smarty->assign('baseURL', $this->baseURL);
-      $this->smarty->display('./templates/cotizaciones.tpl');
+    $this->smarty->assign('titulo', 'TAbrokers - Cotizaciones');
+    $this->smarty->assign('acciones', $acciones);
+    $this->smarty->assign('baseURL', $this->baseURL);
+    $this->smarty->display('./templates/cotizaciones.tpl');
   }
   
-  
-  
-  function mostrarAccion($accion)  {
-    
+  function mostrarEditar($accion)  {
+    $this->smarty->assign('titulo', 'TAbrokers - Editar');
+    $this->smarty->assign('accion', $accion);
+    $this->smarty->assign('baseURL', $this->baseURL);
+    $this->smarty->display('./templates/editar.tpl');
   }
 }
 ?>

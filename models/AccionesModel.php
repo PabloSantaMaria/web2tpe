@@ -17,6 +17,13 @@ class AccionesModel {
     return $acciones;
   }
 
+  function getAccion($id_accion) {
+    $sentencia = $this->db->prepare("SELECT accion.*, pais.pais FROM accion, pais WHERE id_accion=? AND accion.id_pais = pais.id_pais");
+    $sentencia->execute(array($id_accion));
+    $accion = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    return $accion;
+  }
+
   function getRegion($region) {
 
     //SELECT accion.*, pais.pais FROM accion INNER JOIN pais ON accion.id_pais = pais.id_pais AND pais.pais=?
@@ -33,17 +40,17 @@ class AccionesModel {
     return $acciones;
   }
 
+  function updateAccion($id_accion, $accion, $precio, $variacion, $volumen, $maximo, $minimo) {
+    $sentencia = $this->db->prepare("UPDATE accion SET accion = ?, precio = ?, variacion = ?, volumen = ?, maximo = ?, minimo = ? WHERE id_accion = ?");
+    $sentencia->execute(array($accion, $precio, $variacion, $volumen, $maximo, $minimo, $id_accion));
+  }
+
   function deleteAccion($id_accion) {
     $sentencia = $this->db->prepare("DELETE FROM accion WHERE id_accion=?");
     $sentencia->execute(array($id_accion));
   }
 
-  function getAccion($id_accion) {
-    $sentencia = $this->db->prepare("SELECT * FROM `accion` WHERE `id_accion`=?");
-    $sentencia->execute(array($id_accion));
-    $accion = $sentencia->fetch(PDO::FETCH_ASSOC);
-    return $accion;
-  }
+  
 
   //estoy probando solo con 2 campos
   function insertAccion($nombre, $precio) {
@@ -53,9 +60,6 @@ class AccionesModel {
 
   
 
-  function updateAccion($id_accion) {
-    //$sentencia = $this->db->prepare("UPDATE accion SET nombre=? WHERE id_accion=?");
-    $sentencia->execute(array($id_accion));
-  }
+  
 }
 ?>

@@ -10,9 +10,10 @@ class ConfigApp
         'acerca' => 'NavController#acerca',
         'acciones' => 'AccionesController#getAcciones',
         'cotizaciones' => 'AccionesController#getRegion',
+        'editar' => 'AccionesController#editar',
+        'updateRegistro' => 'AccionesController#updateRegistro',
         'borrar' => 'AccionesController#deleteAccion',
-        'agregar' => 'AccionesController#insert',
-        'completada' => 'AccionesController#update'
+        'agregar' => 'AccionesController#insert'
     ];
 }
 ?>
