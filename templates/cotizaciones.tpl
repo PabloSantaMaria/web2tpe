@@ -100,67 +100,64 @@
     <div class="inputs bg-secondary">
         <div class="row">
             <div class="col-sm">
-                <form>
+                <form method="post" action="guardar">
                     <div class="form-group">
                         <div class="input-group input-group-sm mb-3">
                             <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-sm">Ticker</span>
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Región</span>
                             </div>
-                            <select id="ticker" class="form-control form-control-sm">
-                                <option>AGRO</option>
-                                <option>ALUA</option>
-                                <option>APBR</option>
-                                <option>AUSO</option>
-                                <option>EDN</option>
-                                <option>FRAN</option>
-                                <option>GGAL</option>
-                                <option>HARG</option>
-                                <option>LOMA</option>
-                                <option>METR</option>
-                                <option>SUPV</option>
-                                <option>TECO2</option>
-                                <option>TS</option>
-                                <option>TXAR</option>
-                                <option>YPFD</option>
+                            <select id="region" name="region" class="form-control form-control-sm">
+                                <option>Argentina</option>
+                                <option>Resto de América</option>
+                                <option>Europa</option>
+                                <option>Asia</option>
+                                <option>África</option>
                             </select>
+                        </div>
+                        <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">País</span>
+                            </div>
+                            <input type="text" id="pais" name="pais" class="form-control form-control-sm">
+                        </div>
+                        <div class="input-group input-group-sm mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroup-sizing-sm">Acción</span>
+                            </div>
+                            <input type="text" id="accion" name="accion" class="form-control form-control-sm">
                         </div>
                         <div class="input-group input-group-sm mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Precio</span>
                             </div>
-                            <input type="text" id="precio" class="form-control form-control-sm" placeholder="$">
+                            <input type="text" id="precio" name="precio" class="form-control form-control-sm" placeholder="$">
                         </div>
                         <div class="input-group input-group-sm mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Variación</span>
                             </div>
-                            <input type="text" id="vari" class="form-control form-control-sm" placeholder="%">
+                            <input type="text" id="variacion" name="variacion" class="form-control form-control-sm" placeholder="%">
                         </div>
                         <div class="input-group input-group-sm mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Volumen</span>
                             </div>
-                            <input type="text" id="vol" class="form-control form-control-sm" placeholder="$">
+                            <input type="text" id="volumen" name="volumen" class="form-control form-control-sm" placeholder="$">
                         </div>
                         <div class="input-group input-group-sm mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Máximo</span>
                             </div>
-                            <input type="text" id="max" class="form-control form-control-sm" placeholder="$">
+                            <input type="text" id="maximo" name="maximo" class="form-control form-control-sm" placeholder="$">
                         </div>
                         <div class="input-group input-group-sm mb-3">
                             <div class="input-group-prepend">
                                 <span class="input-group-text" id="inputGroup-sizing-sm">Mínimo</span>
                             </div>
-                            <input type="text" id="min" class="form-control form-control-sm" placeholder="$">
-                        </div>
-                        <div class="input-group input-group-sm mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-sm">Cierre</span>
-                            </div>
-                            <input type="text" id="cierre" class="form-control form-control-sm" placeholder="$">
+                            <input type="text" id="minimo" name="minimo" class="form-control form-control-sm" placeholder="$">
                         </div>
                     </div>
+                    <button type="submit" id="guardarRegistro" class="btn btn-success">Guardar</button>
                 </form>
             </div>
             <div class="col-sm">

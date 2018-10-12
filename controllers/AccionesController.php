@@ -22,6 +22,19 @@ class AccionesController {
     $this->view->mostrarAcciones($acciones);
   }
 
+  function insertAccion() {
+    $region = $_POST["region"];
+    $pais = $_POST["pais"];
+    $accion = $_POST["accion"];
+    $precio = $_POST["precio"];
+    $variacion = $_POST["variacion"];
+    $volumen = $_POST["volumen"];
+    $maximo = $_POST["maximo"];
+    $minimo = $_POST["minimo"];
+
+    $this->model->insertAccion($region, $pais, $accion, $precio, $variacion, $volumen, $maximo, $minimo);
+  }
+
   function editar($params) {
     $id_accion = $params[0];
     $accion = $this->model->getAccion($id_accion);
@@ -46,6 +59,11 @@ class AccionesController {
     $id_accion = $params[0];
     $this->model->deleteAccion($id_accion);
     $this->getAcciones();
-  }  
+  }
+
+  // function test() {
+  //   $this->model->test();
+  // }
+
 }
 ?>

@@ -12,6 +12,7 @@ class ConfigApp
         'cotizaciones' => 'AccionesController#getRegion',
         'editar' => 'AccionesController#editar',
         'updateRegistro' => 'AccionesController#updateRegistro',
+        'guardar' => 'AccionesController#insertAccion',
         'borrar' => 'AccionesController#deleteAccion',
     ];
 }

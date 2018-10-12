@@ -34,7 +34,7 @@
     </div>
     
     <div class="editar bg-dark" id="editar">
-        <form method="post" action="updateRegistro">
+        <form method="post" action="guardar">
             <input type="hidden" class="form-control" id="id_accion" name="id_accion" value="{$valor['id_accion']}">
             <div class="form-group">
                 <div class="form-row">
