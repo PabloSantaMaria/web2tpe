@@ -11,6 +11,7 @@ class AccionesController {
     $this->model = new AccionesModel();
   }
 
+  
   function getAcciones() {
     $acciones = $this->model->getAcciones();
     $this->view->mostrarAcciones($acciones);
@@ -32,7 +33,16 @@ class AccionesController {
     $maximo = $_POST["maximo"];
     $minimo = $_POST["minimo"];
 
-    $this->model->insertAccion($region, $pais, $accion, $precio, $variacion, $volumen, $maximo, $minimo);
+    if ($this->model->existePais($pais)) {
+      $id_pais = $this->model->traerID("pais", $pais);
+      $this->model->insertAccion($id_pais, $accion, $precio, $variacion, $volumen, $maximo, $minimo);
+    }
+    else {
+      $id_region = $this->model->traerID("region", $region);
+      $this->model->insertPais($pais, $id_region);
+      $id_pais = $this->model->traerID("pais", $pais);
+      $this->model->insertAccion($id_pais, $accion, $precio, $variacion, $volumen, $maximo, $minimo);
+    }
   }
 
   function editar($params) {
@@ -60,10 +70,5 @@ class AccionesController {
     $this->model->deleteAccion($id_accion);
     $this->getAcciones();
   }
-
-  // function test() {
-  //   $this->model->test();
-  // }
-
 }
 ?>
