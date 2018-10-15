@@ -10,14 +10,14 @@ class AccionesView {
     $this->baseURL = '//'.$_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']).'/';
   }
 
-  function mostrarAcciones($acciones) {
+  function displayAcciones($acciones) {
     $this->smarty->assign('titulo', 'TAbrokers - Cotizaciones');
     $this->smarty->assign('acciones', $acciones);
     $this->smarty->assign('baseURL', $this->baseURL);
     $this->smarty->display('./templates/cotizaciones.tpl');
   }
-  
-  function mostrarEditar($accion)  {
+
+  function displayUpdateForm($accion)  {
     $this->smarty->assign('titulo', 'TAbrokers - Editar');
     $this->smarty->assign('accion', $accion);
     $this->smarty->assign('baseURL', $this->baseURL);

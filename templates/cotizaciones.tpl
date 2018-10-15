@@ -100,7 +100,7 @@
     <div class="inputs bg-secondary">
         <div class="row">
             <div class="col-sm">
-                <form method="post" action="guardar">
+                <form method="post" action="insertar">
                     <div class="form-group">
                         <div class="input-group input-group-sm mb-3">
                             <div class="input-group-prepend">

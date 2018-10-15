@@ -10,18 +10,37 @@ class AccionesController {
     $this->view = new AccionesView();
     $this->model = new AccionesModel();
   }
-
   
-  function getAcciones() {
-    $acciones = $this->model->getAcciones();
-    $this->view->mostrarAcciones($acciones);
+  function getAll() {
+    $acciones = $this->model->fetchAll();
+    $this->view->displayAcciones($acciones);
   }
 
   function getRegion($params) {
     $region = $params[0];
-    $acciones = $this->model->getRegion($region);
-    $this->view->mostrarAcciones($acciones);
+    $acciones = $this->model->fetchRegion($region);
+    $this->view->displayAcciones($acciones);
   }
+
+  function editAccion($params) {
+    $id_accion = $params[0];
+    $accion = $this->model->fetchAccion($id_accion);
+    $this->view->displayUpdateForm($accion);
+  }
+
+  function updateAccion(){
+    $id_accion = $_POST["id_accion"];
+    $accion = $_POST["editNombre"];
+    $precio = $_POST["editPrecio"];
+    $variacion = $_POST["editVariacion"];
+    $volumen = $_POST["editVolumen"];
+    $maximo = $_POST["editMaximo"];
+    $minimo = $_POST["editMinimo"];
+
+    $this->model->updateAccion($id_accion, $accion, $precio, $variacion, $volumen, $maximo, $minimo);
+    $accion = $this->model->fetchAccion($id_accion);
+    $this->view->displayUpdateForm($accion);
+  } 
 
   function insertAccion() {
     $region = $_POST["region"];
@@ -33,42 +52,35 @@ class AccionesController {
     $maximo = $_POST["maximo"];
     $minimo = $_POST["minimo"];
 
-    if ($this->model->existePais($pais)) {
-      $id_pais = $this->model->traerID("pais", $pais);
+    if ($this->existePais($pais)) {
+      $id_pais = $this->getID("pais", $pais);
       $this->model->insertAccion($id_pais, $accion, $precio, $variacion, $volumen, $maximo, $minimo);
     }
     else {
-      $id_region = $this->model->traerID("region", $region);
+      $id_region = $this->getID("region", $region);
       $this->model->insertPais($pais, $id_region);
-      $id_pais = $this->model->traerID("pais", $pais);
+      $id_pais = $this->getID("pais", $pais);
       $this->model->insertAccion($id_pais, $accion, $precio, $variacion, $volumen, $maximo, $minimo);
     }
+
+    $id_accion = $this->model->getID("accion", $accion);
+    $accionGuardada = $this->model->fetchAccion($id_accion);
+    $this->view->displayAcciones($accionGuardada);
   }
-
-  function editar($params) {
-    $id_accion = $params[0];
-    $accion = $this->model->getAccion($id_accion);
-    $this->view->mostrarEditar($accion);
-  }
-
-  function updateRegistro(){
-    $id_accion = $_POST["id_accion"];
-    $accion = $_POST["editNombre"];
-    $precio = $_POST["editPrecio"];
-    $variacion = $_POST["editVariacion"];
-    $volumen = $_POST["editVolumen"];
-    $maximo = $_POST["editMaximo"];
-    $minimo = $_POST["editMinimo"];
-
-    $this->model->updateAccion($id_accion, $accion, $precio, $variacion, $volumen, $maximo, $minimo);
-    $accion = $this->model->getAccion($id_accion);
-    $this->view->mostrarEditar($accion);
-  }      
 
   function deleteAccion($params) {
     $id_accion = $params[0];
     $this->model->deleteAccion($id_accion);
-    $this->getAcciones();
+    //muestra todas!
+    //tendría que mostrar la región desde donde se borró
+    $this->getAll();
+  }
+
+  private function existePais($pais) {
+    return $this->model->existePais($pais);
+  }
+  private function getID($tabla, $item) {
+    return $this->model->getID($tabla, $item);
   }
 }
 ?>

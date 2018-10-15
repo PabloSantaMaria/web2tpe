@@ -8,11 +8,11 @@ class ConfigApp
         'home' => 'NavController#home',
         'operar' => 'NavController#operar',
         'acerca' => 'NavController#acerca',
-        'acciones' => 'AccionesController#getAcciones',
+        'acciones' => 'AccionesController#getAll',
         'cotizaciones' => 'AccionesController#getRegion',
-        'editar' => 'AccionesController#editar',
-        'updateRegistro' => 'AccionesController#updateRegistro',
-        'guardar' => 'AccionesController#insertAccion',
+        'editar' => 'AccionesController#editAccion',
+        'actualizar' => 'AccionesController#updateAccion',
+        'insertar' => 'AccionesController#insertAccion',
         'borrar' => 'AccionesController#deleteAccion',
     ];
 }

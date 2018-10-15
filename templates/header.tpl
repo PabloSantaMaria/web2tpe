@@ -38,7 +38,7 @@
                         <div class="dropdown-menu btn-outline-info bg-dark " aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item text-info ver" href="acciones">Todas</a>
                         <a class="dropdown-item text-info ver" href="cotizaciones/Argentina">Argentina</a>
-                        <a class="dropdown-item text-info ver" href="cotizaciones/Resto_de_America">Resto de América</a>
+                        <a class="dropdown-item text-info ver" href="cotizaciones/Resto de América">Resto de América</a>
                         <a class="dropdown-item text-info ver" href="cotizaciones/Europa">Europa</a>
                         <a class="dropdown-item text-info ver" href="cotizaciones/Asia">Asia</a>
                         <a class="dropdown-item text-info ver" href="cotizaciones/Africa">África</a>
