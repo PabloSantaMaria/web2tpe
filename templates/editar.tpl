@@ -8,7 +8,6 @@
                 <thead>
                     <tr>
                         <th scope="col">Nombre</th>
-                        {* <th scope="col">País</th> *}
                         <th scope="col">Precio</th>
                         <th scope="col">Var %</th>
                         <th scope="col">Volumen</th>
@@ -20,7 +19,6 @@
 	                {foreach from=$accion item=valor}
                         <tr class="bg-warning" id='row{$valor['id_accion']}'>
                             <td>{$valor['accion']}</td>
-                            {* <td>{$valor['pais']}</td> *}
                             <td>$ {$valor['precio']}</td>
                             <td>{$valor['variacion']}</td>
                             <td>$ {$valor['volumen']}</td>
@@ -42,10 +40,6 @@
                         <input type="text" id="editNombre" name="editNombre" class="form-control form-control-sm" value="{$valor['accion']}">
                         <small class="form-text text-muted">Nombre</small>
                     </div>
-                   {* <div class="col-2">
-                        <input type="text" id="editPais" name="editPais" class="form-control form-control-sm" value="{$valor['pais']}">
-                        <small class="form-text text-muted">País</small>
-                    </div> *}
                    <div class="col">
                         <input type="text" id="editPrecio" name="editPrecio" class="form-control form-control-sm" value="{$valor['precio']}">
                         <small class="form-text text-muted">Precio</small>
@@ -66,93 +60,10 @@
                         <input type="text" id="editMinimo" name="editMinimo" class="form-control form-control-sm" value="{$valor['minimo']}">
                         <small class="form-text text-muted">Mínimo</small>
                     </div>
-                    {* <select id="editTicker" class="col form-control form-control-sm">
-                        <option>AGRO</option>
-                        <option>ALUA</option>
-                    </select> *}
                 </div>
             </div>
             <button type="submit" class="btn btn-success">Editar registro</button>
         </form>
-    </div>
-    
-    <!-- INPUTS -->
-    <div class="inputs bg-secondary">
-        <div class="row">
-            <div class="col-sm">
-                <form>
-                    <div class="form-group">
-                        <div class="input-group input-group-sm mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-sm">Ticker</span>
-                            </div>
-                            <select id="ticker" class="form-control form-control-sm">
-                                <option>AGRO</option>
-                                <option>ALUA</option>
-                                <option>APBR</option>
-                                <option>AUSO</option>
-                                <option>EDN</option>
-                                <option>FRAN</option>
-                                <option>GGAL</option>
-                                <option>HARG</option>
-                                <option>LOMA</option>
-                                <option>METR</option>
-                                <option>SUPV</option>
-                                <option>TECO2</option>
-                                <option>TS</option>
-                                <option>TXAR</option>
-                                <option>YPFD</option>
-                            </select>
-                        </div>
-                        <div class="input-group input-group-sm mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-sm">Precio</span>
-                            </div>
-                            <input type="text" id="precio" class="form-control form-control-sm" placeholder="$">
-                        </div>
-                        <div class="input-group input-group-sm mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-sm">Variación</span>
-                            </div>
-                            <input type="text" id="vari" class="form-control form-control-sm" placeholder="%">
-                        </div>
-                        <div class="input-group input-group-sm mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-sm">Volumen</span>
-                            </div>
-                            <input type="text" id="vol" class="form-control form-control-sm" placeholder="$">
-                        </div>
-                        <div class="input-group input-group-sm mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-sm">Máximo</span>
-                            </div>
-                            <input type="text" id="max" class="form-control form-control-sm" placeholder="$">
-                        </div>
-                        <div class="input-group input-group-sm mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-sm">Mínimo</span>
-                            </div>
-                            <input type="text" id="min" class="form-control form-control-sm" placeholder="$">
-                        </div>
-                        <div class="input-group input-group-sm mb-3">
-                            <div class="input-group-prepend">
-                                <span class="input-group-text" id="inputGroup-sizing-sm">Cierre</span>
-                            </div>
-                            <input type="text" id="cierre" class="form-control form-control-sm" placeholder="$">
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <div class="col-sm">
-                <div class="btn-group-vertical" role="group" aria-label="...">
-                    <button type="button" id="getTabla" class="btn btn-primary">Ver cotizaciones</button>
-                    <button type="button" id="guardarRegistro" class="btn btn-success">Guardar</button>
-                    <button type="button" id="poblarTabla" class="btn btn-warning">Poblar tabla x 6</button>
-                    <button type="button" id="borrarTabla" class="btn btn-danger">Borrar todo</button>
-                    <button type="button" class="btn btn-light" data-toggle="collapse" data-target="#filtrar">Filtrar</button>
-                </div>
-            </div>
-        </div>
     </div>
 </div>
 

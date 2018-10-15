@@ -50,6 +50,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="acerca"><button type="button" id="acerca" class="btn btn-outline-info">Acerca de nosotros</button></a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login"><button type="button" id="login" class="btn btn-outline-info">Administrador</button></a>
+                    </li>
                 </ul>
             </div>
             

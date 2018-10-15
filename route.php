@@ -2,6 +2,9 @@
 require_once "config/ConfigApp.php";
 require_once "controllers/NavController.php";
 require_once "controllers/AccionesController.php";
+require_once "controllers/LoginController.php";
+require_once "controllers/AdminController.php";
+require_once "controllers/SecureController.php";
 
 function parseURL($url) {
     $explodedURL = explode('/', $url);

@@ -1,14 +1,20 @@
 <?php
-require_once "./views/AccionesView.php";
-require_once "./models/AccionesModel.php";
+require_once "./views/AdminView.php";
+// require_once "./models/AdminModel.php";
+require_once "./controllers/SecureController.php";
 
-class AccionesController {
+class AdminController extends SecureController {
   private $view;
   private $model;
 
   function __construct() {
-    $this->view = new AccionesView();
-    $this->model = new AccionesModel();
+    parent::__construct();
+    $this->view = new AdminView();
+    // $this->model = new AdminModel();
+  }
+
+  function adminHome() {
+    $this->view->adminHome();
   }
   
   function getAll() {
