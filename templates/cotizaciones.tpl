@@ -171,6 +171,7 @@
             </div>
         </div>
     </div>
+    
 </div>
 {include file="footer.tpl"}
 <script src="js/tablajs.js" crossorigin="anonymous"></script>

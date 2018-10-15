@@ -16,6 +16,7 @@ class ConfigApp
         'login' => 'LoginController#login',
         'verify' => 'LoginController#verify',
         'admin' => 'AdminController#adminHome',
+        'adminDisplay' => 'AdminController#adminDisplay',
         'acciones' => 'AccionesController#getAll',
         'cotizaciones' => 'AccionesController#getRegion',
         'editar' => 'AccionesController#editAccion',
