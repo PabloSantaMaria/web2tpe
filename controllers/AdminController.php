@@ -6,11 +6,16 @@ require_once "./controllers/SecureController.php";
 class AdminController extends SecureController {
   private $view;
   private $model;
+  private $regiones;
+  private $paises;
+  private $mensaje = '';
 
   function __construct() {
     parent::__construct();
     $this->view = new AdminView();
     $this->model = new AdminModel();
+    $this->regiones = $this->model->fetchRegiones();
+    $this->paises = $this->model->fetchPaises();
   }
 
   function adminHome() {
@@ -20,24 +25,24 @@ class AdminController extends SecureController {
     $this->view->adminHome($regiones, $paises, $mensaje);
   }
 
-  function adminDisplay() {
-    if (isset($_POST["region"])) {
+  function adminDisplay($params) {
+    //refactorear a funciones privadas
+    if ($params[0] == "region") {
+      if (isset($_POST["region"])) {
       $region = $_POST["region"];
       $acciones = $this->model->fetchRegion($region);
+      $this->mensaje = "Mostrando registros de " . $region;
+      }
     }
-    elseif (isset($_POST["pais"])) {
+    if ($params[0] == "pais") {
+      if (isset($_POST["pais"])) {
       $pais = $_POST["pais"];
       $acciones = $this->model->fetchPais($pais);
+      $this->mensaje = "Mostrando registros de " . $pais;
+      }
     }
-    else {
-      $acciones = $this->model->fetchAll();
-    }
-    
-    $regiones = $this->model->fetchRegiones();
-    $paises = $this->model->fetchPaises();
-    $mensaje = "Registros traídos con éxito";
-    
-    $this->view->adminDisplay($regiones, $paises, $acciones, $mensaje);
+    $this->actualizarDropdowns();
+    $this->view->adminDisplay($this->regiones, $this->paises, $acciones, $this->mensaje);
   }
 
   function guardar() {
@@ -134,11 +139,23 @@ class AdminController extends SecureController {
     $this->view->displayUpdateForm($accion, $paises);
   }
 
+  function deleteAccion($params) {
+    $id_accion = $params[0];
+    $this->model->deleteAccion($id_accion);
+    $this->mensaje = "Registro borrado con éxito";
+    $this->actualizarDropdowns();
+    $this->view->adminHome($this->regiones, $this->paises, $this->mensaje);
+  }
+
   private function existeItem($tabla, $item) {
     return $this->model->existeItem($tabla, $item);
   }
   private function getID($tabla, $item) {
     return $this->model->getID($tabla, $item);
+  }
+  private function actualizarDropdowns() {
+    $this->regiones = $this->model->fetchRegiones();
+    $this->paises = $this->model->fetchPaises();
   }
 }
 ?>

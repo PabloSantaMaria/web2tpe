@@ -12,7 +12,7 @@
       <div class="card-body">
         
         {* POR REGION *}
-        <form class="form-inline" method="post" action="adminDisplay">
+        <form class="form-inline" method="post" action="adminDisplay/region">
           <div class="form-group mb-2">
             <label for="regiones" class="sr-only">Regiones</label>
             <input type="text" readonly class="form-control-plaintext text-white" id="regiones" value="Ver acciones por región">
@@ -29,7 +29,7 @@
         </form>
         
         {* POR PAIS *}
-        <form class="form-inline" method="post" action="adminDisplay">
+        <form class="form-inline" method="post" action="adminDisplay/pais">
           <div class="form-group mb-2">
             <label for="paises" class="sr-only">Paises</label>
             <input type="text" readonly class="form-control-plaintext text-white" id="paises" value="Ver acciones por país">

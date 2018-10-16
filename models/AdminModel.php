@@ -89,6 +89,11 @@ class AdminModel {
     $sentencia->execute(array($user));
   }
 
+  function deleteAccion($id_accion) {
+    $sentencia = $this->db->prepare("DELETE FROM accion WHERE id_accion=?");
+    $sentencia->execute(array($id_accion));
+  }
+
   function existeItem($tabla, $item) {
     $sentencia = $this->db->prepare("SELECT $tabla.$tabla FROM $tabla");
     $sentencia->execute(array());

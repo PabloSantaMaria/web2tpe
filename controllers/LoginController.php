@@ -28,7 +28,7 @@ class LoginController {
       $dbUser = $this->model->fetchUser($user);
       
       if (isset($dbUser)) {
-        if (password_verify($pass, $dbUser['password'])) {
+        if (password_verify($pass, $dbUser['pass'])) {
           session_start();
           $_SESSION['user'] = $user;
           header(ADMIN);

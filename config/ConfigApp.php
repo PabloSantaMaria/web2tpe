@@ -24,7 +24,7 @@ class ConfigApp
         'acciones' => 'AccionesController#getAll',
         'cotizaciones' => 'AccionesController#getRegion',
         'insertar' => 'AccionesController#insertAccion',
-        'borrar' => 'AccionesController#deleteAccion',
+        'borrar' => 'AdminController#deleteAccion',
     ];
 }
 ?>
