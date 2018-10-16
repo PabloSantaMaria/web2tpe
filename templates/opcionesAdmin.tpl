@@ -46,10 +46,10 @@
         </form>
         
         {* VER TODAS *}
-        <form class="form-inline" method="post" action="adminDisplay">
+        <form class="form-inline" method="post" action="adminDisplay/todas">
           <div class="form-group mb-2">
             <label for="todas" class="sr-only">Todas</label>
-            <input type="text" readonly class="form-control-plaintext text-white" id="paises" value="Ver todas las acciones">
+            <input type="text" readonly class="form-control-plaintext text-white" value="Ver todas las acciones">
           </div>
           <div class="form-group mx-sm-3 mb-2">
             <button type="submit" class="btn btn-primary mb-2">Mostrar</button>
@@ -76,7 +76,7 @@
         <div class="mb-2">
           <label for="exampleInputEmail1">Agregar nueva región</label>
         </div>
-        <form class="form-inline" method="post" action="guardar">
+        <form class="form-inline" method="post" action="adminDisplay/guardarRegion">
           
           <div class="form-group mx-sm-3 mb-2">
             <input class="form-control form-control-sm" type="text" placeholder="" name="nuevaRegion">
@@ -88,7 +88,7 @@
         <div class="mb-2">
           <label for="exampleInputEmail1">Agregar nuevo país</label>
         </div>
-        <form class="form-inline" method="post" action="guardar">
+        <form class="form-inline" method="post" action="adminDisplay/guardarPais">
           
           <div class="form-group mx-sm-3 mb-2">
             <input class="form-control form-control-sm" type="text" placeholder="" name="nuevoPais">

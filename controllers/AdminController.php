@@ -41,6 +41,38 @@ class AdminController extends SecureController {
       $this->mensaje = "Mostrando registros de " . $pais;
       }
     }
+    if ($params[0] == "todas") {
+      $acciones = $this->model->fetchAll();
+      $this->mensaje = "Mostrando todos los registros";
+    }
+    if ($params[0] == "guardarRegion") {
+      if (isset($_POST["nuevaRegion"])) {
+        $region = $_POST["nuevaRegion"];
+        if ($this->existeItem("region", $region)) {
+          //todo
+        }
+        else {
+          $this->model->insertRegion($region);
+          $acciones = $this->model->fetchRegion($region);
+          $this->mensaje = "Región " . $region . " agregada con éxito";
+        }
+      }
+    }
+    if ($params[0] == "guardarPais") {
+      if (isset($_POST["nuevoPais"])) {
+        $pais = $_POST["nuevoPais"];
+        if ($this->existeItem("pais", $pais)) {
+          //todo
+        }
+        else {
+          $region = $_POST['perteneceRegion'];
+          $id_region = $this->getID("region", $region);
+          $this->model->insertPais($pais, $id_region);
+          $acciones = $this->model->fetchPais($pais);
+          $this->mensaje = "País " . $pais . " agregado con éxito";
+        }
+      }
+    }
     $this->actualizarDropdowns();
     $this->view->adminDisplay($this->regiones, $this->paises, $acciones, $this->mensaje);
   }
