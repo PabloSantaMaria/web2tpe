@@ -11,7 +11,7 @@ class LoginModel {
   }
 
   function fetchUser($user) {
-    $sentencia = $this->db->prepare("SELECT * FROM usuarios WHERE email=?");
+    $sentencia = $this->db->prepare("SELECT * FROM usuario WHERE usuario=?");
     $sentencia->execute(array($user));
     $dbUser = $sentencia->fetch(PDO::FETCH_ASSOC);
     return $dbUser;

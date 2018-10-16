@@ -8,6 +8,7 @@
                 <thead>
                     <tr>
                         <th scope="col">Nombre</th>
+                        <th scope="col">País</th>
                         <th scope="col">Precio</th>
                         <th scope="col">Var %</th>
                         <th scope="col">Volumen</th>
@@ -19,6 +20,7 @@
 	                {foreach from=$accion item=valor}
                         <tr class="bg-warning" id='row{$valor['id_accion']}'>
                             <td>{$valor['accion']}</td>
+                            <td>{$valor['pais']}</td>
                             <td>$ {$valor['precio']}</td>
                             <td>{$valor['variacion']}</td>
                             <td>$ {$valor['volumen']}</td>
@@ -39,6 +41,15 @@
                     <div class="col-3">
                         <input type="text" id="editNombre" name="editNombre" class="form-control form-control-sm" value="{$valor['accion']}">
                         <small class="form-text text-muted">Nombre</small>
+                    </div>
+                    <div class="col-3">
+                        <select id="editPais" name="editPais" class="form-control form-control-sm">
+                            <option selected>{$valor['pais']}</option>
+                            {foreach from=$paises item=pais}
+                            <option>{$pais['pais']}</option>
+                            {/foreach}
+                        </select>
+                        <small class="form-text text-muted">País</small>
                     </div>
                    <div class="col">
                         <input type="text" id="editPrecio" name="editPrecio" class="form-control form-control-sm" value="{$valor['precio']}">

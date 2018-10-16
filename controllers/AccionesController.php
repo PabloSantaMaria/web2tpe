@@ -40,7 +40,7 @@ class AccionesController {
     $this->model->updateAccion($id_accion, $accion, $precio, $variacion, $volumen, $maximo, $minimo);
     $accion = $this->model->fetchAccion($id_accion);
     $this->view->displayUpdateForm($accion);
-  } 
+  }
 
   function insertAccion() {
     $region = $_POST["region"];

@@ -10,20 +10,29 @@ class AdminView {
     $this->baseURL = '//'.$_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']).'/';
   }
 
-  function adminHome($regiones, $paises) {
+  function adminHome($regiones, $paises, $mensaje) {
       $this->smarty->assign('titulo', 'TAbrokers - Administrador');
       $this->smarty->assign('regiones', $regiones);
       $this->smarty->assign('paises', $paises);
+      $this->smarty->assign('mensaje', $mensaje);
       $this->smarty->assign('baseURL', $this->baseURL);
       $this->smarty->display('./templates/admin.tpl');
   }
-  function adminDisplay($regiones, $paises, $acciones) {
+  function adminDisplay($regiones, $paises, $acciones, $mensaje) {
       $this->smarty->assign('titulo', 'TAbrokers - Administrador');
       $this->smarty->assign('regiones', $regiones);
       $this->smarty->assign('paises', $paises);
       $this->smarty->assign('acciones', $acciones);
+      $this->smarty->assign('mensaje', $mensaje);
       $this->smarty->assign('baseURL', $this->baseURL);
       $this->smarty->display('./templates/adminDisplay.tpl');
+  }
+  function displayUpdateForm($accion, $paises) {
+    $this->smarty->assign('titulo', 'TAbrokers - Editar');
+    $this->smarty->assign('accion', $accion);
+    $this->smarty->assign('paises', $paises);
+    $this->smarty->assign('baseURL', $this->baseURL);
+    $this->smarty->display('./templates/editar.tpl');
   }
 }
 ?>

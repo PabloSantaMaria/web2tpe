@@ -33,4 +33,4 @@
 
 
 {include file="footer.tpl"}
-<script src="js/login.js" crossorigin="anonymous"></script>
+<script src="js/validateForm.js" crossorigin="anonymous"></script>

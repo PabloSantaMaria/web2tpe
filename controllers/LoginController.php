@@ -14,6 +14,13 @@ class LoginController {
   function login() {
     $this->view->displayLogin();
   }
+  
+  function logout() {
+    session_start();
+    session_destroy();
+    header(HOME);
+  }
+  
 
   function verify() {
       $user = $_POST['user'];
