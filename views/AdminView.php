@@ -11,7 +11,7 @@ class AdminView {
   }
 
   function adminHome($regiones, $paises, $mensaje) {
-      $this->smarty->assign('titulo', 'TAbrokers - Administrador');
+      $this->smarty->assign('title', 'Administrador');
       $this->smarty->assign('regiones', $regiones);
       $this->smarty->assign('paises', $paises);
       $this->smarty->assign('mensaje', $mensaje);
@@ -19,7 +19,7 @@ class AdminView {
       $this->smarty->display('./templates/admin.tpl');
   }
   function adminDisplay($regiones, $paises, $acciones, $mensaje) {
-      $this->smarty->assign('titulo', 'TAbrokers - Administrador');
+      $this->smarty->assign('title', 'TAbrokers - Administrador');
       $this->smarty->assign('regiones', $regiones);
       $this->smarty->assign('paises', $paises);
       $this->smarty->assign('acciones', $acciones);
@@ -28,7 +28,7 @@ class AdminView {
       $this->smarty->display('./templates/adminDisplay.tpl');
   }
   function displayUpdateForm($accion, $paises) {
-    $this->smarty->assign('titulo', 'TAbrokers - Editar');
+    $this->smarty->assign('title', 'TAbrokers - Editar');
     $this->smarty->assign('accion', $accion);
     $this->smarty->assign('paises', $paises);
     $this->smarty->assign('baseURL', $this->baseURL);

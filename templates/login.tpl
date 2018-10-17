@@ -31,6 +31,5 @@
     </div>
 </div>
 
-
 {include file="footer.tpl"}
 <script src="js/validateForm.js" crossorigin="anonymous"></script>

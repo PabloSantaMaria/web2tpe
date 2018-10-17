@@ -3,7 +3,6 @@ require_once "./libs/Smarty.class.php";
 
 class NavView {
   private $smarty;
-  private $title;
   private $baseURL;
   
   function __construct() {
@@ -29,6 +28,12 @@ class NavView {
     $this->smarty->assign('regiones', $regiones);
     $this->smarty->assign('baseURL', $this->baseURL);
     $this->smarty->display('./templates/acerca.tpl');
+  }
+  function displayLogin($title, $regiones) {
+    $this->smarty->assign('title', $title);
+    $this->smarty->assign('regiones', $regiones);
+    $this->smarty->assign('baseURL', $this->baseURL);
+    $this->smarty->display('./templates/login.tpl');
   }
 }
 ?>

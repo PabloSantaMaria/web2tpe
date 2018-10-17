@@ -1,46 +1,44 @@
 <?php
-require_once "./views/LoginView.php";
+require_once "./controllers/NavController.php";
 require_once "./models/LoginModel.php";
 
-class LoginController {
-  private $view;
-  private $model;
+class LoginController extends NavController {
+  
+  private $loginModel;
 
   function __construct() {
-    $this->view = new LoginView();
-    $this->model = new LoginModel();
+    parent::__construct();
+    $this->loginModel = new LoginModel();
   }
 
   function login() {
-    $this->view->displayLogin();
+    $title = 'Login';
+    $this->view->displayLogin($title, $this->regiones);
   }
-  
+  function verify() {
+    $user = $_POST['user'];
+    $pass = $_POST['password'];
+    $dbUser = $this->loginModel->fetchUser($user);
+    
+    if (isset($dbUser)) {
+      if (password_verify($pass, $dbUser['pass'])) {
+        session_start();
+        $_SESSION['user'] = $user;
+        header(ADMIN);
+      }
+      else {
+        //pedir login otra vez
+      }
+    }
+    else {
+      //esto no anda?
+        echo "no esiste";
+    }
+  }
   function logout() {
     session_start();
     session_destroy();
     header(HOME);
-  }
-  
-
-  function verify() {
-      $user = $_POST['user'];
-      $pass = $_POST['password'];
-      $dbUser = $this->model->fetchUser($user);
-      
-      if (isset($dbUser)) {
-        if (password_verify($pass, $dbUser['pass'])) {
-          session_start();
-          $_SESSION['user'] = $user;
-          header(ADMIN);
-        }
-        else {
-          //pedir login otra vez
-        }
-      }
-      else {
-        //esto no anda?
-          echo "no esiste";
-      }
   }
 }
 ?>

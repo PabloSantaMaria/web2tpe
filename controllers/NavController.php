@@ -3,9 +3,9 @@ require_once "./views/NavView.php";
 require_once "./models/NavModel.php";
 
 class NavController {
-  private $view;
-  private $model;
-  private $regiones;
+  protected $view;
+  protected $model;
+  protected $regiones;
 
   function __construct() {
     $this->view = new NavView();
