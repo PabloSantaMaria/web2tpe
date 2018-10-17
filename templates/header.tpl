@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>{$titulo}</title>
+    <title>{$title}</title>
     <base href="{$baseURL}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous">
@@ -36,12 +36,10 @@
                         <button type="button" id="tablacotiz" class="btn btn-outline-info">Cotizzaciones</button>
                         </a>
                         <div class="dropdown-menu btn-outline-info bg-dark " aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item text-info ver" href="acciones">Todas</a>
-                        <a class="dropdown-item text-info ver" href="cotizaciones/Argentina">Argentina</a>
-                        <a class="dropdown-item text-info ver" href="cotizaciones/Resto de América">Resto de América</a>
-                        <a class="dropdown-item text-info ver" href="cotizaciones/Europa">Europa</a>
-                        <a class="dropdown-item text-info ver" href="cotizaciones/Asia">Asia</a>
-                        <a class="dropdown-item text-info ver" href="cotizaciones/Africa">África</a>
+                        <a class="dropdown-item text-info ver" href="cotizaciones/">Todas</a>
+                        {foreach from=$regiones item=region}
+                            <a class="dropdown-item text-info ver" href="cotizaciones/{$region['region']}">{$region['region']}</a>
+                        {/foreach}
                         </div>
                     </li>
                     <li class="nav-item">
