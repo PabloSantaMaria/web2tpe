@@ -71,9 +71,13 @@
                         <input type="text" id="editMinimo" name="editMinimo" class="form-control form-control-sm" value="{$valor['minimo']}">
                         <small class="form-text text-muted">Mínimo</small>
                     </div>
+                    <div class="col">
+                        <button type="submit" class="btn btn-success btn-sm">Editar registro</button>
+                    </div>
                 </div>
             </div>
-            <button type="submit" class="btn btn-success">Editar registro</button>
+            
+            <a class="btn btn-danger" href="admin" role="button">Salir de la vista de modificación</a>
         </form>
     </div>
 </div>

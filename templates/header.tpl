@@ -45,13 +45,13 @@
                         </div>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="operar"><button type="button" id="operar" class="btn btn-outline-info">Operar</button></a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="acerca"><button type="button" id="acerca" class="btn btn-outline-info">Acerca de nosotros</button></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="login"><button type="button" id="login" class="btn btn-outline-info">Administrador</button></a>
+                        <a class="nav-link" href="admin"><button type="button" id="login" class="btn btn-outline-info">Administrador</button></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login"><button type="button" id="login" class="btn btn-outline-warning">Login</button></a>
                     </li>
                 </ul>
             </div>

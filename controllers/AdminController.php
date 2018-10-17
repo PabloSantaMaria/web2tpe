@@ -19,13 +19,45 @@ class AdminController extends SecureController {
   }
 
   function adminHome() {
-    $regiones = $this->model->fetchRegiones();
-    $paises = $this->model->fetchPaises();
+    $this->actualizarDropdowns();
     $mensaje = "En esta sección puede ver y modificar cotizaciones";
-    $this->view->adminHome($regiones, $paises, $mensaje);
+    $this->view->adminHome($this->regiones, $this->paises, $mensaje);
   }
 
-  function adminDisplay($params) {
+  function adminControl($params) {
+    switch ($params[0]) {
+      case 'region':
+        # code...
+        break;
+      case 'pais':
+        # code...
+        break;
+      case 'todas':
+        # code...
+        break;
+      case 'guardarRegion':
+        # code...
+        break;
+      case 'guardarPais':
+        # code...
+        break;
+      case 'guardarAccion':
+        # code...
+        break;
+      case 'guardarUsuario':
+        # code...
+        break;
+      case 'borrarUsuario':
+        # code...
+        break;
+      
+      default:
+        # code...
+        break;
+    }
+
+
+
     //refactorear a funciones privadas
     if ($params[0] == "region") {
       if (isset($_POST["region"])) {
@@ -49,7 +81,8 @@ class AdminController extends SecureController {
       if (isset($_POST["nuevaRegion"])) {
         $region = $_POST["nuevaRegion"];
         if ($this->existeItem("region", $region)) {
-          //todo
+          $acciones = $this->model->fetchRegion($region);
+          $this->mensaje = "La región " . $region . " ya existe en la base de datos";
         }
         else {
           $this->model->insertRegion($region);
@@ -62,7 +95,8 @@ class AdminController extends SecureController {
       if (isset($_POST["nuevoPais"])) {
         $pais = $_POST["nuevoPais"];
         if ($this->existeItem("pais", $pais)) {
-          //todo
+          $acciones = $this->model->fetchPais($pais);
+          $this->mensaje = "El país " . $pais . " ya existe en la base de datos";
         }
         else {
           $region = $_POST['perteneceRegion'];
@@ -73,78 +107,65 @@ class AdminController extends SecureController {
         }
       }
     }
-    $this->actualizarDropdowns();
-    $this->view->adminDisplay($this->regiones, $this->paises, $acciones, $this->mensaje);
-  }
-
-  function guardar() {
-    if (isset($_POST["nuevaRegion"])) {
-      $region = $_POST["nuevaRegion"];
-      if ($this->existeItem("region", $region)) {
-      // $id_pais = $this->getID("pais", $pais);
-      // $this->model->insertAccion($id_pais, $accion, $precio, $variacion, $volumen, $maximo, $minimo);
-      }
-      else {
-      $this->model->insertRegion($region);
-      // $id_region = $this->getID("region", $region);
-      // $this->model->insertAccion($id_pais, $accion, $precio, $variacion, $volumen, $maximo, $minimo);
-      }
-    }
-    elseif (isset($_POST["nuevoPais"])) {
-      $pais = $_POST["nuevoPais"];
-      if ($this->existeItem("pais", $pais)) {
-      // $id_pais = $this->getID("pais", $pais);
-      // $this->model->insertAccion($id_pais, $accion, $precio, $variacion, $volumen, $maximo, $minimo);
-      }
-      else {
-      $region = $_POST['perteneceRegion'];
-      $id_region = $this->getID("region", $region);
-      $this->model->insertPais($pais, $id_region);
-      
-      // $this->model->insertAccion($id_pais, $accion, $precio, $variacion, $volumen, $maximo, $minimo);
-      }
-    }
-    elseif (isset($_POST["paisAccion"]) & isset($_POST["accionAccion"]) & isset($_POST["precioAccion"]) & isset($_POST["variacionAccion"]) & isset($_POST["volumenAccion"]) & isset($_POST["maximoAccion"]) & isset($_POST["minimoAccion"])) {
-      $pais = $_POST["paisAccion"];
-      $id_pais = $this->getID("pais", $pais);
-      $accion = $_POST["accionAccion"];
-      $precio = $_POST["precioAccion"];
-      $variacion = $_POST["variacionAccion"];
-      $volumen = $_POST["volumenAccion"];
-      $maximo = $_POST["maximoAccion"];
-      $minimo = $_POST["minimoAccion"];
-      $this->model->insertAccion($id_pais, $accion, $precio, $variacion, $volumen, $maximo, $minimo);
-    }
-    elseif (isset($_POST["nuevoUser"]) & isset($_POST["nuevaPass"])) {
-      $user = $_POST["nuevoUser"];
-      if ($this->existeItem("usuario", $user)) {
-      // $id_pais = $this->getID("pais", $pais);
-      // $this->model->insertAccion($id_pais, $accion, $precio, $variacion, $volumen, $maximo, $minimo);
-      }
-      else {
-        $pass = $_POST["nuevaPass"];
-        $hash = password_hash($pass, PASSWORD_DEFAULT);
-        $this->model->insertUsuario($user, $hash);
-      
-      // $this->model->insertAccion($id_pais, $accion, $precio, $variacion, $volumen, $maximo, $minimo);
-      }
-    }elseif (isset($_POST["userBorrar"]) & isset($_POST["passBorrar"])) {
-      $user = $_POST["userBorrar"];
-      if ($this->existeItem("usuario", $user)) {
-        $pass = $_POST['passBorrar'];
-        $dbUser = $this->model->fetchUser($user);
-        if (password_verify($pass, $dbUser['pass'])) {
-            $this->model->deleteUser($user);
+    if ($params[0] == "guardarAccion") {
+      if (isset($_POST["paisAccion"]) & isset($_POST["accionAccion"]) & isset($_POST["precioAccion"]) & isset($_POST["variacionAccion"]) & isset($_POST["volumenAccion"]) & isset($_POST["maximoAccion"]) & isset($_POST["minimoAccion"])) {
+        $accion = $_POST["accionAccion"];
+        if ($this->existeItem("accion", $accion)) {
+          $id_accion = $this->getID("accion", $accion);
+          $acciones = $this->model->fetchAccion($id_accion);
+          $this->mensaje = "El registro " . $accion . " ya existe en la base de datos";
+        }
+        else {
+          $pais = $_POST["paisAccion"];
+          $id_pais = $this->getID("pais", $pais);
+          $precio = $_POST["precioAccion"];
+          $variacion = $_POST["variacionAccion"];
+          $volumen = $_POST["volumenAccion"];
+          $maximo = $_POST["maximoAccion"];
+          $minimo = $_POST["minimoAccion"];
+          $this->model->insertAccion($id_pais, $accion, $precio, $variacion, $volumen, $maximo, $minimo);
+          $id_accion = $this->getID("accion", $accion);
+          $acciones = $this->model->fetchAccion($id_accion);
+          $this->mensaje = "Acción " . $accion . " agregada con éxito";
         }
       }
-      else {
-      // $this->model->insertAccion($id_pais, $accion, $precio, $variacion, $volumen, $maximo, $minimo);
+    }
+    if ($params[0] == "guardarUsuario") {
+      if (isset($_POST["nuevoUser"]) & isset($_POST["nuevaPass"])) {
+        $user = $_POST["nuevoUser"];
+        if ($this->existeItem("usuario", $user)) {
+          header(ADMIN);
+          $this->mensaje = "El usuario " . $user . " ya existe en la base de datos";
+        }
+        else {
+          $pass = $_POST["nuevaPass"];
+          $hash = password_hash($pass, PASSWORD_DEFAULT);
+          $this->model->insertUsuario($user, $hash);
+          header(ADMIN);
+        }
       }
     }
-
-    // $id_accion = $this->model->getID("accion", $accion);
-    // $accionGuardada = $this->model->fetchAccion($id_accion);
-    // $this->view->displayAcciones($accionGuardada);
+    if ($params[0] == "borrarUsuario") {
+      if (isset($_POST["userBorrar"]) & isset($_POST["passBorrar"])) {
+        $user = $_POST["userBorrar"];
+        if ($this->existeItem("usuario", $user)) {
+          $pass = $_POST['passBorrar'];
+          $dbUser = $this->model->fetchUser($user);
+          if (password_verify($pass, $dbUser['pass'])) {
+            $this->model->deleteUser($user);
+            header(ADMIN);
+            $this->mensaje = "El usuario " . $user . " ha sido borrado";
+          }
+        }
+        else {
+          $this->mensaje = "El usuario " . $user . " no existe en la base de datos";
+          header(ADMIN);
+        }
+      }
+    }
+    
+    $this->actualizarDropdowns();
+    $this->view->adminDisplay($this->regiones, $this->paises, $acciones, $this->mensaje);
   }
 
   function editAccion($params) {
