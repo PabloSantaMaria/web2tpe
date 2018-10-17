@@ -12,13 +12,13 @@
       <div class="card-body">
         
         {* POR REGION *}
-        <form class="form-inline" method="post" action="adminControl/region">
+        <form class="form-inline" method="post" action="adminControl/verRegion">
           <div class="form-group mb-2">
             <label for="regiones" class="sr-only">Regiones</label>
-            <input type="text" readonly class="form-control-plaintext text-white" id="regiones" value="Ver acciones por región">
+            <input type="text" readonly class="form-control-plaintext text-white" value="Ver acciones por región">
           </div>
           <div class="form-group mx-sm-3 mb-2">
-            <select id="inputState" name="region" class="form-control">
+            <select name="region" class="form-control">
               <option selected>Elegir</option>
               {foreach from=$regiones item=region}
               <option>{$region['region']}</option>
@@ -29,13 +29,13 @@
         </form>
         
         {* POR PAIS *}
-        <form class="form-inline" method="post" action="adminControl/pais">
+        <form class="form-inline" method="post" action="adminControl/verPais">
           <div class="form-group mb-2">
             <label for="paises" class="sr-only">Paises</label>
-            <input type="text" readonly class="form-control-plaintext text-white" id="paises" value="Ver acciones por país">
+            <input type="text" readonly class="form-control-plaintext text-white" value="Ver acciones por país">
           </div>
           <div class="form-group mx-sm-3 mb-2">
-            <select id="inputState" name="pais" class="form-control">
+            <select name="pais" class="form-control">
               <option selected>Elegir</option>
               {foreach from=$paises item=pais}
               <option>{$pais['pais']}</option>
@@ -46,7 +46,7 @@
         </form>
         
         {* VER TODAS *}
-        <form class="form-inline" method="post" action="adminControl/todas">
+        <form class="form-inline" method="post" action="adminControl/verTodas">
           <div class="form-group mb-2">
             <label for="todas" class="sr-only">Todas</label>
             <input type="text" readonly class="form-control-plaintext text-white" value="Ver todas las acciones">
@@ -112,13 +112,13 @@
                 <div class="form-group">
                   <div class="form-group mb-2">
                     <label for="nuevaRegion" class="sr-only">Región Nueva</label>
-                    <input type="text" readonly class="form-control-plaintext text-white" id="nuevaRegion" value="Agregar nueva acción">
+                    <input type="text" readonly class="form-control-plaintext text-white" value="Agregar nueva acción">
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="inputGroup-sizing-sm">País</span>
                     </div>
-                    <select id="inputState" name="paisAccion" class="form-control">
+                    <select name="paisAccion" class="form-control">
                       <option selected>País</option>
                       {foreach from=$paises item=pais}
                       <option>{$pais['pais']}</option>
@@ -129,37 +129,37 @@
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="inputGroup-sizing-sm">Acción</span>
                     </div>
-                    <input type="text" id="accionAccion" name="accionAccion" class="form-control form-control-sm" placeholder="Nombre" required>
+                    <input type="text" name="accionAccion" class="form-control form-control-sm" placeholder="Nombre" required>
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="inputGroup-sizing-sm">Precio</span>
                     </div>
-                    <input type="text" id="precioAccion" name="precioAccion" class="form-control form-control-sm" placeholder="$" required>
+                    <input type="text" name="precioAccion" class="form-control form-control-sm" placeholder="$" required>
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="inputGroup-sizing-sm">Variación</span>
                     </div>
-                    <input type="text" id="variacionAccion" name="variacionAccion" class="form-control form-control-sm" placeholder="%" required>
+                    <input type="text" name="variacionAccion" class="form-control form-control-sm" placeholder="%" required>
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="inputGroup-sizing-sm">Volumen</span>
                     </div>
-                    <input type="text" id="volumenAccion" name="volumenAccion" class="form-control form-control-sm" placeholder="$" required>
+                    <input type="text" name="volumenAccion" class="form-control form-control-sm" placeholder="$" required>
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="inputGroup-sizing-sm">Máximo</span>
                     </div>
-                    <input type="text" id="maximoAccion" name="maximoAccion" class="form-control form-control-sm" placeholder="$" required>
+                    <input type="text" name="maximoAccion" class="form-control form-control-sm" placeholder="$" required>
                   </div>
                   <div class="input-group input-group-sm mb-3">
                     <div class="input-group-prepend">
                       <span class="input-group-text" id="inputGroup-sizing-sm">Mínimo</span>
                     </div>
-                    <input type="text" id="minimoAccion" name="minimoAccion" class="form-control form-control-sm" placeholder="$" required>
+                    <input type="text" name="minimoAccion" class="form-control form-control-sm" placeholder="$" required>
                   </div>
                 </div>
                 <button type="submit" class="btn btn-primary btn-sm mb-2">Guardar</button>
