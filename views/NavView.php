@@ -16,10 +16,11 @@ class NavView {
     $this->smarty->assign('baseURL', $this->baseURL);
     $this->smarty->display('./templates/home.tpl');
   }
-  function displayCotizaciones($title, $acciones, $regiones) {
+  function displayCotizaciones($title, $acciones, $regiones, $region) {
     $this->smarty->assign('title', $title);
     $this->smarty->assign('acciones', $acciones);
     $this->smarty->assign('regiones', $regiones);
+    $this->smarty->assign('region', $region);
     $this->smarty->assign('baseURL', $this->baseURL);
     $this->smarty->display('./templates/cotizaciones.tpl');
   }

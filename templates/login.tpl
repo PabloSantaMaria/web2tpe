@@ -1,9 +1,12 @@
 {include file="header.tpl"}
 
-<div class="operaciones bg-dark">
+<div class="login bg-dark">
+<div class="container">
+<h1 class="text-center text-white text-monospace">Login</h1>
+</div>    
     <div class="row">
-        <div class="ingreso col-sm-5">
-            <div class="card text-white bg-secondary">
+        
+            <div class="card text-white bg-secondary loginForm">
                 <div class="card-header bg-success">
                     {$mensaje}
                 </div>
@@ -29,7 +32,7 @@
                     </form>
                 </div>
             </div>
-        </div>
+        
     </div>
 </div>
 

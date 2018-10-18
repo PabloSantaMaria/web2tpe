@@ -33,7 +33,7 @@
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <button type="button" id="tablacotiz" class="btn btn-outline-info">Cotizzaciones</button>
+                        <button type="button" id="tablacotiz" class="btn btn-outline-info">Cotizaciones</button>
                         </a>
                         <div class="dropdown-menu btn-outline-info bg-dark " aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item text-info ver" href="cotizaciones/">Todas</a>

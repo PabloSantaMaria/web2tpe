@@ -18,6 +18,7 @@ class NavController {
   }
   function displayCotizaciones($params) {
     if ($params[0] == '') {
+      $region = 'todas las regiones';
       $title = 'Todas las cotizaciones';
       $acciones = $this->model->fetchAll();
     }
@@ -26,7 +27,7 @@ class NavController {
       $title = 'Cotizaciones de ' . $region;
       $acciones = $this->model->fetchRegion($region);
     }
-    $this->view->displayCotizaciones($title, $acciones, $this->regiones);
+    $this->view->displayCotizaciones($title, $acciones, $this->regiones, $region);
   }
   function acerca() {
     $title = 'Acerca de nosotros';

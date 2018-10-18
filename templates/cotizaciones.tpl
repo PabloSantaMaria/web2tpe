@@ -4,6 +4,9 @@
 
     <!-- TABLA -->
     <div class="tabla container">
+        <div class="alert alert-dark" role="alert">
+            Cotizaciones de {$region}
+        </div>
         <div class="table-responsive">
             <table class="table table-sm table-hover table-dark">
                 <thead>
@@ -33,18 +36,24 @@
             </table>
         </div>
     </div>
-    {* <!-- FILTRO (COLAPSADO) -->
-    <div class="filtrar collapse bg-dark" id="filtrar">
+    <!-- FILTRO -->
+    <div class="filtro container w-50 p-3">
+    <div class="filtrar bg-dark" id="filtrar">
         <form>
             <div class="form-group">
                 <div class="form-row">
                     <div class="col">
-                        <input type="text" id="filtrarTicker" class="form-control form-control-sm" placeholder="Buscar">
+                    <label for="filtrar"><span class="badge badge-pill badge-warning">Filtrar</span></label>
+                        <input type="text" id="filtrar" class="form-control form-control-sm" placeholder="Buscar">
+                        <small id="passwordHelpBlock" class="form-text text-muted">
+                            Ingrese un criterio para filtrar la tabla
+                        </small>
                     </div>
                 </div>
             </div>
         </form>
-    </div> *}
+    </div>
+    </div>
     
 </div>
 {include file="footer.tpl"}
