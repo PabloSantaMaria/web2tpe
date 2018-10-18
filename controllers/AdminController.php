@@ -21,9 +21,59 @@ class AdminController extends SecureController {
   }
 
   function adminHome() {
+    $this->muestraMensaje('home', '');
+  }
+
+  private function muestraMensaje($params, $extra) {
+    echo "console.log(".$params.")";
+    $mensaje = '';
+    switch ($params) {
+      case 'borrar':
+        $mensaje = "El usuario " . $extra . " ha sido borrado";
+        break;
+        case 'home':
+          $mensaje = "En esta sección puede ver y modificar cotizaciones";
+          break;
+        case 'verRegion':
+          $mensaje = "Mostrando registros de " . $extra ;
+          break;
+        case 'verPais':
+          $mensaje = "Mostrando registros de " . $extra;
+          break;
+        case 'verTodas':
+          $mensaje = "Mostrando todos los registros";
+          break;
+        case 'guardarRegionExistente':
+          $mensaje = "La región " . $extra . " ya existe en la base de datos. Mostrando registros de la región";
+          break;
+        case 'guardarRegion':
+          $mensaje = "Región " . $extra . " agregada con éxito";
+          break;
+        case 'guardarPaisExistente':
+          $mensaje = "El país " . $extra . " ya existe en la base de datos";
+          break;
+        case 'guardarPais':
+          $mensaje = "País " . $extra . " agregado con éxito";
+          break;
+        case 'guardarAccionExistente':
+          $mensaje = "El registro " . $extra . " ya existe en la base de datos";
+          break;
+        case 'guardarAccion':
+          $mensaje = "Acción " . $extra . " agregada con éxito";
+          break;
+        case 'guardarUsuario':
+          $mensaje = "El usuario " . $extra . " ha sido agregado con éxito";
+          break;
+        case 'noExiste':
+          $mensaje = "El usuario " . $extra . " no existe en la base de datos";
+          break;
+        case 'usuarioExistente':
+          $mensaje = "El usuario " . $extra . " ya existe en la base de datos";
+          break;
+
+    }
     $this->actualizarDropdowns();
-    $mensaje = "En esta sección puede ver y modificar cotizaciones";
-    $this->view->adminHome($this->regiones, $this->paises, $mensaje);
+    $this->view->adminDisplay($this->regiones, $this->paises, $this->acciones, $mensaje);
   }
 
   function adminControl($params) {
@@ -83,45 +133,45 @@ class AdminController extends SecureController {
 
   private function verRegion($region){
     $this->acciones = $this->model->fetchRegion($region);
-    $this->mensaje = "Mostrando registros de " . $region;
+    $this->muestraMensaje("verRegion", $region);
   }
   private function verPais($pais){
     $this->acciones = $this->model->fetchPais($pais);
-    $this->mensaje = "Mostrando registros de " . $pais;
+    $this->muestraMensaje("verPais", $pais);
   }
   private function verTodas(){
     $this->acciones = $this->model->fetchAll();
-    $this->mensaje = "Mostrando todos los registros";
+    $this->muestraMensaje("verTodas", '');
   }
   private function guardarRegion($region){
     if ($this->existeItem("region", $region)) {
       $this->acciones = $this->model->fetchRegion($region);
-      $this->mensaje = "La región " . $region . " ya existe en la base de datos. Mostrando registros de la región";
+      $this->muestraMensaje("guardarRegionExistente", $region);
     }
     else {
       $this->model->insertRegion($region);
       $this->acciones = $this->model->fetchRegion($region);
-      $this->mensaje = "Región " . $region . " agregada con éxito";
+      $this->muestraMensaje("guardarRegion", $region);
     }
   }
   private function guardarPais($pais){
     if ($this->existeItem("pais", $pais)) {
       $this->acciones = $this->model->fetchPais($pais);
-      $this->mensaje = "El país " . $pais . " ya existe en la base de datos";
+      $this->muestraMensaje("guardarPaisExistente", $pais);
     }
     else {
       $region = $_POST['perteneceRegion'];
       $id_region = $this->getID("region", $region);
       $this->model->insertPais($pais, $id_region);
       $this->acciones = $this->model->fetchPais($pais);
-      $this->mensaje = "País " . $pais . " agregado con éxito";
+      $this->muestraMensaje("guardarPais", $pais);
     }
   }
   private function guardarAccion($accion){
     if ($this->existeItem("accion", $accion)) {
       $id_accion = $this->getID("accion", $accion);
       $this->acciones = $this->model->fetchAccion($id_accion);
-      $this->mensaje = "El registro " . $accion . " ya existe en la base de datos";
+      $this->muestraMensaje("guardarAccionExistente", $accion);
     }
     else {
       $pais = $_POST["paisAccion"];
@@ -134,20 +184,18 @@ class AdminController extends SecureController {
       $this->model->insertAccion($id_pais, $accion, $precio, $variacion, $volumen, $maximo, $minimo);
       $id_accion = $this->getID("accion", $accion);
       $this->acciones = $this->model->fetchAccion($id_accion);
-      $this->mensaje = "Acción " . $accion . " agregada con éxito";
+      $this->muestraMensaje("guardarAccion", $accion);
     }
   }
   private function guardarUsuario($user){
     if ($this->existeItem("usuario", $user)) {
-      $this->mensaje = "El usuario " . $user . " ya existe en la base de datos";
-      header(ADMIN);
+      $this->muestraMensaje("usuarioExistente", $user);
     }
     else {
       $pass = $_POST["nuevaPass"];
       $hash = password_hash($pass, PASSWORD_DEFAULT);
       $this->model->insertUsuario($user, $hash);
-      $this->mensaje = "El usuario " . $user . " ha sido agregado con éxito";
-      header(ADMIN);
+      $this->muestraMensaje("guardarUsuario", $user);
     }
   }
   private function borrarUsuario($user){
@@ -156,13 +204,11 @@ class AdminController extends SecureController {
       $dbUser = $this->model->fetchUser($user);
       if (password_verify($pass, $dbUser['pass'])) {
         $this->model->deleteUser($user);
-        header(ADMIN);
-        $this->mensaje = "El usuario " . $user . " ha sido borrado";
+        $this->muestraMensaje("borrar", $user);
       }
     }
     else {
-      $this->mensaje = "El usuario " . $user . " no existe en la base de datos";
-      header(ADMIN);
+      $this->muestraMensaje("noExiste", $user);
     }
   }
 
