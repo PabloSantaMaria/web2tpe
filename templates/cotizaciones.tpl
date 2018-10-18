@@ -1,5 +1,6 @@
 {include file="header.tpl"}
 
+{* COTIZACIONES USUARIO VISITANTE *}
 <div class="cuerpoCotizaciones">
 
     <!-- TABLA -->
@@ -36,9 +37,10 @@
             </table>
         </div>
     </div>
+    
     <!-- FILTRO -->
     <div class="filtro container w-50 p-3">
-    <div class="filtrar bg-dark" id="filtrar">
+    <div class="filtrar bg-dark">
         <form>
             <div class="form-group">
                 <div class="form-row">

@@ -1,5 +1,6 @@
 {include file="header.tpl"}
-        
+ 
+ {* HOME *}
  <div class="jumbotron cuerpoHome text-white bg-secondary">
     <div class="row">
         <div class="col-sm">

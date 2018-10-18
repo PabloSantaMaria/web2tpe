@@ -11,6 +11,9 @@ class AdminController extends SecureController {
   private $acciones;
   private $mensaje;
 
+  /**
+   * inicializa regiones, paises y mensaje default
+   */
   function __construct() {
     parent::__construct();
     $this->view = new AdminView();
@@ -19,12 +22,17 @@ class AdminController extends SecureController {
     $this->paises = $this->model->fetchPaises();
     $this->mensaje = 'Administrar datos';
   }
-
+  /**
+   * home de admin
+   */
   function adminHome() {
     $this->actualizarDropdowns();
     $this->view->adminHome($this->regiones, $this->paises, $this->mensaje);
   }
-
+  /**
+   * opciones de control de admin
+   * llegan por url
+   */
   function adminControl($params) {
     switch ($params[0]) {
       case 'verRegion':
@@ -79,19 +87,31 @@ class AdminController extends SecureController {
     $this->actualizarDropdowns();
     $this->view->adminDisplay($this->regiones, $this->paises, $this->acciones, $this->mensaje);
   }
-
+  /**
+   * muestra todas las acciones de una región
+   */
   private function verRegion($region){
     $this->acciones = $this->model->fetchRegion($region);
     $this->actualizarMensaje("verRegion", $region);
   }
+  /**
+   * muestra todas las acciones de un país
+   */
   private function verPais($pais){
     $this->acciones = $this->model->fetchPais($pais);
     $this->actualizarMensaje("verPais", $pais);
   }
+  /**
+   * muestra todas las acciones
+   */
   private function verTodas(){
     $this->acciones = $this->model->fetchAll();
     $this->actualizarMensaje("verTodas", '');
   }
+  /**
+   * guarda una región nueva
+   * verifica si ya existe
+   */
   private function guardarRegion($region){
     if ($this->existeItem("region", $region)) {
       $this->acciones = $this->model->fetchRegion($region);
@@ -103,6 +123,11 @@ class AdminController extends SecureController {
        $this->actualizarMensaje("guardarRegion", $region);
     }
   }
+  /**
+   * guarda un país nuevo en la región elegida
+   * no se puede elegir una región inexistente
+   * verifica si ya existe
+   */
   private function guardarPais($pais){
     if ($this->existeItem("pais", $pais)) {
       $this->acciones = $this->model->fetchPais($pais);
@@ -116,6 +141,12 @@ class AdminController extends SecureController {
       $this->actualizarMensaje("guardarPais", $pais);
     }
   }
+  /**
+   * guarda una nueva acción en el país elegido
+   * no se puede elegir un país inexistente
+   * el país ya pertenece a una región
+   * verifica que no exista el nombre de la acción
+   */
   private function guardarAccion($accion){
     if ($this->existeItem("accion", $accion)) {
       $id_accion = $this->getID("accion", $accion);
@@ -136,6 +167,11 @@ class AdminController extends SecureController {
       $this->actualizarMensaje("guardarAccion", $accion);
     }
   }
+  /**
+   * guarda un nuevo usuario administrador
+   * encripta la contraseña
+   * verifica que no exista el mismo nombre
+   */
   private function guardarUsuario($user){
     if ($this->existeItem("usuario", $user)) {
       $this->actualizarMensaje("usuarioExistente", $user);
@@ -149,6 +185,9 @@ class AdminController extends SecureController {
       $this->adminHome();
     }
   }
+  /**
+   * borra un usuario si existe y si se sabe la contraseña
+   */
   private function borrarUsuario($user){
     if ($this->existeItem("usuario", $user)) {
       $pass = $_POST['passBorrar'];
@@ -164,14 +203,19 @@ class AdminController extends SecureController {
       $this->adminHome();
     }
   }
-
+  /**
+   * muestra los datos de una acción para editarla
+   */
   function editAccion($params) {
     $id_accion = $params[0];
     $accion = $this->model->fetchAccion($id_accion);
     $paises = $this->model->fetchPaises();
     $this->view->displayUpdateForm($accion, $paises);
   }
-
+  /**
+   * actualiza una acción
+   * vuelve al form para seguir editándola si es necesario
+   */
   function updateAccion(){
     $id_accion = $_POST["id_accion"];
     $accion = $_POST["editNombre"];
@@ -188,7 +232,10 @@ class AdminController extends SecureController {
     $paises = $this->model->fetchPaises();
     $this->view->displayUpdateForm($accion, $paises);
   }
-
+  /**
+   * borra una acción
+   * muestra las acciones de la región a la que pertenecía
+   */
   function deleteAccion($params) {
     $id_accion = $params[0];
     $pais = $this->model->fetchAccion($id_accion)[0]['pais'];
@@ -199,7 +246,9 @@ class AdminController extends SecureController {
     $acciones = $this->model->fetchRegion($region);
     $this->view->adminDisplay($this->regiones, $this->paises, $acciones, $this->mensaje);
   }
-
+  /**
+   * función auxiliar que actualiza el mensaje para el usuario
+   */
   private function actualizarMensaje($caso, $item) {
     switch ($caso) {
       case 'borrar':
@@ -243,13 +292,21 @@ class AdminController extends SecureController {
         break;
     }
   }
-
+  /**
+   * función auxiliar que devuelve si un dato existe en una tabla
+   */
   private function existeItem($tabla, $item) {
     return $this->model->existeItem($tabla, $item);
   }
+  /**
+   * función auxiliar que devuelve el id de un registro
+   */
   private function getID($tabla, $item) {
     return $this->model->getID($tabla, $item);
   }
+  /**
+   * actualiza las regiones y los países existentes en la db para poder elegirlos en dropdowns
+   */
   private function actualizarDropdowns() {
     $this->regiones = $this->model->fetchRegiones();
     $this->paises = $this->model->fetchPaises();

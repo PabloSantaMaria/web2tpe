@@ -1,5 +1,6 @@
 {include file="header.tpl"}
 
+{* ADMIN HOME *}
 <div class="cuerpoCotizaciones">
 
   <div class="container">
@@ -9,7 +10,7 @@
         <span aria-hidden="true">&times;</span>
       </button>
   </div>
-
+  {* OPCIONES ADMIN *}
   {include file="opcionesAdmin.tpl"}
   </div>
 </div>

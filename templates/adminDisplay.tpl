@@ -1,5 +1,6 @@
 {include file="header.tpl"}
 
+{* CONTROLES DE ADMIN *}
 <div class="cuerpoCotizaciones">
 
   <div class="container">

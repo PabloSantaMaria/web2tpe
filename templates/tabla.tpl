@@ -34,13 +34,13 @@
             </table>
         </div>
     </div>
-    <!-- FILTRO (COLAPSADO) -->
-    <div class="filtrar collapse bg-dark" id="filtrar">
+    <!-- FILTRO -->
+    <div class="filtrar collapse bg-dark">
         <form>
             <div class="form-group">
                 <div class="form-row">
                     <div class="col">
-                        <input type="text" id="filtrarTicker" class="form-control form-control-sm" placeholder="Buscar">
+                        <input type="text" id="filtrar" class="form-control form-control-sm" placeholder="Buscar">
                     </div>
                 </div>
             </div>

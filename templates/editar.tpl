@@ -1,6 +1,8 @@
 {include file="header.tpl"}
 
+{* VISTA EDITAR ACCIÓN *}
 <div class="cuerpoCotizaciones">
+    
     <!-- TABLA -->
     <div class="tabla container">
         <div class="table-responsive">
@@ -33,6 +35,7 @@
         </div>
     </div>
     
+    {* FORM EDITAR *}
     <div class="editar bg-dark" id="editar">
         <form method="post" action="actualizar">
             <input type="hidden" class="form-control" id="id_accion" name="id_accion" value="{$valor['id_accion']}">

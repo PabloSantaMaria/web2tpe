@@ -1,3 +1,4 @@
+{* OPCIONES DE ADMIN *}
 <div class="accordion text-white" id="accordionExample">
   
   {* VER COTIZACIONES *}
@@ -19,7 +20,6 @@
           </div>
           <div class="form-group mx-sm-3 mb-2">
             <select name="region" class="form-control-sm">
-              <option selected>Elegir</option>
               {foreach from=$regiones item=region}
               <option>{$region['region']}</option>
               {/foreach}
@@ -36,7 +36,6 @@
           </div>
           <div class="form-group mx-sm-3 mb-2">
             <select name="pais" class="form-control-sm">
-              <option selected>Elegir</option>
               {foreach from=$paises item=pais}
               <option>{$pais['pais']}</option>
               {/foreach}
@@ -72,7 +71,7 @@
     <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
       <div class="card-body w-50 p-3">
         
-        {* REGION *}
+        {* AGREGAR REGIÓN *}
         <div class="mb-2">
           <label>Agregar nueva región</label>
         </div>
@@ -84,7 +83,7 @@
           <button type="submit" class="btn btn-primary btn-sm mb-2">Guardar</button>
         </form>
 
-        {* PAIS *}
+        {* AGREGAR PAÍS *}
         <div class="mb-2">
           <label for="exampleInputEmail1">Agregar nuevo país</label>
         </div>
@@ -104,7 +103,7 @@
           <button type="submit" class="btn btn-primary btn-sm mb-2">Guardar</button>
         </form>
         
-        {* GUARDAR ACCION *}
+        {* GUARDAR ACCIÓN *}
         <div class="bg-secondary">
           <div class="row">
             <div class="col-sm">
@@ -207,7 +206,6 @@
           </div>
           
         </div>
-        
         <div class="col">
 
           {* ELIMINAR USUARIO *}
@@ -239,6 +237,5 @@
   <div class="container">
     <a href="logout" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Logout</a> 
   </div>
-  
-  
+
 </div>

@@ -1,5 +1,6 @@
 {include file="header.tpl"}
 
+{* LOGIN *}
 <div class="login bg-dark">
 <div class="container">
 <h1 class="text-center text-white text-monospace">Login</h1>
@@ -7,9 +8,11 @@
     <div class="row">
         
             <div class="card text-white bg-secondary loginForm">
+                {* HEADER CON MENSAJE *}
                 <div class="card-header bg-success">
                     {$mensaje}
                 </div>
+                {* FORM *}
                 <div class="card-body">
                     <form class="needs-validation" method="post" action="verify" novalidate>
                         <div class="form-group">

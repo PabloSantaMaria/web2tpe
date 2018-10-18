@@ -10,12 +10,18 @@ class LoginController extends NavController {
     parent::__construct();
     $this->loginModel = new LoginModel();
   }
-
+  /**
+   * muestra página de login
+   */
   function login() {
     $title = 'Login';
     $mensaje = 'Ingrese credenciales de administrador';
     $this->view->displayLogin($title, $this->regiones, $mensaje);
   }
+  /**
+   * valida el usuario
+   * verifica que exista
+   */
   function verify() {
     $user = $_POST['user'];
     $pass = $_POST['password'];
@@ -39,6 +45,10 @@ class LoginController extends NavController {
       $this->view->displayLogin($title, $this->regiones, $mensaje);
     }
   }
+  /**
+   * destruye la sesión
+   * redirecciona a home
+   */
   function logout() {
     session_start();
     session_destroy();

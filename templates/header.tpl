@@ -12,8 +12,11 @@
 </head>
 <body>
     <header>
+        
+        {* BARRA NAV *}
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             
+            {* LOGO *}
             <a class="navbar-brand" href="home">
                 <img src="images/hs.svg" width="80" class="d-inline-block align-center" alt="logo">
                     TABrokers
@@ -22,6 +25,7 @@
                 </span>
             </a>
 
+            {* NAVEGACIÓN *}
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
