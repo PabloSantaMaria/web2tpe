@@ -16,7 +16,7 @@ class NavModel {
    * trae todas las acciones
    */
   function fetchAll() {
-    $sentencia = $this->db->prepare("SELECT accion.*, pais.pais FROM accion INNER JOIN pais ON accion.id_pais = pais.id_pais ORDER BY pais.pais ASC");
+    $sentencia = $this->db->prepare("SELECT accion.*, pais.pais, region.region FROM accion, pais, region WHERE region.id_region = pais.id_region AND accion.id_pais=pais.id_pais ORDER BY region.region ASC");
     $sentencia->execute();
     $acciones = $sentencia->fetchAll(PDO::FETCH_ASSOC);
     return $acciones;
