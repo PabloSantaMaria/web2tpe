@@ -2,9 +2,9 @@
   
   {* VER COTIZACIONES *}
   <div class="card text-white bg-secondary">
-    <div class="card-header bg-info" id="headingOne">
+    <div class="card-header bg-dark" id="headingOne">
       <h5 class="mb-0">
-        <button class="btn btn-link text-white" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Ver cotizaciones</button>
+        <button class="btn btn-link btn-sm text-white" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Ver cotizaciones</button>
       </h5>
     </div>
     
@@ -18,14 +18,14 @@
             <input type="text" readonly class="form-control-plaintext text-white" value="Ver acciones por región">
           </div>
           <div class="form-group mx-sm-3 mb-2">
-            <select name="region" class="form-control">
+            <select name="region" class="form-control-sm">
               <option selected>Elegir</option>
               {foreach from=$regiones item=region}
               <option>{$region['region']}</option>
               {/foreach}
             </select>
           </div>
-          <button type="submit" class="btn btn-primary mb-2">Mostrar</button>
+          <button type="submit" class="btn btn-primary btn-sm mb-2">Mostrar</button>
         </form>
         
         {* POR PAIS *}
@@ -35,14 +35,14 @@
             <input type="text" readonly class="form-control-plaintext text-white" value="Ver acciones por país">
           </div>
           <div class="form-group mx-sm-3 mb-2">
-            <select name="pais" class="form-control">
+            <select name="pais" class="form-control-sm">
               <option selected>Elegir</option>
               {foreach from=$paises item=pais}
               <option>{$pais['pais']}</option>
               {/foreach}
             </select>
           </div>
-          <button type="submit" class="btn btn-primary mb-2">Mostrar</button>
+          <button type="submit" class="btn btn-primary btn-sm mb-2">Mostrar</button>
         </form>
         
         {* VER TODAS *}
@@ -52,7 +52,7 @@
             <input type="text" readonly class="form-control-plaintext text-white" value="Ver todas las acciones">
           </div>
           <div class="form-group mx-sm-3 mb-2">
-            <button type="submit" class="btn btn-primary mb-2">Mostrar</button>
+            <button type="submit" class="btn btn-primary btn-sm mb-2">Mostrar</button>
           </div>
         </form>
         
@@ -62,9 +62,9 @@
   
   {* ADMINISTRAR COTIZACIONES *}
   <div class="card bg-secondary">
-    <div class="card-header bg-info" id="headingTwo">
+    <div class="card-header bg-dark" id="headingTwo">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        <button class="btn btn-link btn-sm collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
           Administrar cotizaciones
         </button>
       </h5>
@@ -74,7 +74,7 @@
         
         {* REGION *}
         <div class="mb-2">
-          <label for="exampleInputEmail1">Agregar nueva región</label>
+          <label>Agregar nueva región</label>
         </div>
         <form class="form-inline" method="post" action="adminControl/guardarRegion">
           
@@ -94,7 +94,7 @@
             <input class="form-control form-control-sm" type="text" placeholder="" name="nuevoPais">
           </div>
           <div class="form-group mx-sm-3 mb-2">
-            <select name="perteneceRegion" class="form-control form-control-sm">
+            <select name="perteneceRegion" class="form-control-sm">
               <option selected>Pertenece a la región</option>
               {foreach from=$regiones item=region}
               <option>{$region['region']}</option>
@@ -162,7 +162,7 @@
                     <input type="text" name="minimoAccion" class="form-control form-control-sm" placeholder="$" required>
                   </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-sm mb-2">Guardar</button>
+                <button type="submit" class="btn btn-success btn-sm mb-2">Guardar</button>
               </form>
             </div>
           </div>
@@ -173,9 +173,9 @@
   
   {* ADMINISTRAR USUARIOS *}
   <div class="card bg-secondary">
-    <div class="card-header bg-info" id="headingThree">
+    <div class="card-header bg-dark" id="headingThree">
       <h5 class="mb-0">
-        <button class="btn btn-link collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+        <button class="btn btn-link btn-sm collapsed text-white" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
           Administrar usuarios
         </button>
       </h5>
@@ -201,7 +201,7 @@
                   <label for="Password">Contraseña</label>
                   <input type="password" class="form-control" name="nuevaPass" placeholder="Password">
                 </div>
-                <button type="submit" class="btn btn-primary">Agregar</button>
+                <button type="submit" class="btn btn-sm btn-success">Agregar</button>
             </form>
             </div>
           </div>
@@ -225,7 +225,7 @@
                   <label for="Password">Contraseña</label>
                   <input type="password" class="form-control" name="passBorrar" placeholder="Password">
                 </div>
-                <button type="submit" class="btn btn-primary">Eliminar</button>
+                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
               </form>
             </div>
           </div>

@@ -1,4 +1,4 @@
-<footer>
+<footer class="site-footer">
     <div class="card-footer bg-dark text-info font-weight-light">
         © 2018 Romina Bello | Pablo Santa María - Facultad de Ciencias Exactas - UNICEN
     </div>
