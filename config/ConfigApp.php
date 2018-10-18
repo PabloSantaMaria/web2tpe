@@ -14,6 +14,7 @@ class ConfigApp
         'home' => 'NavController#home', //página principal
         'acerca' => 'NavController#acerca', //acerca de nosotros
         'cotizaciones' => 'NavController#displayCotizaciones', //cotizaciones visitante
+        'detalleAccion' => 'NavController#detalleAccion', //
         'login' => 'LoginController#login', //login de admin
         'verify' => 'LoginController#verify', //valida usuario
         'logout' => 'LoginController#logout', //cerrar sesión

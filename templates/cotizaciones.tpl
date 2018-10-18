@@ -13,24 +13,20 @@
                 <thead>
                     <tr>
                         <th scope="col">Nombre</th>
+                        <th scope="col">Región</th>
                         <th scope="col">País</th>
                         <th scope="col">Precio</th>
-                        <th scope="col">Var %</th>
-                        <th scope="col">Volumen</th>
-                        <th scope="col">MAX</th>
-                        <th scope="col">MIN</th>
+                        <th scope="col">Variación</th>
                     </tr>    
                 </thead>
                 <tbody id="tabla" class="cotizaciones">
 	                {foreach from=$acciones item=accion}
                         <tr id='row{$accion['id_accion']}'>
-                            <td>{$accion['accion']}</td>
+                            <td><a class="text-info" href="detalleAccion/{$accion['id_accion']}">{$accion['accion']}</a></td>
+                            <td>{$accion['region']}</td>
                             <td>{$accion['pais']}</td>
                             <td>$ {$accion['precio']}</td>
-                            <td class="vari">{$accion['variacion']}</td>
-                            <td>$ {$accion['volumen']}</td>
-                            <td>$ {$accion['maximo']}</td>
-                            <td>$ {$accion['minimo']}</td>
+                            <td class="vari">{$accion['variacion']} %</td>
                         </tr>
                     {/foreach}
                 </tbody>
@@ -56,6 +52,27 @@
         </form>
     </div>
     </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
     
 </div>
 {include file="footer.tpl"}

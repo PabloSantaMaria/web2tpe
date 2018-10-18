@@ -42,6 +42,14 @@ class NavView {
     $this->smarty->assign('baseURL', $this->baseURL);
     $this->smarty->display('./templates/acerca.tpl');
   }
+
+  function detalleAccion($title, $regiones, $accion) {
+    $this->smarty->assign('title', $title);
+    $this->smarty->assign('regiones', $regiones);
+    $this->smarty->assign('accion', $accion);
+    $this->smarty->assign('baseURL', $this->baseURL);
+    $this->smarty->display('./templates/detalleAccion.tpl');
+  }
   /**
    * muestra template de página de login
    */

@@ -22,8 +22,8 @@ class AdminModel {
     return $acciones;
   }
   /**
-   * trae todas las acciones de una región
-   */
+  * trae todas las acciones de una región
+  */
   function fetchRegion($region) {
     $sentencia = $this->db->prepare("SELECT accion.*, pais.pais FROM accion, pais, region WHERE region.id_region = pais.id_region AND region.region=? AND accion.id_pais=pais.id_pais");
     $sentencia->execute(array($region));

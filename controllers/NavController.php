@@ -38,6 +38,13 @@ class NavController {
     }
     $this->view->displayCotizaciones($title, $acciones, $this->regiones, $region);
   }
+
+  function detalleAccion($params) {
+    $accion = $this->model->fetchAccion($params[0]);
+    // var_dump($accion);
+    $title = 'Detalle de acción';
+    $this->view->detalleAccion($title, $this->regiones, $accion);
+  }
   /**
    * muestra página acerca de nosotros
    */
