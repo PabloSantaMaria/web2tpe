@@ -17,7 +17,7 @@
                     <form class="needs-validation" method="post" action="verify" novalidate>
                         <div class="form-group">
                             <label for="user">Usuario</label>
-                            <input type="email" class="form-control" id="user" name="user" placeholder="Email" required>
+                            <input type="text" class="form-control" id="user" name="user" placeholder="Email" required>
                             <div class="invalid-feedback">
                                 Por favor ingrese un usuario
                             </div>
