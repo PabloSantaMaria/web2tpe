@@ -24,6 +24,13 @@ class AdminModel {
     return $acciones;
   }
 
+  function fetchRegionDePais($pais) {
+    $sentencia = $this->db->prepare("SELECT pais.pais, region.region FROM pais, region WHERE pais.pais=? AND pais.id_region=region.id_region");
+    $sentencia->execute(array($pais));
+    $region = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    return $region;
+  }
+
   function fetchPais($pais) {
     $sentencia = $this->db->prepare("SELECT accion.*, pais.pais FROM accion, pais WHERE pais.pais=? AND accion.id_pais=pais.id_pais");
     $sentencia->execute(array($pais));

@@ -25,50 +25,6 @@ class AdminController extends SecureController {
     $this->view->adminHome($this->regiones, $this->paises, $this->mensaje);
   }
 
-  private function actualizarMensaje($caso, $item) {
-    switch ($caso) {
-        case 'borrar':
-          $this->mensaje = "El usuario " . $item . " ha sido borrado";
-          break;
-        case 'verRegion':
-          $this->mensaje = "Mostrando registros de " . $item ;
-          break;
-        case 'verPais':
-          $this->mensaje = "Mostrando registros de " . $item;
-          break;
-        case 'verTodas':
-          $this->mensaje = "Mostrando todos los registros";
-          break;
-        case 'guardarRegionExistente':
-          $this->mensaje = "La región " . $item . " ya existe en la base de datos. Mostrando registros de la región";
-          break;
-        case 'guardarRegion':
-          $this->mensaje = "Región " . $item . " agregada con éxito";
-          break;
-        case 'guardarPaisExistente':
-          $this->mensaje = "El país " . $item . " ya existe en la base de datos";
-          break;
-        case 'guardarPais':
-          $this->mensaje = "País " . $item . " agregado con éxito";
-          break;
-        case 'guardarAccionExistente':
-          $this->mensaje = "El registro " . $item . " ya existe en la base de datos";
-          break;
-        case 'guardarAccion':
-          $this->mensaje = "Acción " . $item . " agregada con éxito";
-          break;
-        case 'guardarUsuario':
-          $this->mensaje = "El usuario " . $item . " ha sido agregado con éxito";
-          break;
-        case 'noExiste':
-          $this->mensaje = "El usuario " . $item . " no existe en la base de datos";
-          break;
-        case 'usuarioExistente':
-          $this->mensaje = "El usuario " . $item . " ya existe en la base de datos";
-          break;
-    }
-  }
-
   function adminControl($params) {
     switch ($params[0]) {
       case 'verRegion':
@@ -235,11 +191,57 @@ class AdminController extends SecureController {
 
   function deleteAccion($params) {
     $id_accion = $params[0];
+    $pais = $this->model->fetchAccion($id_accion)[0]['pais'];
+    $region = $this->model->fetchRegionDePais($pais)[0]['region'];
     $this->model->deleteAccion($id_accion);
     $this->mensaje = "Registro borrado con éxito";
     $this->actualizarDropdowns();
-    $acciones = $this->model->fetchAll();
+    $acciones = $this->model->fetchRegion($region);
     $this->view->adminDisplay($this->regiones, $this->paises, $acciones, $this->mensaje);
+  }
+
+  private function actualizarMensaje($caso, $item) {
+    switch ($caso) {
+      case 'borrar':
+        $this->mensaje = "El usuario " . $item . " ha sido borrado";
+        break;
+      case 'verRegion':
+        $this->mensaje = "Mostrando registros de " . $item ;
+        break;
+      case 'verPais':
+        $this->mensaje = "Mostrando registros de " . $item;
+        break;
+      case 'verTodas':
+        $this->mensaje = "Mostrando todos los registros";
+        break;
+      case 'guardarRegionExistente':
+        $this->mensaje = "La región " . $item . " ya existe en la base de datos. Mostrando registros de la región";
+        break;
+      case 'guardarRegion':
+        $this->mensaje = "Región " . $item . " agregada con éxito";
+        break;
+      case 'guardarPaisExistente':
+        $this->mensaje = "El país " . $item . " ya existe en la base de datos";
+        break;
+      case 'guardarPais':
+        $this->mensaje = "País " . $item . " agregado con éxito";
+        break;
+      case 'guardarAccionExistente':
+        $this->mensaje = "El registro " . $item . " ya existe en la base de datos";
+        break;
+      case 'guardarAccion':
+        $this->mensaje = "Acción " . $item . " agregada con éxito";
+        break;
+      case 'guardarUsuario':
+        $this->mensaje = "El usuario " . $item . " ha sido agregado con éxito";
+        break;
+      case 'noExiste':
+        $this->mensaje = "El usuario " . $item . " no existe en la base de datos";
+        break;
+      case 'usuarioExistente':
+        $this->mensaje = "El usuario " . $item . " ya existe en la base de datos";
+        break;
+    }
   }
 
   private function existeItem($tabla, $item) {
