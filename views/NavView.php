@@ -29,9 +29,10 @@ class NavView {
     $this->smarty->assign('baseURL', $this->baseURL);
     $this->smarty->display('./templates/acerca.tpl');
   }
-  function displayLogin($title, $regiones) {
+  function displayLogin($title, $regiones, $mensaje = '') {
     $this->smarty->assign('title', $title);
     $this->smarty->assign('regiones', $regiones);
+    $this->smarty->assign('mensaje', $mensaje);
     $this->smarty->assign('baseURL', $this->baseURL);
     $this->smarty->display('./templates/login.tpl');
   }

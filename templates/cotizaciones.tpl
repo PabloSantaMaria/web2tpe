@@ -33,7 +33,7 @@
             </table>
         </div>
     </div>
-    <!-- FILTRO (COLAPSADO) -->
+    {* <!-- FILTRO (COLAPSADO) -->
     <div class="filtrar collapse bg-dark" id="filtrar">
         <form>
             <div class="form-group">
@@ -44,7 +44,7 @@
                 </div>
             </div>
         </form>
-    </div>
+    </div> *}
     
 </div>
 {include file="footer.tpl"}

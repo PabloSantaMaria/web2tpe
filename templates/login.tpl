@@ -5,7 +5,7 @@
         <div class="ingreso col-sm-5">
             <div class="card text-white bg-secondary">
                 <div class="card-header bg-success">
-                    Ingrese credenciales de Administrador
+                    {$mensaje}
                 </div>
                 <div class="card-body">
                     <form class="needs-validation" method="post" action="verify" novalidate>
@@ -20,7 +20,9 @@
                             <label for="InputPassword">Contraseña</label>
                             <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
                             <div class="invalid-feedback">
-                                Por favor ingrese una contraseña
+                                <div class="alert alert-danger" role="alert">
+                                    Por favor ingrese una contraseña
+                                </div>
                             </div>
                          </div>
                         <button type="submit" class="btn btn-primary">Submit</button>

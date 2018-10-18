@@ -13,26 +13,30 @@ class LoginController extends NavController {
 
   function login() {
     $title = 'Login';
-    $this->view->displayLogin($title, $this->regiones);
+    $mensaje = 'Ingrese credenciales de administrador';
+    $this->view->displayLogin($title, $this->regiones, $mensaje);
   }
   function verify() {
     $user = $_POST['user'];
     $pass = $_POST['password'];
     $dbUser = $this->loginModel->fetchUser($user);
     
-    if (isset($dbUser)) {
+    if ($dbUser) {
       if (password_verify($pass, $dbUser['pass'])) {
         session_start();
         $_SESSION['user'] = $user;
         header(ADMIN);
       }
       else {
-        //pedir login otra vez
+        $title = 'Login';
+        $mensaje = 'Contraseña incorrecta';
+        $this->view->displayLogin($title, $this->regiones, $mensaje);
       }
     }
     else {
-      //esto no anda?
-        echo "no esiste";
+      $title = 'Login';
+      $mensaje = 'El usuario no existe';
+      $this->view->displayLogin($title, $this->regiones, $mensaje);
     }
   }
   function logout() {
