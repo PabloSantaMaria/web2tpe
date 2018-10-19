@@ -83,6 +83,21 @@
           <button type="submit" class="btn btn-primary btn-sm mb-2">Guardar</button>
         </form>
 
+        <div class="mb-2">
+          <label>Borrar región</label>
+        </div>
+        <form class="form-inline" method="post" action="borrarRegion">
+          
+          <div class="form-group mx-sm-3 mb-2">
+            <select name="borrarRegion" class="form-control-sm">
+              {foreach from=$regiones item=region}
+              <option>{$region['region']}</option>
+              {/foreach}
+            </select>
+          </div>
+          <button type="submit" class="btn btn-primary btn-sm mb-2">Borrar</button>
+        </form>
+
         {* AGREGAR PAÍS *}
         <div class="mb-2">
           <label for="exampleInputEmail1">Agregar nuevo país</label>

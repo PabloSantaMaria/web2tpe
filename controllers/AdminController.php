@@ -247,6 +247,25 @@ class AdminController extends SecureController {
     $this->view->adminDisplay($this->regiones, $this->paises, $acciones, $this->mensaje);
   }
   /**
+   * borra una región
+   * primero borra todas las acciones que pertenecen a los países de la región
+   * luego borra todos los países que pertenecen a la región
+   */
+  function deleteRegion() {
+    $region = $_POST['borrarRegion'];
+    $acciones = $this->model->fetchRegion($region);
+    $paises = $this->model->fetchPaisesPorRegion($region);
+    $id_region = $this->getID('region', $region);
+    foreach ($acciones as $accion) {
+      $this->model->deleteAccion($accion['id_accion']);
+    }foreach ($paises as $pais) {
+      $this->model->deletePais($pais['id_pais']);
+    }
+    $this->model->deleteRegion($id_region);
+    $this->mensaje = 'Se borró la región y todos los registros asociados';
+    $this->adminHome();
+  }
+  /**
    * función auxiliar que actualiza el mensaje para el usuario
    */
   private function actualizarMensaje($caso, $item) {

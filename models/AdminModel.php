@@ -57,6 +57,13 @@ class AdminModel {
     $paises = $sentencia->fetchAll(PDO::FETCH_ASSOC);
     return $paises;
   }
+
+  function fetchPaisesPorRegion($region) {
+    $sentencia = $this->db->prepare("SELECT pais.*, region.region FROM pais, region WHERE region.region=? AND pais.id_region = region.id_region");
+    $sentencia->execute(array($region));
+    $paises = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    return $paises;
+  }
   /**
   * trae una acción por id con el respectivo nombre del país al que pertenece
   */
@@ -113,6 +120,16 @@ class AdminModel {
   function updateAccion($id_accion, $accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo) {
     $sentencia = $this->db->prepare("UPDATE accion SET accion = ?, id_pais = ?, precio = ?, variacion = ?, volumen = ?, maximo = ?, minimo = ? WHERE id_accion = ?");
     $sentencia->execute(array($accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo, $id_accion));
+  }
+
+  function deleteRegion($id_region) {
+    $sentencia = $this->db->prepare("DELETE FROM region WHERE id_region=?");
+    $sentencia->execute(array($id_region));
+  }
+
+  function deletePais($id_pais) {
+    $sentencia = $this->db->prepare("DELETE FROM pais WHERE id_pais=?");
+    $sentencia->execute(array($id_pais));
   }
   /**
    * borra una acción por id
