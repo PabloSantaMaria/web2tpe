@@ -14,7 +14,7 @@ class ConfigApp
         'home' => 'NavController#home', //página principal
         'acerca' => 'NavController#acerca', //acerca de nosotros
         'cotizaciones' => 'NavController#displayCotizaciones', //cotizaciones visitante
-        'detalleAccion' => 'NavController#detalleAccion', //
+        'detalleAccion' => 'NavController#detalleAccion', //ver detalle de acción
         'login' => 'LoginController#login', //login de admin
         'verify' => 'LoginController#verify', //valida usuario
         'logout' => 'LoginController#logout', //cerrar sesión
@@ -23,7 +23,7 @@ class ConfigApp
         'editar' => 'AdminController#editAccion', //editar de admin
         'actualizar' => 'AdminController#updateAccion', //actualizar de admin
         'borrar' => 'AdminController#deleteAccion', //borrar de admin
-        'borrarRegion' => 'AdminController#deleteRegion', //borrar de admin
+        'borrarRegion' => 'AdminController#deleteRegion', //borrar región de admin
     ];
 }
 ?>
