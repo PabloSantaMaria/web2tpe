@@ -13,9 +13,8 @@ class AdminController extends SecureController {
   private $mensajes;
   private $mensaje;
 
-
   /**
-   * inicializa regiones, paises y mensaje default
+   *
    */
   function __construct() {
     parent::__construct();
@@ -24,20 +23,25 @@ class AdminController extends SecureController {
     $this->regiones = $this->model->fetchRegiones();
     $this->paises = $this->model->fetchPaises();
     $this->mensaje = 'Administrar datos';
-    $this->methods = array(
+    $this->metodos = array(
       'verRegion' => array('region'),
       'verPais' => array('pais'),
       'verTodas' => array(),
       'guardarRegion' => array('nuevaRegion'),
       'guardarPais' => array('nuevoPais'),
-      'guardarAccion' => array('paisAccion', 'accionAccion', 'precioAccion', 'variacionAccion', 'volumenAccion', 'maximoAccion', 'minimoAccion'),
+      'guardarAccion' => array('accionAccion', 'paisAccion', 'precioAccion', 'variacionAccion', 'volumenAccion', 'maximoAccion', 'minimoAccion'),
       'guardarUsuario' => array('nuevoUser'),
       'borrarUsuario' => array('userBorrar')
     );
     $this->mensajes = array(
       'verRegion' => "Mostrando registros de item",
       'verPais' => "Mostrando registros de item",
-      'verTodas' => "Mostrando todos los registros"
+      'verTodas' => "Mostrando todos los registros",
+      'guardarRegion' => "Región item agregada con éxito",
+      'guardarPais' => "País item agregado con éxito",
+      'guardarAccion' => "Acción item agregada con éxito",
+      'guardarUsuario' => "El usuario item ha sido agregado con éxito",
+      'borrarUsuario' => "El usuario item ha sido borrado"
     );
   }
   /**
@@ -52,18 +56,19 @@ class AdminController extends SecureController {
    * llegan por url
    */
   function adminControl($action) {
-    $args = array();
-    if (array_key_exists($action[0], $this->methods)) {
-      for ($i=0; $i < count($this->methods[$action[0]]); $i++) {
-      array_push($args, $_POST[$this->methods[$action[0]][$i]]);
+    $nombreMetodo = $action[0];
+    $argumentos = array();
+    if (array_key_exists($nombreMetodo, $this->metodos)) {
+      foreach ($this->metodos[$nombreMetodo] as $arg) {
+        array_push($argumentos, $_POST[$arg]);
       }
-    call_user_func_array(array($this, $action[0]), $args);
+    call_user_func_array(array($this, $nombreMetodo), $argumentos);
     }
-    $msg = $this->mensajes[$action[0]];
-    
-    $item = $this->methods[$action[0]] == null ? '' : $_POST[$this->methods[$action[0]][0]];
-        
+
+    $msg = $this->mensajes[$nombreMetodo];
+    $item = $this->metodos[$nombreMetodo] == null ? '' : $_POST[$this->metodos[$nombreMetodo][0]];
     $this->mensaje = str_replace('item', $item, $msg);
+    
     $this->actualizarDropdowns();
     $this->view->adminDisplay($this->regiones, $this->paises, $this->acciones, $this->mensaje);
   }
@@ -72,29 +77,14 @@ class AdminController extends SecureController {
    */
   private function actualizarMensaje($caso, $item) {
     switch ($caso) {
-      case 'borrar':
-        $this->mensaje = "El usuario " . $item . " ha sido borrado";
-        break;
       case 'guardarRegionExistente':
         $this->mensaje = "La región " . $item . " ya existe en la base de datos. Mostrando registros de la región";
-        break;
-      case 'guardarRegion':
-        $this->mensaje = "Región " . $item . " agregada con éxito";
         break;
       case 'guardarPaisExistente':
         $this->mensaje = "El país " . $item . " ya existe en la base de datos";
         break;
-      case 'guardarPais':
-        $this->mensaje = "País " . $item . " agregado con éxito";
-        break;
       case 'guardarAccionExistente':
         $this->mensaje = "El registro " . $item . " ya existe en la base de datos";
-        break;
-      case 'guardarAccion':
-        $this->mensaje = "Acción " . $item . " agregada con éxito";
-        break;
-      case 'guardarUsuario':
-        $this->mensaje = "El usuario " . $item . " ha sido agregado con éxito";
         break;
       case 'noExiste':
         $this->mensaje = "El usuario " . $item . " no existe en la base de datos";
@@ -128,14 +118,12 @@ class AdminController extends SecureController {
    */
   private function guardarRegion($region){
     if ($this->existeItem("region", $region)) {
-      $this->acciones = $this->model->fetchRegion($region);
       $this->actualizarMensaje("guardarRegionExistente", $region);
     }
     else {
       $this->model->insertRegion($region);
-      $this->acciones = $this->model->fetchRegion($region);
-       $this->actualizarMensaje("guardarRegion", $region);
     }
+    $this->acciones = $this->model->fetchRegion($region);
   }
   /**
    * guarda un país nuevo en la región elegida
@@ -144,16 +132,14 @@ class AdminController extends SecureController {
    */
   private function guardarPais($pais){
     if ($this->existeItem("pais", $pais)) {
-      $this->acciones = $this->model->fetchPais($pais);
       $this->actualizarMensaje("guardarPaisExistente", $pais);
     }
     else {
       $region = $_POST['perteneceRegion'];
       $id_region = $this->getID("region", $region);
       $this->model->insertPais($pais, $id_region);
-      $this->acciones = $this->model->fetchPais($pais);
-      $this->actualizarMensaje("guardarPais", $pais);
     }
+    $this->acciones = $this->model->fetchPais($pais);
   }
   /**
    * guarda una nueva acción en el país elegido
@@ -163,9 +149,7 @@ class AdminController extends SecureController {
    */
   private function guardarAccion($accion){
     if ($this->existeItem("accion", $accion)) {
-      $id_accion = $this->getID("accion", $accion);
-      $this->acciones = $this->model->fetchAccion($id_accion);
-     $this->actualizarMensaje("guardarAccionExistente", $accion);
+      $this->actualizarMensaje("guardarAccionExistente", $accion);
     }
     else {
       $pais = $_POST["paisAccion"];
@@ -175,11 +159,10 @@ class AdminController extends SecureController {
       $volumen = $_POST["volumenAccion"];
       $maximo = $_POST["maximoAccion"];
       $minimo = $_POST["minimoAccion"];
-      $this->model->insertAccion($id_pais, $accion, $precio, $variacion, $volumen, $maximo, $minimo);
+      $this->model->insertAccion($accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo);
       $id_accion = $this->getID("accion", $accion);
-      $this->acciones = $this->model->fetchAccion($id_accion);
-      $this->actualizarMensaje("guardarAccion", $accion);
     }
+    $this->acciones = $this->model->fetchAccion($id_accion);
   }
   /**
    * guarda un nuevo usuario administrador
@@ -189,14 +172,11 @@ class AdminController extends SecureController {
   private function guardarUsuario($user){
     if ($this->existeItem("usuario", $user)) {
       $this->actualizarMensaje("usuarioExistente", $user);
-      $this->adminHome();
     }
     else {
       $pass = $_POST["nuevaPass"];
       $hash = password_hash($pass, PASSWORD_DEFAULT);
       $this->model->insertUsuario($user, $hash);
-      $this->actualizarMensaje("guardarUsuario", $user);
-      $this->adminHome();
     }
   }
   /**
@@ -208,13 +188,10 @@ class AdminController extends SecureController {
       $dbUser = $this->model->fetchUser($user);
       if (password_verify($pass, $dbUser['pass'])) {
         $this->model->deleteUser($user);
-        $this->actualizarMensaje("borrar", $user);
-        $this->adminHome();
       }
     }
     else {
       $this->actualizarMensaje("noExiste", $user);
-      $this->adminHome();
     }
   }
   /**

@@ -109,7 +109,7 @@ class AdminModel {
   * inserta una acción nueva y le asigna un país existente
   * el país ya pertenece a alguna región
   */
-  function insertAccion($id_pais, $accion, $precio, $variacion, $volumen, $maximo, $minimo) {
+  function insertAccion($accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo) {
       $sentencia = $this->db->prepare("INSERT INTO accion(accion, id_pais, precio, variacion, volumen, maximo, minimo) VALUES(?,?,?,?,?,?,?)");
       $sentencia->execute(array($accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo));
   }
