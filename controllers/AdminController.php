@@ -9,8 +9,7 @@ class AdminController extends SecureController {
   private $regiones;
   private $paises;
   private $acciones;
-  private $methods;
-  private $mensajes;
+  private $metodos;
   private $mensaje;
 
   /**
@@ -33,16 +32,6 @@ class AdminController extends SecureController {
       'guardarUsuario' => array('nuevoUser'),
       'borrarUsuario' => array('userBorrar')
     );
-    $this->mensajes = array(
-      'verRegion' => "Mostrando registros de item",
-      'verPais' => "Mostrando registros de item",
-      'verTodas' => "Mostrando todos los registros",
-      'guardarRegion' => "Región item agregada con éxito",
-      'guardarPais' => "País item agregado con éxito",
-      'guardarAccion' => "Acción item agregada con éxito",
-      'guardarUsuario' => "El usuario item ha sido agregado con éxito",
-      'borrarUsuario' => "El usuario item ha sido borrado"
-    );
   }
   /**
    * home de admin
@@ -64,53 +53,29 @@ class AdminController extends SecureController {
       }
     call_user_func_array(array($this, $nombreMetodo), $argumentos);
     }
-
-    $msg = $this->mensajes[$nombreMetodo];
-    $item = $this->metodos[$nombreMetodo] == null ? '' : $_POST[$this->metodos[$nombreMetodo][0]];
-    $this->mensaje = str_replace('item', $item, $msg);
-    
     $this->actualizarDropdowns();
     $this->view->adminDisplay($this->regiones, $this->paises, $this->acciones, $this->mensaje);
-  }
-  /**
-   * función auxiliar que actualiza el mensaje para el usuario
-   */
-  private function actualizarMensaje($caso, $item) {
-    switch ($caso) {
-      case 'guardarRegionExistente':
-        $this->mensaje = "La región " . $item . " ya existe en la base de datos. Mostrando registros de la región";
-        break;
-      case 'guardarPaisExistente':
-        $this->mensaje = "El país " . $item . " ya existe en la base de datos";
-        break;
-      case 'guardarAccionExistente':
-        $this->mensaje = "El registro " . $item . " ya existe en la base de datos";
-        break;
-      case 'noExiste':
-        $this->mensaje = "El usuario " . $item . " no existe en la base de datos";
-        break;
-      case 'usuarioExistente':
-        $this->mensaje = "El usuario " . $item . " ya existe en la base de datos";
-        break;
-    }
   }
   /**
    * muestra todas las acciones de una región
    */
   private function verRegion($region){
     $this->acciones = $this->model->fetchRegion($region);
+    $this->mensaje = 'Mostrando registros de ' . $region;
   }
   /**
    * muestra todas las acciones de un país
    */
   private function verPais($pais){
     $this->acciones = $this->model->fetchPais($pais);
+    $this->mensaje = 'Mostrando registros de ' . $pais;
   }
   /**
    * muestra todas las acciones
    */
   private function verTodas(){
     $this->acciones = $this->model->fetchAll();
+    $this->mensaje = 'Mostrando todos los registros';
   }
   /**
    * guarda una región nueva
@@ -118,10 +83,11 @@ class AdminController extends SecureController {
    */
   private function guardarRegion($region){
     if ($this->existeItem("region", $region)) {
-      $this->actualizarMensaje("guardarRegionExistente", $region);
+      $this->mensaje = 'La región ' . $region . ' ya existe en la base de datos. Mostrando registros de la región';
     }
     else {
       $this->model->insertRegion($region);
+      $this->mensaje = 'Región ' . $region . ' agregada con éxito';
     }
     $this->acciones = $this->model->fetchRegion($region);
   }
@@ -132,12 +98,13 @@ class AdminController extends SecureController {
    */
   private function guardarPais($pais){
     if ($this->existeItem("pais", $pais)) {
-      $this->actualizarMensaje("guardarPaisExistente", $pais);
+      $this->mensaje = "El país " . $pais . " ya existe en la base de datos";
     }
     else {
       $region = $_POST['perteneceRegion'];
       $id_region = $this->getID("region", $region);
       $this->model->insertPais($pais, $id_region);
+      $this->mensaje = "País " . $pais . " agregado con éxito";
     }
     $this->acciones = $this->model->fetchPais($pais);
   }
@@ -149,7 +116,7 @@ class AdminController extends SecureController {
    */
   private function guardarAccion($accion){
     if ($this->existeItem("accion", $accion)) {
-      $this->actualizarMensaje("guardarAccionExistente", $accion);
+      $this->mensaje = "El registro " . $accion . " ya existe en la base de datos";
     }
     else {
       $pais = $_POST["paisAccion"];
@@ -161,6 +128,7 @@ class AdminController extends SecureController {
       $minimo = $_POST["minimoAccion"];
       $this->model->insertAccion($accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo);
       $id_accion = $this->getID("accion", $accion);
+      $this->mensaje = "Acción " . $accion . " agregada con éxito";
     }
     $this->acciones = $this->model->fetchAccion($id_accion);
   }
@@ -171,12 +139,13 @@ class AdminController extends SecureController {
    */
   private function guardarUsuario($user){
     if ($this->existeItem("usuario", $user)) {
-      $this->actualizarMensaje("usuarioExistente", $user);
+      $this->mensaje = "El usuario " . $user . " ya existe en la base de datos";
     }
     else {
       $pass = $_POST["nuevaPass"];
       $hash = password_hash($pass, PASSWORD_DEFAULT);
       $this->model->insertUsuario($user, $hash);
+      $this->mensaje = "El usuario " . $user . " ha sido agregado con éxito";
     }
   }
   /**
@@ -188,10 +157,11 @@ class AdminController extends SecureController {
       $dbUser = $this->model->fetchUser($user);
       if (password_verify($pass, $dbUser['pass'])) {
         $this->model->deleteUser($user);
+        $this->mensaje = "El usuario " . $user . " ha sido borrado";
       }
     }
     else {
-      $this->actualizarMensaje("noExiste", $user);
+      $this->mensaje = "El usuario " . $user . " no existe en la base de datos";
     }
   }
   /**
@@ -256,7 +226,6 @@ class AdminController extends SecureController {
     $this->mensaje = 'Se borró la región y todos los registros asociados';
     $this->adminHome();
   }
-  
   /**
    * función auxiliar que devuelve si un dato existe en una tabla
    */
