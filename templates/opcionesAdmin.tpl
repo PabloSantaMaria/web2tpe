@@ -19,7 +19,7 @@
             <input type="text" readonly class="form-control-plaintext text-white" value="Ver acciones por región">
           </div>
           <div class="form-group mx-sm-3 mb-2">
-            <select name="region" class="form-control-sm">
+            <select id="region" name="region" class="form-control-sm">
               {foreach from=$regiones item=region}
               <option>{$region['region']}</option>
               {/foreach}
