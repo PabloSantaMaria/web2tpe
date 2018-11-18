@@ -7,6 +7,13 @@ define('TIEMPO_DE_SESION', 1800);
 
 class ConfigApp
 {
+    public static $DB = array(
+        'dbms' => 'mysql',
+        'host' => 'localhost',
+        'dbname' => 'tabrokers',
+        'username' => 'root',
+        'password' => ''
+    );
     public static $ACTION = 'action';
     public static $PARAMS = 'params';
     public static $ACTIONS = [

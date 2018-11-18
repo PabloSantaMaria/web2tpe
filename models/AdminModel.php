@@ -1,20 +1,9 @@
 <?php
 
-class AdminModel {
-  private $db;
+require_once "./models/BaseModel.php";
 
-  /**
-   * inicializa db y crea objeto PDO
-   */
-  function __construct() {
-    $this->db = $this->connect();
-  }
-  private function connect() {
-    return new PDO('mysql:host=localhost;'.'dbname=tabrokers;charset=utf8', 'root', '');
-  }
-  /**
-   * trae todas las acciones
-   */
+class AdminModel extends BaseModel {
+  
   function fetchAll() {
     $sentencia = $this->db->prepare("SELECT accion.*, pais.pais FROM accion INNER JOIN pais ON accion.id_pais = pais.id_pais ORDER BY pais.pais ASC");
     $sentencia->execute();
