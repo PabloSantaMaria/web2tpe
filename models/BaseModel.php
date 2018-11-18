@@ -9,5 +9,3 @@ abstract class BaseModel {
         $this->db = Database::connect()->database;
     }
 }
-
-?>
