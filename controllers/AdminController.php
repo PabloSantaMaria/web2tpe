@@ -177,7 +177,7 @@ class AdminController extends SecureController {
         $id_accion = $params[0];
         $accion = $this->accionModel->fetchAccion($id_accion);
         $paises = $this->paisModel->fetchPaises();
-        $this->view->displayUpdateForm($accion, $paises);
+        $this->view->displayUpdateForm($accion, $paises, $this->regiones);
     }
     /**
     * actualiza una acción

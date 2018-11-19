@@ -18,7 +18,7 @@ class AccionModel extends BaseModel {
     function fetchAccion($id_accion) {
         $sentencia = $this->db->prepare("SELECT accion.*, pais.pais, region.region FROM accion, pais, region WHERE id_accion=? AND accion.id_pais = pais.id_pais AND pais.id_region=region.id_region");
         $sentencia->execute(array($id_accion));
-        $accion = $sentencia->fetch(PDO::FETCH_ASSOC);
+        $accion = $sentencia->fetchAll(PDO::FETCH_ASSOC);
         return $accion;
     }
     /**
