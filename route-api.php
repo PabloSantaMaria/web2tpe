@@ -1,5 +1,6 @@
 <?php
-require_once "config/ConfigApi.php";
+require_once "api/config/ConfigApi.php";
+require_once "api/controllers/AccionesApiController.php";
 
 function parseURL($url) {
     $explodedURL = explode('/', $url);

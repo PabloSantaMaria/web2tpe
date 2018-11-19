@@ -1,5 +1,5 @@
 <?php
-require_once 'ConfigApp.php';
+require_once 'config/ConfigApp.php';
 
 class Database {
     public $database;
