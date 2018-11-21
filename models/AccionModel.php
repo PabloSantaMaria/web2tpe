@@ -1,6 +1,6 @@
 <?php
 
-require_once './models/BaseModel.php';
+require_once 'BaseModel.php';
 
 class AccionModel extends BaseModel {
     /**
@@ -18,7 +18,7 @@ class AccionModel extends BaseModel {
     function fetchAccion($id_accion) {
         $sentencia = $this->db->prepare("SELECT accion.*, pais.pais, region.region FROM accion, pais, region WHERE id_accion=? AND accion.id_pais = pais.id_pais AND pais.id_region=region.id_region");
         $sentencia->execute(array($id_accion));
-        $accion = $sentencia->fetch(PDO::FETCH_ASSOC);
+        $accion = $sentencia->fetchAll(PDO::FETCH_ASSOC);
         return $accion;
     }
     /**
@@ -28,6 +28,8 @@ class AccionModel extends BaseModel {
     function insertAccion($accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo) {
         $sentencia = $this->db->prepare("INSERT INTO accion(accion, id_pais, precio, variacion, volumen, maximo, minimo) VALUES(?,?,?,?,?,?,?)");
         $sentencia->execute(array($accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo));
+        $lastInsertId = $this->db->lastInsertId();
+        return $this->fetchAccion($lastInsertId);
     }
     /**
     * actualiza una acción por id
@@ -36,13 +38,19 @@ class AccionModel extends BaseModel {
     function updateAccion($id_accion, $accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo) {
         $sentencia = $this->db->prepare("UPDATE accion SET accion = ?, id_pais = ?, precio = ?, variacion = ?, volumen = ?, maximo = ?, minimo = ? WHERE id_accion = ?");
         $sentencia->execute(array($accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo, $id_accion));
+        return $this->fetchAccion($id_accion);
     }
     /**
     * borra una acción por id
     */
     function deleteAccion($id_accion) {
-        $sentencia = $this->db->prepare("DELETE FROM accion WHERE id_accion=?");
-        $sentencia->execute(array($id_accion));
+        $accion = $this->fetchAccion($id_accion);
+        if (isset($accion)) {
+            $sentencia = $this->db->prepare("DELETE FROM accion WHERE id_accion=?");
+            $sentencia->execute(array($id_accion));
+            return $accion;
+        }
+        
     }
     /**
     * devuelve boolean según la existencia de un dato en una tabla

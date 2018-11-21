@@ -39,8 +39,9 @@ class AdminView {
   /**
    * muestra template de form editar acción
    */
-  function displayUpdateForm($accion, $paises) {
+  function displayUpdateForm($accion, $paises, $regiones) {
     $this->smarty->assign('title', 'TAbrokers - Editar');
+    $this->smarty->assign('regiones', $regiones);
     $this->smarty->assign('accion', $accion);
     $this->smarty->assign('paises', $paises);
     $this->smarty->assign('baseURL', $this->baseURL);
