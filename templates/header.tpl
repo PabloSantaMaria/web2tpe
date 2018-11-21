@@ -47,6 +47,9 @@
                         </div>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="comentarios"><button type="button" id="comentarios" class="btn btn-outline-info">Comentarios</button></a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="acerca"><button type="button" id="acerca" class="btn btn-outline-info">Acerca de nosotros</button></a>
                     </li>
                     <li class="nav-item">

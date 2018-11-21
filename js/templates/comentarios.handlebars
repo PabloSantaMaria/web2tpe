@@ -1,0 +1,26 @@
+<ul class="list-group">
+    <li class="list-group-item list-group-item-action flex-column align-items-start active bg-dark border border-white">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">Comentarios para la cotización</h5>
+        </div>
+        <p class="mb-1">{{comentarios.0.accion}}</p>
+        <small>{{accion.0.precio}}</small>
+    </li>
+    {{#each comentarios}}
+    <li class="list-group-item list-group-item-action flex-column align-items-start">
+        <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1">{{titulo}}</h5>
+            <small class="text-muted">Usuario: {{usuario}}</small>
+        </div>
+        <p class="mb-1">{{cuerpo}}</p>
+        <small class="text-muted">Posteado el día: {{date}}</small>
+        <div class="container">
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <button type="button" value="{{id_comentario}}" class="btn btn-outline-danger borrarComentario" data-toggle="modal" data-target="#exampleModal">Borrar</button>
+            <button type="button" class="btn btn-secondary">Middle</button>
+            <button type="button" class="btn btn-secondary">Right</button>
+        </div>
+        </div>
+    </li>
+    {{/each}}
+</ul>

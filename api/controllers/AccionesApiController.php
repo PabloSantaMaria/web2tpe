@@ -21,19 +21,7 @@ class AccionesApiController extends Api {
         }
     }
     
-    function deleteAccion($param) {
-        if (isset($param)) {
-            $id_accion = $param[0];
-            $result = $this->accionesModel->deleteAccion($id_accion);
-            if (!$result) {
-                return $this->json_response("no especifica accion", 300);
-            }
-            return $this->json_response($result, 200);
-        }
-        else {
-            return $this->json_response("no especifica accion", 300);
-        }
-    }
+    
     
     function updateAccion($param) {
         if (isset($param)) {

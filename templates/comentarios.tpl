@@ -1,37 +1,34 @@
 {include file="header.tpl"}
 
-{* COTIZACIONES USUARIO VISITANTE *}
 <div class="cuerpoCotizaciones">
+    <div class="container">
 
-    <!-- TABLA -->
-    <div class="tabla container">
-        <div class="alert alert-dark" role="alert">
-            Cotizaciones de {$region}
+        {* ALERT *}
+        <div class="alert alert-light alert-dismissible fade show" id="info" role="alert">
+        <strong>Bienvenido a la sección de comentarios!</strong> Elija una cotización para mostrar
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
         </div>
-        <div class="table-responsive">
-            <table class="table table-sm table-hover table-dark">
-                <thead>
-                    <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Región</th>
-                        <th scope="col">País</th>
-                        <th scope="col">Precio</th>
-                        <th scope="col">Variación</th>
-                    </tr>    
-                </thead>
-                <tbody id="tabla" class="cotizaciones">
-	                {foreach from=$acciones item=accion}
-                        <tr id='row{$accion['id_accion']}'>
-                            <td><a class="text-info" href="detalleAccion/{$accion['id_accion']}">{$accion['accion']}</a></td>
-                            <td>{$accion['region']}</td>
-                            <td>{$accion['pais']}</td>
-                            <td>$ {$accion['precio']}</td>
-                            <td class="vari">{$accion['variacion']} %</td>
-                        </tr>
-                    {/foreach}
-                </tbody>
-            </table>
-        </div>
+        
+        {* SELECTOR DE COTIZACION *}
+        <form class="form-inline" name="getComentarios">
+          <div class="form-group mb-2">
+            <label for="acciones" class="sr-only">Acciones</label>
+            <input type="text" readonly class="form-control-plaintext text-white text-center" value="Cotizaciones">
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <select id="accionesId" name="accionesId" class="form-control-sm">
+              {foreach from=$acciones item=accion}
+                <option value="{$accion['id_accion']}">{$accion['accion']}</option>
+              {/foreach}
+            </select>
+          </div>
+          <button type="submit" id="getComentarios" class="btn btn-primary btn-sm mb-2">Ver comentarios</button>
+        </form>
+
+        {* CONTAINER AJAX *}
+        <div id="comentariosContainer"></div>
     </div>
     
     <!-- FILTRO -->
@@ -58,17 +55,16 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <h5 class="modal-title" id="exampleModalLabel">Información</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        ...
+      <div class="modal-body" id="infoModal">
+
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
