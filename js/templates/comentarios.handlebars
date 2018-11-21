@@ -4,7 +4,35 @@
             <h5 class="mb-1">Comentarios para la cotización</h5>
         </div>
         <p class="mb-1">{{comentarios.0.accion}}</p>
-        <small>{{accion.0.precio}}</small>
+        {{!-- COMENTAR --}}
+        <p class="mb-1">
+            <div class="container">
+            <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false"
+                aria-controls="collapseExample">
+                Agregar comentario
+            </button>
+            </div>
+        </p>
+        {{!-- COLLAPSE --}}
+        <div class="collapse" id="collapseExample">
+            <div class="card card-body text-dark bg-secondary">
+                {{!-- FORM COMENTAR --}}
+                <form name="postComentario" id="comentar">
+                    <div class="form-group">
+                        <label for="tituloComentario">Título</label>
+                        <input type="text" id="tituloComentario" class="form-control" placeholder="">
+                        <label for="cuerpoComentario">Escriba un comentario</label>
+                        <textarea class="form-control" id="cuerpoComentario" rows="3"></textarea>
+                        <div class="container">
+                            <button type="button" value="{{comentarios.0.id_accion}}" class="btn btn-primary btn-sm mb-2 postComentario" data-toggle="modal" data-target="#exampleModal">Agregar</button>
+                        </div>
+                        {{!-- <input type="hidden" id="id_accion" name="id_accion" value="{{comentarios.0.id_accion}}"> --}}
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        <small></small>
     </li>
     {{#each comentarios}}
     <li class="list-group-item list-group-item-action flex-column align-items-start">
@@ -17,8 +45,6 @@
         <div class="container">
         <div class="btn-group" role="group" aria-label="Basic example">
             <button type="button" value="{{id_comentario}}" class="btn btn-outline-danger borrarComentario" data-toggle="modal" data-target="#exampleModal">Borrar</button>
-            <button type="button" class="btn btn-secondary">Middle</button>
-            <button type="button" class="btn btn-secondary">Right</button>
         </div>
         </div>
     </li>

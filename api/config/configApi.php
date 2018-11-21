@@ -6,6 +6,7 @@ class ConfigApi {
     public static $RESOURCES = [
         'comentarios#GET' => 'ComentariosApiController#comentariosAccion',
         'comentario#DELETE' => 'ComentariosApiController#deleteComentario',
+        'comentario#POST' => 'ComentariosApiController#postComentario',
         'accion#PUT' => 'AccionesApiController#updateAccion',
         'create#POST' => 'AccionesApiController#insertAccion'
     ];

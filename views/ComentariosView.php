@@ -14,10 +14,11 @@ class ComentariosView {
     $this->baseURL = '//'.$_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']).'/';
   }
 
-  function verComentarios($title, $acciones, $regiones) {
+  function verComentarios($title, $acciones, $regiones, $user) {
     $this->smarty->assign('title', $title);
     $this->smarty->assign('acciones', $acciones);
     $this->smarty->assign('regiones', $regiones);
+    $this->smarty->assign('user', $user);
     $this->smarty->assign('baseURL', $this->baseURL);
     $this->smarty->display('./templates/comentarios.tpl');
   }

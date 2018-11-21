@@ -9,6 +9,7 @@ fetch('js/templates/comentarios.handlebars')
 })
 
 function getComentarios(id_accion) {
+    // if no viene accion
     fetch('api/comentarios/' + id_accion)
     .then(response => response.json())
     .then(jsonComentarios => {
@@ -23,6 +24,37 @@ function mostrarComentarios(jsonComentarios) {
     }
     let html = templateComentarios(context);
     document.getElementById('comentariosContainer').innerHTML = html;
+}
+
+function postComentario(id_accion) {
+    let usuario = $('#user').text();
+    console.log(usuario);
+    if (usuario == 'Guest') {
+        let info = document.getElementById('infoModal');
+        info.innerHTML = 'Debe loguearse para postear comentarios';
+    }
+    else {
+        let comentario = {
+            'id_accion': id_accion,
+            'usuario': usuario,
+            'titulo': $('#tituloComentario').val(),
+            'cuerpo': $('#cuerpoComentario').val()
+        };
+        console.log(comentario);
+        console.log(id_accion);
+        
+        fetch('api/comentario/' + id_accion, {
+            method: "POST",
+            body: JSON.stringify(comentario)
+        })
+        .then(response => response.json())
+        .then(jsonComentarioAgregado => {
+            console.log(jsonComentarioAgregado);
+            getComentarios(jsonComentarioAgregado.id_accion);
+            let info = document.getElementById('infoModal');
+            info.innerHTML = 'Ha sido agregado el comentario del usuario ' + jsonComentarioAgregado.usuario + ' con el título: ' + jsonComentarioAgregado.titulo;
+        })
+    }
 }
 
 function deleteComentario(id_comentario) {
@@ -52,4 +84,10 @@ $(document).ready(function () {
         let id_accion = $('#accionesId').val();
         getComentarios(id_accion);
     });
+    document.addEventListener('click', function (event) {
+        if (event.target.classList.contains('postComentario')) {
+            let id_accion = event.target.value;
+            postComentario(id_accion);
+        }
+    }, false);
 });

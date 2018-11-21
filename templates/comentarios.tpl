@@ -3,34 +3,39 @@
 <div class="cuerpoCotizaciones">
     <div class="container">
 
-        {* ALERT *}
-        <div class="alert alert-light alert-dismissible fade show" id="info" role="alert">
-        <strong>Bienvenido a la sección de comentarios!</strong> Elija una cotización para mostrar
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+        {* Titulo *}
+
+        <div class="card w-75 mx-auto bg-dark text-white">
+        <h5 class="card-header text-primary" id="user">{$user}</h5>
+          <h5 class="card-header">Bienvenido a la sección de comentarios</h5>
+          <div class="card-body">
+            <h6 class="card-title text-center">Elija una cotización para ver</h6>
+
+            {* SELECTOR DE COTIZACION *}
+            <form class="form-inline" name="getComentarios">
+              <div class="form-group mb-2">
+                <label for="acciones" class="sr-only">Acciones</label>
+                <input type="text" readonly class="form-control-plaintext text-white text-center" value="">
+              </div>
+              <div class="form-group mx-sm-3 mb-2">
+                <select id="accionesId" name="accionesId" class="form-control-sm">
+                  {foreach from=$acciones item=accion}
+                    <option value="{$accion['id_accion']}">{$accion['accion']}</option>
+                  {/foreach}
+                </select>
+              </div>
+              <button type="submit" id="getComentarios" class="btn btn-primary btn-sm mb-2">Ver comentarios</button>
+            </form>
+
+          </div>
         </div>
-        
-        {* SELECTOR DE COTIZACION *}
-        <form class="form-inline" name="getComentarios">
-          <div class="form-group mb-2">
-            <label for="acciones" class="sr-only">Acciones</label>
-            <input type="text" readonly class="form-control-plaintext text-white text-center" value="Cotizaciones">
-          </div>
-          <div class="form-group mx-sm-3 mb-2">
-            <select id="accionesId" name="accionesId" class="form-control-sm">
-              {foreach from=$acciones item=accion}
-                <option value="{$accion['id_accion']}">{$accion['accion']}</option>
-              {/foreach}
-            </select>
-          </div>
-          <button type="submit" id="getComentarios" class="btn btn-primary btn-sm mb-2">Ver comentarios</button>
-        </form>
+      </div>
 
         {* CONTAINER AJAX *}
+      <div class="container">
         <div id="comentariosContainer"></div>
-    </div>
-    
+      <div>
+
     <!-- FILTRO -->
     <div class="filtro container w-50 p-3">
     <div class="filtrar bg-dark">
@@ -54,7 +59,7 @@
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
-      <div class="modal-header">
+      <div class="modal-header bg-success">
         <h5 class="modal-title" id="exampleModalLabel">Información</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
