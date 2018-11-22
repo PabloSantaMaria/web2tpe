@@ -13,9 +13,10 @@ class ComentariosApiController extends Api {
         $this->usuariosModel = new UsuarioModel();
     }
     
-    function comentariosAccion($param) {
-        $id_accion = $param[0];
-        $data = $this->comentariosModel->getComentarios($id_accion);
+    function comentariosAccion($params) {
+        $id_accion = $params[0];
+        $ratingOrder = $params[1];
+        $data = $this->comentariosModel->getComentarios($id_accion, $ratingOrder);
         if ($data != null) {
             return $this->json_response($data, 200);
         }

@@ -7,14 +7,16 @@
       <h5 class="card-header text-primary" id="user">{$user}</h5>
       <h5 class="card-header">Bienvenido a la sección de comentarios</h5>
       <div class="card-body">
-        <h6 class="card-title text-center">Elija una cotización para ver</h6>
+        <h6 class="card-title text-center">Elija una cotización para ver los comentarios</h6>
 
         {* SELECTOR DE COTIZACION *}
         <form class="form-inline" name="getComentarios">
+          
           <div class="form-group mb-2">
-            <label for="acciones" class="sr-only">Acciones</label>
+            <label for="acciones">Acciones</label>
             <input type="text" readonly class="form-control-plaintext text-white text-center" value="">
           </div>
+
           <div class="form-group mx-sm-3 mb-2">
             <select id="accionesId" name="accionesId" class="form-control-sm">
               {foreach from=$acciones item=accion}
@@ -22,7 +24,17 @@
               {/foreach}
             </select>
           </div>
+
+          <div class="form-group mx-sm-3 mb-2">
+          <label for="ratingOrder">Puntaje</label>
+          <select class="custom-select my-1 mr-sm-2" id="ratingOrder">
+              <option value="DESC" selected>Descendente</option>
+              <option value="ASC">Ascendente</option>
+          </select>
+            </div>  
+          
           <button type="submit" id="getComentarios" class="btn btn-primary btn-sm mb-2">Ver comentarios</button>
+          
         </form>
 
       </div>

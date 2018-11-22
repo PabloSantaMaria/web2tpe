@@ -8,10 +8,10 @@ fetch('js/templates/comentarios.handlebars')
     templateComentarios = Handlebars.compile(template);
 })
 
-function getComentarios(id_accion) {
+function getComentarios(id_accion, ratingOrder) {
     // if no viene accion
-    
-    fetch('api/comentarios/' + id_accion)
+    console.log(ratingOrder);
+    fetch('api/comentarios/' + id_accion + '/' + ratingOrder)
     .then(response => response.json())
     .then(jsonComentarios => {
         console.log(jsonComentarios);
@@ -31,6 +31,11 @@ function mostrarComentarios(jsonComentarios) {
     }
     let html = templateComentarios(context);
     document.getElementById('comentariosContainer').innerHTML = html;
+    // setTimeout(function () {
+    //     let id_accion = $('#accionesId').val();
+    //     getComentarios(id_accion);
+    //     console.log(id_accion);
+    // }, 2000);
 }
 
 function postComentario(id_accion) {
@@ -90,7 +95,8 @@ $(document).ready(function () {
     $("form[name='getComentarios']").submit(function (event) {
         event.preventDefault();
         let id_accion = $('#accionesId').val();
-        getComentarios(id_accion);
+        let ratingOrder = $('#ratingOrder').val();
+        getComentarios(id_accion, ratingOrder);
     });
     document.addEventListener('click', function (event) {
         if (event.target.classList.contains('postComentario')) {

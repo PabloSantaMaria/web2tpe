@@ -11,8 +11,18 @@ class ComentarioModel extends BaseModel {
         return $comentario;
     }
     
-    function getComentarios($id_accion) {
-        $sentencia = $this->db->prepare("SELECT comentario.*, accion.accion, usuario.usuario FROM comentario, accion, usuario WHERE accion.id_accion = ? AND accion.id_accion = comentario.id_accion ORDER BY comentario.date ASC");
+    function getComentarios($id_accion, $ratingOrder) {
+        if ($ratingOrder == 'ASC') {
+            $sentencia = $this->db->prepare("SELECT comentario.*, accion.accion, usuario.usuario FROM comentario, accion, usuario WHERE accion.id_accion = ? AND accion.id_accion = comentario.id_accion ORDER BY comentario.puntaje ASC");
+        }
+        elseif ($ratingOrder == 'DESC') {
+            $sentencia = $this->db->prepare("SELECT comentario.*, accion.accion, usuario.usuario FROM comentario, accion, usuario WHERE accion.id_accion = ? AND accion.id_accion = comentario.id_accion ORDER BY comentario.puntaje DESC");
+        }
+        else {
+            $sentencia = $this->db->prepare("SELECT comentario.*, accion.accion, usuario.usuario FROM comentario, accion, usuario WHERE accion.id_accion = ? AND accion.id_accion = comentario.id_accion ORDER BY comentario.date ASC");
+        }
+        
+        
         $sentencia->execute(array($id_accion));
         $comentarios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
         return $comentarios;
