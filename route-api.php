@@ -1,6 +1,5 @@
 <?php
 require_once "api/config/ConfigApi.php";
-require_once "api/controllers/AccionesApiController.php";
 require_once "api/controllers/ComentariosApiController.php";
 
 function parseURL($url) {

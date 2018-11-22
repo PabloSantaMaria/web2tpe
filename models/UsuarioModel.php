@@ -9,8 +9,18 @@ class UsuarioModel extends BaseModel {
     function fetchUser($user) {
         $sentencia = $this->db->prepare("SELECT * FROM usuario WHERE usuario=?");
         $sentencia->execute(array($user));
-        $dbUser = $sentencia->fetch(PDO::FETCH_ASSOC);
+        $dbUser = $sentencia->fetchAll(PDO::FETCH_ASSOC);
         return $dbUser;
+    }
+    function isAdmin($user) {
+        $sentencia = $this->db->prepare("SELECT * FROM usuario WHERE usuario=?");
+        $sentencia->execute(array($user));
+        $dbUser = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+        if ($dbUser[0]['admin'] == 1) {
+            return true;
+        }
+        else return false;
+        // return $dbUser;
     }
     /**
     * inserta un usuario nuevo

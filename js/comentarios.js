@@ -10,6 +10,7 @@ fetch('js/templates/comentarios.handlebars')
 
 function getComentarios(id_accion) {
     // if no viene accion
+    
     fetch('api/comentarios/' + id_accion)
     .then(response => response.json())
     .then(jsonComentarios => {
@@ -19,8 +20,14 @@ function getComentarios(id_accion) {
 }
 
 function mostrarComentarios(jsonComentarios) {
+    let usuario = $('#user').text();
+    let admin = true;
+    if (usuario == 'Guest') {
+        admin = false;
+    }
     let context = {
-        comentarios: jsonComentarios
+        comentarios: jsonComentarios,
+        admin: admin
     }
     let html = templateComentarios(context);
     document.getElementById('comentariosContainer').innerHTML = html;
