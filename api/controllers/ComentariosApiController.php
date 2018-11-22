@@ -54,8 +54,9 @@ class ComentariosApiController extends Api {
                 $id_usuario = $this->usuariosModel->getID('usuario', $usuario);
                 $titulo = $body->titulo;
                 $cuerpo = $body->cuerpo;
+                $puntaje = $body->puntaje;
                 
-                $comentarioNuevo = $this->comentariosModel->postComentario($titulo, $cuerpo, $id_accion, $id_usuario);
+                $comentarioNuevo = $this->comentariosModel->postComentario($titulo, $cuerpo, $puntaje, $id_accion, $id_usuario);
                 if (!$comentarioNuevo) {
                     return $this->json_response("comentario vacío", 300);
                 }

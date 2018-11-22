@@ -57,7 +57,9 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="login"><button type="button" id="login" class="btn btn-outline-warning">Login</button></a>
+                        <a href="logout" class="badge badge-danger">Cerrar sesión</a>
                     </li>
+                        
                 </ul>
             </div>
             

@@ -38,7 +38,8 @@ function postComentario(id_accion) {
             'id_accion': id_accion,
             'usuario': usuario,
             'titulo': $('#tituloComentario').val(),
-            'cuerpo': $('#cuerpoComentario').val()
+            'cuerpo': $('#cuerpoComentario').val(),
+            'puntaje': $('#puntajeAccion').val()
         };
         console.log(comentario);
         console.log(id_accion);

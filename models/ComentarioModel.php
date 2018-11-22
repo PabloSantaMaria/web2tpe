@@ -18,9 +18,9 @@ class ComentarioModel extends BaseModel {
         return $comentarios;
     }
     
-    function postComentario($titulo, $cuerpo, $id_accion, $id_usuario) {
-        $sentencia = $this->db->prepare("INSERT INTO comentario(titulo, cuerpo, id_accion, id_usuario) VALUES(?,?,?,?)");
-        $sentencia->execute(array($titulo, $cuerpo, $id_accion, $id_usuario));
+    function postComentario($titulo, $cuerpo, $puntaje, $id_accion, $id_usuario) {
+        $sentencia = $this->db->prepare("INSERT INTO comentario(titulo, cuerpo, puntaje, id_accion, id_usuario) VALUES(?,?,?,?,?)");
+        $sentencia->execute(array($titulo, $cuerpo, $puntaje, $id_accion, $id_usuario));
         $lastInsertId = $this->db->lastInsertId();
         $comentarioNuevo = $this->getComentario($lastInsertId);
         return $comentarioNuevo[0];

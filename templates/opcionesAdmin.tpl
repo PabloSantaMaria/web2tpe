@@ -249,8 +249,4 @@
       </div>
     </div>
   </div>
-  <div class="container">
-    <a href="logout" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Logout</a> 
-  </div>
-
 </div>
