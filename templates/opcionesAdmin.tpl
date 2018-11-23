@@ -215,6 +215,10 @@
                   <label for="Password">Contraseña</label>
                   <input type="password" class="form-control" name="nuevaPass" placeholder="Password">
                 </div>
+                <div class="form-group form-check">
+                  <input type="checkbox" class="form-check-input" name="comoAdmin">
+                  <label class="form-check-label" for="exampleCheck1">Agregar como administrador</label>
+                </div>
                 <button type="submit" class="btn btn-sm btn-success">Agregar</button>
             </form>
             </div>
@@ -249,8 +253,4 @@
       </div>
     </div>
   </div>
-  <div class="container">
-    <a href="logout" class="btn btn-danger btn-lg active" role="button" aria-pressed="true">Logout</a> 
-  </div>
-
 </div>

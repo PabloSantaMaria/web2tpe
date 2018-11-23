@@ -6,5 +6,6 @@
     <script src="js/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
     <script src="js/popper.min.js" crossorigin="anonymous"></script>
     <script src="js/bootstrap.min.js" crossorigin="anonymous"></script>
+    <script src="js/handlebars-v4.0.12.js"></script>
 </body>
 </html>

@@ -47,14 +47,23 @@
                         </div>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="comentarios"><button type="button" id="comentarios" class="btn btn-outline-info">Comentarios</button></a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="acerca"><button type="button" id="acerca" class="btn btn-outline-info">Acerca de nosotros</button></a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="admin"><button type="button" id="login" class="btn btn-outline-info">Administrador</button></a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button type="button" id="usuarios" class="btn btn-outline-warning">Usuario</button>
+                        </a>
+                        <div class="dropdown-menu btn-outline-info bg-dark" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item text-info ver" href="login">Login</a>
+                            <a class="dropdown-item text-info ver" href="signIn">Sign In</a>
+                            <a class="dropdown-item text-info ver" href="admin">Administrador</a>
+                            <a class="dropdown-item text-danger ver" href="logout">Log Out</a>
+                        </div>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login"><button type="button" id="login" class="btn btn-outline-warning">Login</button></a>
-                    </li>
+                        
                 </ul>
             </div>
             
