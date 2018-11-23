@@ -9,7 +9,7 @@ fetch('js/templates/comentarios.handlebars')
 })
 
 function getComentarios(id_accion, ratingOrder) {
-    // if no viene accion
+    // if no tiene comentarios
     console.log(ratingOrder);
     fetch('api/comentarios/' + id_accion + '/' + ratingOrder)
     .then(response => response.json())
@@ -21,20 +21,21 @@ function getComentarios(id_accion, ratingOrder) {
 
 function mostrarComentarios(jsonComentarios) {
     let usuario = $('#user').text();
-    let admin = true;
+    console.log(usuario);
+    let logueado = true;
+    let admin = $('#isAdmin').val();
     if (usuario == 'Guest') {
-        admin = false;
+        logueado = false;
     }
     let context = {
         comentarios: jsonComentarios,
+        logueado: logueado,
         admin: admin
     }
     let html = templateComentarios(context);
     document.getElementById('comentariosContainer').innerHTML = html;
     // setTimeout(function () {
-    //     let id_accion = $('#accionesId').val();
-    //     getComentarios(id_accion);
-    //     console.log(id_accion);
+    //     $("#getComentarios").trigger("submit");
     // }, 2000);
 }
 
@@ -62,8 +63,11 @@ function postComentario(id_accion) {
         })
         .then(response => response.json())
         .then(jsonComentarioAgregado => {
-            console.log(jsonComentarioAgregado);
-            getComentarios(jsonComentarioAgregado.id_accion);
+            $("#getComentarios").trigger("submit");
+            // console.log(jsonComentarioAgregado);
+            // let ratingOrder = $('#ratingOrder').val();
+            // console.log(ratingOrder);
+            // getComentarios(jsonComentarioAgregado.id_accion);
             let info = document.getElementById('infoModal');
             info.innerHTML = 'Ha sido agregado el comentario del usuario ' + jsonComentarioAgregado.usuario + ' con el título: ' + jsonComentarioAgregado.titulo;
         })
@@ -101,6 +105,7 @@ $(document).ready(function () {
     document.addEventListener('click', function (event) {
         if (event.target.classList.contains('postComentario')) {
             let id_accion = event.target.value;
+            console.log(id_accion);
             postComentario(id_accion);
         }
     }, false);

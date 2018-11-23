@@ -60,5 +60,13 @@ class NavView {
     $this->smarty->assign('baseURL', $this->baseURL);
     $this->smarty->display('./templates/login.tpl');
   }
+
+  function displaySignin($title, $regiones, $mensaje = '') {
+    $this->smarty->assign('title', $title);
+    $this->smarty->assign('regiones', $regiones);
+    $this->smarty->assign('mensaje', $mensaje);
+    $this->smarty->assign('baseURL', $this->baseURL);
+    $this->smarty->display('./templates/signIn.tpl');
+  }
 }
 ?>

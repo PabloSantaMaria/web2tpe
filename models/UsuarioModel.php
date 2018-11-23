@@ -26,9 +26,9 @@ class UsuarioModel extends BaseModel {
     * inserta un usuario nuevo
     * la contraseña viene encriptada
     */
-    function insertUsuario($user, $hash) {
-        $sentencia = $this->db->prepare("INSERT INTO usuario(usuario, pass) VALUES(?,?)");
-        $sentencia->execute(array($user, $hash));
+    function insertUsuario($user, $hash, $isAdmin) {
+        $sentencia = $this->db->prepare("INSERT INTO usuario(usuario, pass, admin) VALUES(?,?,?)");
+        $sentencia->execute(array($user, $hash, $isAdmin));
     }
     /**
     * borra un usuario existente

@@ -24,7 +24,9 @@ class ConfigApp
         'detalleAccion' => 'NavController#detalleAccion', //ver detalle de acción
         'comentarios' => 'ComentariosController#verComentarios', //ver comentarios
         'login' => 'LoginController#login', //login de admin
+        'signIn' => 'LoginController#signIn', //Crear nuevo usuario
         'verify' => 'LoginController#verify', //valida usuario
+        'verifyRegister' => 'LoginController#verifyRegister', //valida nuevo usuario
         'logout' => 'LoginController#logout', //cerrar sesión
         'admin' => 'AdminController#adminHome', //home de admin
         'adminControl' => 'AdminController#adminControl', //opciones de admin

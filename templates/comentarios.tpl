@@ -11,7 +11,7 @@
 
         {* SELECTOR DE COTIZACION *}
         <form class="form-inline" name="getComentarios">
-          
+          <input id="isAdmin" type="hidden" value="{$isAdmin}">
           <div class="form-group mb-2">
             <label for="acciones">Acciones</label>
             <input type="text" readonly class="form-control-plaintext text-white text-center" value="">
@@ -43,6 +43,7 @@
 
   {* CONTAINER AJAX *}
   <div class="container">
+  
     <div id="comentariosContainer">
     </div>
   </div>

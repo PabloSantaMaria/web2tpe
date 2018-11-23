@@ -11,7 +11,7 @@ class AdminController extends SecureController {
     private $accionesModel;
     private $paisesModel;
     private $regionesModel;
-    private $usuariosModel;
+    private $usuarioModel;
     private $regiones;
     private $paises;
     private $acciones;
@@ -24,7 +24,7 @@ class AdminController extends SecureController {
         $this->accionesModel = new AccionModel();
         $this->paisesModel = new PaisModel();
         $this->regionesModel = new RegionModel();
-        $this->usuariosModel = new UsuarioModel();
+        $this->usuarioModel = new UsuarioModel();
         $this->regiones = $this->regionesModel->fetchRegiones();
         $this->paises = $this->paisesModel->fetchPaises();
         $this->mensaje = 'Administrar datos';
@@ -43,8 +43,22 @@ class AdminController extends SecureController {
     * home de admin
     */
     function adminHome() {
-        $this->actualizarDropdowns();
-        $this->view->adminHome($this->regiones, $this->paises, $this->mensaje);
+        // session_start();
+        if (isset($_SESSION['user'])) {
+            $user = $_SESSION['user'];
+            $isAdmin = $this->usuarioModel->isAdmin($user);
+            if ($isAdmin) {
+                $this->actualizarDropdowns();
+                $this->view->adminHome($this->regiones, $this->paises, $this->mensaje);
+            }
+            else {
+                header(LOGIN);
+            }
+        }
+        else {
+            header(LOGIN);
+        }
+        
     }
     /**
     * opciones de control de admin
@@ -150,7 +164,12 @@ class AdminController extends SecureController {
         else {
             $pass = $_POST["nuevaPass"];
             $hash = password_hash($pass, PASSWORD_DEFAULT);
-            $this->usuariosModel->insertUsuario($user, $hash);
+            if (isset($_POST['comoAdmin'])) {
+                $isAdmin = 1;
+            } else {
+                $isAdmin = null;
+            }
+            $this->usuarioModel->insertUsuario($user, $hash, $isAdmin);
             $this->mensaje = "El usuario " . $user . " ha sido agregado con éxito";
         }
     }
@@ -160,9 +179,9 @@ class AdminController extends SecureController {
     private function borrarUsuario($user){
         if ($this->existeItem("usuario", $user)) {
             $pass = $_POST['passBorrar'];
-            $dbUser = $this->usuariosModel->fetchUser($user);
+            $dbUser = $this->usuarioModel->fetchUser($user);
             if (password_verify($pass, $dbUser['pass'])) {
-                $this->usuariosModel->deleteUser($user);
+                $this->usuarioModel->deleteUser($user);
                 $this->mensaje = "El usuario " . $user . " ha sido borrado";
             }
         }
