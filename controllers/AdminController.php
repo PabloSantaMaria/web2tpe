@@ -8,9 +8,9 @@ require_once "./controllers/SecureController.php";
 
 class AdminController extends SecureController {
     private $view;
-    private $accionesModel;
-    private $paisesModel;
-    private $regionesModel;
+    private $accionModel;
+    private $paisModel;
+    private $regionModel;
     private $usuarioModel;
     private $regiones;
     private $paises;
@@ -21,12 +21,12 @@ class AdminController extends SecureController {
     function __construct() {
         parent::__construct();
         $this->view = new AdminView();
-        $this->accionesModel = new AccionModel();
-        $this->paisesModel = new PaisModel();
-        $this->regionesModel = new RegionModel();
+        $this->accionModel = new AccionModel();
+        $this->paisModel = new PaisModel();
+        $this->regionModel = new RegionModel();
         $this->usuarioModel = new UsuarioModel();
-        $this->regiones = $this->regionesModel->fetchRegiones();
-        $this->paises = $this->paisesModel->fetchPaises();
+        $this->regiones = $this->regionModel->fetchRegiones();
+        $this->paises = $this->paisModel->fetchPaises();
         $this->mensaje = 'Administrar datos';
         $this->metodos = array(
             'verRegion' => array('region'),
@@ -43,7 +43,6 @@ class AdminController extends SecureController {
     * home de admin
     */
     function adminHome() {
-        // session_start();
         if (isset($_SESSION['user'])) {
             $user = $_SESSION['user'];
             $isAdmin = $this->usuarioModel->isAdmin($user);
@@ -58,7 +57,6 @@ class AdminController extends SecureController {
         else {
             header(LOGIN);
         }
-        
     }
     /**
     * opciones de control de admin
@@ -80,21 +78,21 @@ class AdminController extends SecureController {
     * muestra todas las acciones de una región
     */
     private function verRegion($region){
-        $this->acciones = $this->regionesModel->fetchRegion($region);
+        $this->acciones = $this->regionModel->fetchRegion($region);
         $this->mensaje = 'Mostrando registros de ' . $region;
     }
     /**
     * muestra todas las acciones de un país
     */
     private function verPais($pais){
-        $this->acciones = $this->paisesModel->fetchPais($pais);
+        $this->acciones = $this->paisModel->fetchPais($pais);
         $this->mensaje = 'Mostrando registros de ' . $pais;
     }
     /**
     * muestra todas las acciones
     */
     private function verTodas(){
-        $this->acciones = $this->accionesModel->fetchAll();
+        $this->acciones = $this->accionModel->fetchAll();
         $this->mensaje = 'Mostrando todos los registros';
     }
     /**
@@ -106,10 +104,10 @@ class AdminController extends SecureController {
             $this->mensaje = 'La región ' . $region . ' ya existe en la base de datos. Mostrando registros de la región';
         }
         else {
-            $this->regionesModel->insertRegion($region);
+            $this->regionModel->insertRegion($region);
             $this->mensaje = 'Región ' . $region . ' agregada con éxito';
         }
-        $this->acciones = $this->regionesModel->fetchRegion($region);
+        $this->acciones = $this->regionModel->fetchRegion($region);
     }
     /**
     * guarda un país nuevo en la región elegida
@@ -123,10 +121,10 @@ class AdminController extends SecureController {
         else {
             $region = $_POST['perteneceRegion'];
             $id_region = $this->getID("region", $region);
-            $this->paisesModel->insertPais($pais, $id_region);
+            $this->paisModel->insertPais($pais, $id_region);
             $this->mensaje = "País " . $pais . " agregado con éxito";
         }
-        $this->acciones = $this->paisesModel->fetchPais($pais);
+        $this->acciones = $this->paisModel->fetchPais($pais);
     }
     /**
     * guarda una nueva acción en el país elegido
@@ -146,11 +144,11 @@ class AdminController extends SecureController {
             $volumen = $_POST["volumenAccion"];
             $maximo = $_POST["maximoAccion"];
             $minimo = $_POST["minimoAccion"];
-            $this->accionesModel->insertAccion($accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo);
+            $this->accionModel->insertAccion($accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo);
             $id_accion = $this->getID("accion", $accion);
             $this->mensaje = "Acción " . $accion . " agregada con éxito";
         }
-        $this->acciones = $this->accionesModel->fetchAccion($id_accion);
+        $this->acciones = $this->accionModel->fetchAccion($id_accion);
     }
     /**
     * guarda un nuevo usuario administrador
@@ -194,8 +192,8 @@ class AdminController extends SecureController {
     */
     function editAccion($params) {
         $id_accion = $params[0];
-        $accion = $this->accionesModel->fetchAccion($id_accion);
-        $paises = $this->paisesModel->fetchPaises();
+        $accion = $this->accionModel->fetchAccion($id_accion);
+        $paises = $this->paisModel->fetchPaises();
         $this->view->displayUpdateForm($accion, $paises, $this->regiones);
     }
     /**
@@ -213,9 +211,9 @@ class AdminController extends SecureController {
         $maximo = $_POST["editMaximo"];
         $minimo = $_POST["editMinimo"];
         
-        $this->accionesModel->updateAccion($id_accion, $accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo);
-        $accion = $this->accionesModel->fetchAccion($id_accion);
-        $paises = $this->paisesModel->fetchPaises();
+        $this->accionModel->updateAccion($id_accion, $accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo);
+        $accion = $this->accionModel->fetchAccion($id_accion);
+        $paises = $this->paisModel->fetchPaises();
         $this->view->displayUpdateForm($accion, $paises);
     }
     /**
@@ -224,12 +222,12 @@ class AdminController extends SecureController {
     */
     function deleteAccion($params) {
         $id_accion = $params[0];
-        $pais = $this->accionesModel->fetchAccion($id_accion)[0]['pais'];
-        $region = $this->paisesModel->fetchRegionDePais($pais)[0]['region'];
-        $this->accionesModel->deleteAccion($id_accion);
+        $pais = $this->accionModel->fetchAccion($id_accion)[0]['pais'];
+        $region = $this->paisModel->fetchRegionDePais($pais)[0]['region'];
+        $this->accionModel->deleteAccion($id_accion);
         $this->mensaje = "Registro borrado con éxito";
         $this->actualizarDropdowns();
-        $acciones = $this->regionesModel->fetchRegion($region);
+        $acciones = $this->regionModel->fetchRegion($region);
         $this->view->adminDisplay($this->regiones, $this->paises, $acciones, $this->mensaje);
     }
     /**
@@ -239,15 +237,15 @@ class AdminController extends SecureController {
     */
     function deleteRegion() {
         $region = $_POST['borrarRegion'];
-        $acciones = $this->regionesModel->fetchRegion($region);
-        $paises = $this->paisesModel->fetchPaisesPorRegion($region);
+        $acciones = $this->regionModel->fetchRegion($region);
+        $paises = $this->paisModel->fetchPaisesPorRegion($region);
         $id_region = $this->getID('region', $region);
         foreach ($acciones as $accion) {
-            $this->accionesModel->deleteAccion($accion['id_accion']);
+            $this->accionModel->deleteAccion($accion['id_accion']);
         }foreach ($paises as $pais) {
-            $this->paisesModel->deletePais($pais['id_pais']);
+            $this->paisModel->deletePais($pais['id_pais']);
         }
-        $this->regionesModel->deleteRegion($id_region);
+        $this->regionModel->deleteRegion($id_region);
         $this->mensaje = 'Se borró la región y todos los registros asociados';
         $this->adminHome();
     }
@@ -269,7 +267,7 @@ class AdminController extends SecureController {
     * actualiza las regiones y los países existentes en la db para poder elegirlos en dropdowns
     */
     private function actualizarDropdowns() {
-        $this->regiones = $this->regionesModel->fetchRegiones();
-        $this->paises = $this->paisesModel->fetchPaises();
+        $this->regiones = $this->regionModel->fetchRegiones();
+        $this->paises = $this->paisModel->fetchPaises();
     }
 }

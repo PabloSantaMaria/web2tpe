@@ -5,15 +5,15 @@
     {* Titulo *}
     <div class="card w-75 mx-auto bg-dark text-white">
       <h5 class="card-header text-primary" id="user">{$user}</h5>
-      <h5 class="card-header">Bienvenido a la sección de comentarios</h5>
+      <h5 class="card-header bg-info">Bienvenido a la sección de comentarios</h5>
       <div class="card-body">
         <h6 class="card-title text-center">Elija una cotización para ver los comentarios</h6>
 
         {* SELECTOR DE COTIZACION *}
-        <form class="form-inline" name="getComentarios">
+        <form class="form" name="getComentarios">
           <input id="isAdmin" type="hidden" value="{$isAdmin}">
           <div class="form-group mb-2">
-            <label for="acciones">Acciones</label>
+            {* <label for="acciones">Acciones</label> *}
             <input type="text" readonly class="form-control-plaintext text-white text-center" value="">
           </div>
 
@@ -26,15 +26,16 @@
           </div>
 
           <div class="form-group mx-sm-3 mb-2">
-          <label for="ratingOrder">Puntaje</label>
-          <select class="custom-select my-1 mr-sm-2" id="ratingOrder">
-              <option value="DESC" selected>Descendente</option>
-              <option value="ASC">Ascendente</option>
-          </select>
-            </div>  
-          
+            <select class="custom-select col-3 form-control-sm" id="ratingOrder">
+                <option value="DESC" selected>Descendente</option>
+                <option value="ASC">Ascendente</option>
+            </select>
+            <label for="ratingOrder">Ordenar por puntaje</label>
+          </div>  
+
+          <div class="form-group mx-sm-3 mb-2">
           <button type="submit" id="getComentarios" class="btn btn-primary btn-sm mb-2">Ver comentarios</button>
-          
+          </div>
         </form>
 
       </div>
@@ -52,7 +53,7 @@
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
-        <div class="modal-header bg-success">
+        <div class="modal-header bg-info">
           <h5 class="modal-title" id="exampleModalLabel">Información</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>

@@ -6,14 +6,14 @@ require_once "./models/UsuarioModel.php";
 
 class ComentariosController {
     protected $view;
-    protected $accionesModel;
-    protected $regionesModel;
+    protected $accionModel;
+    protected $regionModel;
     protected $usuarioModel;
 
     function __construct() {
         $this->view = new ComentariosView();
-        $this->accionesModel = new AccionModel();
-        $this->regionesModel = new RegionModel();
+        $this->accionModel = new AccionModel();
+        $this->regionModel = new RegionModel();
         $this->usuarioModel = new UsuarioModel();
     }
 
@@ -30,8 +30,8 @@ class ComentariosController {
             $isAdmin = false;
         }
         $title = 'Comentarios';
-        $acciones = $this->accionesModel->fetchAll();
-        $regiones = $this->regionesModel->fetchRegiones();
+        $acciones = $this->accionModel->fetchAll();
+        $regiones = $this->regionModel->fetchRegiones();
         $this->view->verComentarios($title, $acciones, $regiones, $user, $logueado, $isAdmin);
     }
 }

@@ -1,8 +1,8 @@
 <?php
 
-define('HOME', 'Location: http://'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]));
-define('LOGIN', 'Location: http://'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/login');
-define('ADMIN', 'Location: http://'.$_SERVER["SERVER_NAME"] . dirname($_SERVER["PHP_SELF"]). '/admin');
+define('HOME', 'Location: http://'.$_SERVER["SERVER_NAME"] .':'. $_SERVER["SERVER_PORT"] . dirname($_SERVER["PHP_SELF"]));
+define('LOGIN', 'Location: http://'.$_SERVER["SERVER_NAME"] .':'. $_SERVER["SERVER_PORT"] . dirname($_SERVER["PHP_SELF"]). '/login');
+define('ADMIN', 'Location: http://'.$_SERVER["SERVER_NAME"] .':'. $_SERVER["SERVER_PORT"] . dirname($_SERVER["PHP_SELF"]). '/admin');
 define('TIEMPO_DE_SESION', 1800);
 
 class ConfigApp
