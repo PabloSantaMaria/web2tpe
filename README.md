@@ -1,4 +1,4 @@
-# Trabajo Práctico Especial - Primera Entrega
+# Trabajo Práctico Especial - Segunda Entrega
 
 ## WEB II - TUDAI 2018
 
@@ -9,7 +9,7 @@
 
 ### Fecha de entrega:
 
-> 18/10/2018
+> 22/11/2018
 
 #### Repositorio:
 
