@@ -41,6 +41,7 @@ class LoginController extends NavController {
             $pass = $_POST["password"];
             $hash = password_hash($pass, PASSWORD_DEFAULT);
             $this->usuarioModel->insertUsuario($user, $hash, null);
+            $this->logout();
             session_start();
             $_SESSION['user'] = $user;
 
@@ -59,6 +60,7 @@ class LoginController extends NavController {
         
         if ($dbUser) {
             if (password_verify($pass, $dbUser['pass'])) {
+                $this->logout();
                 session_start();
                 $_SESSION['user'] = $user;
                 header(HOME);
@@ -82,6 +84,5 @@ class LoginController extends NavController {
     function logout() {
         session_start();
         session_destroy();
-        header(HOME);
     }
 }
