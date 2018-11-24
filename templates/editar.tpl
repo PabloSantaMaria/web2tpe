@@ -2,7 +2,7 @@
 
 {* VISTA EDITAR ACCIÓN *}
 <div class="cuerpoCotizaciones">
-    
+
     <!-- TABLA -->
     <div class="tabla container">
         <div class="table-responsive">
@@ -16,7 +16,7 @@
                         <th scope="col">Volumen</th>
                         <th scope="col">MAX</th>
                         <th scope="col">MIN</th>
-                    </tr>    
+                    </tr>
                 </thead>
                 <tbody id="tabla" class="cotizaciones">
 	                {foreach from=$accion item=valor}
@@ -34,10 +34,10 @@
             </table>
         </div>
     </div>
-    
+
     {* FORM EDITAR *}
     <div class="editar bg-dark" id="editar">
-        <form method="post" action="actualizar">
+        <form method="post" action="actualizar" enctype="multipart/form-data">
             <input type="hidden" class="form-control" id="id_accion" name="id_accion" value="{$valor['id_accion']}">
             <div class="form-group">
                 <div class="form-row">
@@ -74,12 +74,16 @@
                         <input type="text" id="editMinimo" name="editMinimo" class="form-control form-control-sm" value="{$valor['minimo']}">
                         <small class="form-text text-muted">Mínimo</small>
                     </div>
+                    <div class="form-group">
+                      <label for="imagen">Imagen</label>
+                      <input type="file" id="imagen" name="imagen">
+                    </div>
                     <div class="col">
                         <button type="submit" class="btn btn-success btn-sm">Editar registro</button>
                     </div>
                 </div>
             </div>
-            
+
             <a class="btn btn-danger" href="admin" role="button">Salir de la vista de modificación</a>
         </form>
     </div>

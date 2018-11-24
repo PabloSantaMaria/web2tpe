@@ -3,10 +3,10 @@ require_once "./controllers/NavController.php";
 require_once "./models/UsuarioModel.php";
 
 class LoginController extends NavController {
-    
+
     private $usuarioModel;
     // private $user;
-    
+
     function __construct() {
         parent::__construct();
         $this->usuarioModel = new UsuarioModel();
@@ -27,11 +27,11 @@ class LoginController extends NavController {
         $mensaje = 'Registe su nombre de usuario y contraseña';
         $this->view->displaySignin($title, $this->regiones, $mensaje);
     }
-    
+
     function verifyRegister() {
         $user = $_POST['user'];
         $dbUser = $this->usuarioModel->fetchUser($user);
-        
+
         if ($dbUser) {
             $title = 'Registro';
             $mensaje = 'El usuario ya existe';
@@ -48,7 +48,7 @@ class LoginController extends NavController {
             header(HOME);
         }
     }
-    
+
     /**
     * valida el usuario
     * verifica que exista
@@ -57,7 +57,7 @@ class LoginController extends NavController {
         $user = $_POST['user'];
         $pass = $_POST['password'];
         $dbUser = $this->usuarioModel->fetchUser($user);
-        
+
         if ($dbUser) {
             if (password_verify($pass, $dbUser['pass'])) {
                 $this->logout();
@@ -84,5 +84,6 @@ class LoginController extends NavController {
     function logout() {
         session_start();
         session_destroy();
+        header(HOME);
     }
 }

@@ -17,7 +17,7 @@ class AdminController extends SecureController {
     private $acciones;
     private $metodos;
     private $mensaje;
-    
+
     function __construct() {
         parent::__construct();
         $this->view = new AdminView();
@@ -196,6 +196,17 @@ class AdminController extends SecureController {
         $paises = $this->paisModel->fetchPaises();
         $this->view->displayUpdateForm($accion, $paises, $this->regiones);
     }
+
+    function sonJPG($ruta){
+        $valor=false;
+        $tamaño = strlen($ruta)-3;
+        $ext = substr($ruta, $tamaño);
+        if(($ext == "jpg") || ($ext == "png")){
+        $valor=true;
+        }
+        return $valor;
+    }
+
     /**
     * actualiza una acción
     * vuelve al form para seguir editándola si es necesario
@@ -210,12 +221,21 @@ class AdminController extends SecureController {
         $volumen = $_POST["editVolumen"];
         $maximo = $_POST["editMaximo"];
         $minimo = $_POST["editMinimo"];
-        
-        $this->accionModel->updateAccion($id_accion, $accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo);
-        $accion = $this->accionModel->fetchAccion($id_accion);
-        $paises = $this->paisModel->fetchPaises();
-        $this->view->displayUpdateForm($accion, $paises);
+        $ruta = $_FILES["imagen"]["name"];
+        var_dump($ruta);
+        $variable = $this->sonJPG($ruta);
+        if(($variable) || $ruta==null){
+            $rutaTempImagenes=$_FILES['imagen']['tmp_name'];
+            $this->accionModel->updateAccion($id_accion, $accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo,$rutaTempImagenes);
+            echo 'se cargo la imagen';
+        }else {
+            echo "Los datos no fueron actualizados";
+        }
+        // $accion = $this->accionModel->fetchAccion($id_accion);
+        // $paises = $this->paisModel->fetchPaises();
+        // $this->view->displayUpdateForm($accion, $paises);
     }
+
     /**
     * borra una acción
     * muestra las acciones de la región a la que pertenecía
@@ -270,4 +290,6 @@ class AdminController extends SecureController {
         $this->regiones = $this->regionModel->fetchRegiones();
         $this->paises = $this->paisModel->fetchPaises();
     }
+
+
 }
