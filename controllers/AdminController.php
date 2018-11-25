@@ -36,7 +36,8 @@ class AdminController extends SecureController {
             'guardarPais' => array('nuevoPais'),
             'guardarAccion' => array('accionAccion', 'paisAccion', 'precioAccion', 'variacionAccion', 'volumenAccion', 'maximoAccion', 'minimoAccion'),
             'guardarUsuario' => array('nuevoUser'),
-            'borrarUsuario' => array('userBorrar')
+            'borrarUsuario' => array('userBorrar'),
+            'editarUsuario' => array()
         );
     }
     /**
@@ -48,7 +49,8 @@ class AdminController extends SecureController {
             $isAdmin = $this->usuarioModel->isAdmin($user);
             if ($isAdmin) {
                 $this->actualizarDropdowns();
-                $this->view->adminHome($this->regiones, $this->paises, $this->mensaje);
+                $usuarios = $this->usuarioModel->getUsuarios();
+                $this->view->adminHome($this->regiones, $this->paises, $this->mensaje, $usuarios);
             }
             else {
                 header(LOGIN);
@@ -72,7 +74,8 @@ class AdminController extends SecureController {
             call_user_func_array(array($this, $nombreMetodo), $argumentos);
         }
         $this->actualizarDropdowns();
-        $this->view->adminDisplay($this->regiones, $this->paises, $this->acciones, $this->mensaje);
+        $usuarios = $this->usuarioModel->getUsuarios();
+        $this->view->adminDisplay($this->regiones, $this->paises, $this->acciones, $this->mensaje, $usuarios);
     }
     /**
     * muestra todas las acciones de una región
@@ -186,6 +189,24 @@ class AdminController extends SecureController {
         else {
             $this->mensaje = "El usuario " . $user . " no existe en la base de datos";
         }
+    }
+    
+    function editarUsuario() {
+        $user = $_POST['usuarioEdit'];
+
+        if (isset($_POST['hacerAdmin'])) {
+            $this->usuarioModel->editarPermisos($user, 1);
+            $this->mensaje = "El usuario con ID " . $user . " es administrador";
+        }
+        elseif (isset($_POST['quitarAdmin'])) {
+            $this->usuarioModel->editarPermisos($user, 0);
+            $this->mensaje = "El usuario con ID " . $user . " no es más administrador";
+        }
+        elseif (isset($_POST['borrarUsuario'])) {
+            $this->usuarioModel->deleteUserById($user);
+            $this->mensaje = "El usuario con ID " . $user . " ha sido borrado";
+        }
+        
     }
     /**
     * muestra los datos de una acción para editarla

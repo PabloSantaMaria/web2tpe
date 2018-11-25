@@ -12,6 +12,19 @@ class UsuarioModel extends BaseModel {
         $dbUser = $sentencia->fetch(PDO::FETCH_ASSOC);
         return $dbUser;
     }
+    function fetUserById($id_usuario) {
+        $sentencia = $this->db->prepare("SELECT FROM usuario WHERE id_usuario=?");
+        $sentencia->execute(array($id_usuario));
+        $dbUser = $sentencia->fetch(PDO::FETCH_ASSOC);
+        return $dbUser;
+    }
+    function getUsuarios() {
+        $sentencia = $this->db->prepare("SELECT usuario.id_usuario, usuario.usuario, usuario.admin FROM usuario");
+        $sentencia->execute(array());
+        $usuarios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+        return $usuarios;
+    }
+
     function isAdmin($user) {
         $sentencia = $this->db->prepare("SELECT * FROM usuario WHERE usuario=?");
         $sentencia->execute(array($user));
@@ -20,7 +33,6 @@ class UsuarioModel extends BaseModel {
             return true;
         }
         else return false;
-        // return $dbUser;
     }
     /**
     * inserta un usuario nuevo
@@ -36,6 +48,17 @@ class UsuarioModel extends BaseModel {
     function deleteUser($user) {
         $sentencia = $this->db->prepare("DELETE FROM usuario WHERE usuario=?");
         $sentencia->execute(array($user));
+    }
+
+    function deleteUserById($id_usuario) {
+        $sentencia = $this->db->prepare("DELETE FROM usuario WHERE id_usuario=?");
+        $sentencia->execute(array($id_usuario));
+    }
+
+    function editarPermisos($id_usuario, $isAdmin) {
+        $sentencia = $this->db->prepare("UPDATE usuario SET usuario.admin = ? WHERE usuario.id_usuario = ?");
+        $sentencia->execute(array($isAdmin, $id_usuario));
+        return $this->fetUserById($id_usuario);
     }
     /**
     * devuelve boolean según la existencia de un dato en una tabla
