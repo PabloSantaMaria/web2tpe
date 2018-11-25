@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2018 at 04:45 PM
+-- Generation Time: Nov 25, 2018 at 11:14 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -38,38 +38,39 @@ CREATE TABLE `accion` (
   `variacion` decimal(10,2) NOT NULL,
   `volumen` int(11) NOT NULL,
   `maximo` decimal(10,2) NOT NULL,
-  `minimo` decimal(10,2) NOT NULL
+  `minimo` decimal(10,2) NOT NULL,
+  `rutaImg` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `accion`
 --
 
-INSERT INTO `accion` (`id_accion`, `accion`, `id_pais`, `precio`, `variacion`, `volumen`, `maximo`, `minimo`) VALUES
-(1, 'ADVANTEST CORP-ADR', 10, '9.80', '0.16', 22009, '9.93', '9.77'),
-(2, '3M CONtretre', 1, '1516.00', '80.92', 5498708, '1538.10', '1538.10'),
-(3, 'ALCOA INC', 1, '71.00', '9.23', 25134, '71.00', '71.00'),
-(4, 'AMERICAN EXPRESS COMPANY', 1, '407.00', '44.87', 62290, '412.00', '407.00'),
-(5, 'AMERICAN INTERNATIONAL GROUP', 1, '405.00', '-4.71', 2270025, '405.00', '405.00'),
-(6, 'CATERPILLAR INC', 1, '1030.50', '-11.16', 517343, '1170.00', '1030.50'),
-(7, 'APPLE INC', 2, '802.00', '-0.99', 184570, '820.00', '800.00'),
-(8, 'ACCENTURE PLC', 2, '157.43', '-1.47', 603765, '158.44', '156.97'),
-(9, 'AMAZON.COM INC', 2, '1812.27', '-1.06', 1604422, '1830.15', '1810.59'),
-(10, 'CISCO SYSTEMS INC', 2, '370.20', '1.42', 22112, '370.20', '370.20'),
-(11, 'IFM INVESTMENTS LTD-ADS', 23, '0.68', '-11.69', 14355, '0.75', '0.66'),
-(12, 'CIA PARANAENSE ENER-SP ADR P', 65, '6.71', '-1.18', 202508, '6.77', '6.64'),
-(13, 'DANAOS CORP', 66, '1.15', '-4.70', 24106, '1.17', '1.14'),
-(14, 'ENI SPA-SPONSORED ADR', 67, '35.37', '-1.58', 312215, '35.65', '34.21'),
-(15, 'CHINA MOBILE LTD-SPON ADR', 7, '49.46', '-0.02', 240265, '49.62', '49.20'),
-(16, 'HONDA MOTOR CO LTD-SPONS ADR', 10, '27.37', '-0.76', 245121, '27.60', '27.30'),
-(17, 'OTRA', 10, '200000.00', '99.00', 99, '99.00', '99.00'),
-(18, 'NUEVA', 10, '99.00', '99.00', 99, '99.00', '99.00'),
-(19, 'HARMONY GOLD MNG-SPON ADR', 9, '85.00', '-15.00', 1233, '12.00', '11.00'),
-(20, 'GOLD FIELDS LTD-SPONS ADR', 9, '123.00', '-12.00', 1561843, '15.00', '18.00'),
-(21, 'ANGLOGOLD ASHANTI-SPON ADR', 9, '23.00', '324.00', 423, '432.00', '456.00'),
-(22, 'SASOL LTD-SPONSORED ADR', 9, '85.00', '-1.18', 123, '71.00', '213.00'),
-(23, 'COMPAGNIE G', 67, '432.00', '12.00', 123, '1538.10', '1538.10'),
-(24, 'CORE LABORATORIES N.V.', 11, '11.00', '22.00', 33, '44.00', '55.00');
+INSERT INTO `accion` (`id_accion`, `accion`, `id_pais`, `precio`, `variacion`, `volumen`, `maximo`, `minimo`, `rutaImg`) VALUES
+(1, 'ADVANTEST CORP-ADR', 10, '9.80', '0.16', 22009, '9.93', '9.77', 'images/5bfaee8422739.jpg'),
+(2, '3M CONtretre', 1, '1516.00', '80.92', 5498708, '1538.10', '1538.10', 'images/5bfaec8779512.jpg'),
+(3, 'ALCOA INC', 1, '71.00', '9.23', 25134, '71.00', '71.00', 'images/5bfaec8779512.jpg'),
+(4, 'AMERICAN EXPRESS COMPANY', 1, '407.00', '44.87', 62290, '412.00', '407.00', 'images/5bfaec8779512.jpg'),
+(5, 'AMERICAN INTERNATIONAL GROUP', 1, '405.00', '-4.71', 2270025, '405.00', '405.00', 'images/5bfaec8779512.jpg'),
+(6, 'CATERPILLAR INC', 1, '1030.50', '-11.16', 517343, '1170.00', '1030.50', 'images/5bfaec8779512.jpg'),
+(7, 'APPLE INC', 2, '802.00', '-0.99', 184570, '820.00', '800.00', 'images/5bfaf3533095c.jpg'),
+(8, 'ACCENTURE PLC', 2, '157.43', '-1.47', 603765, '158.44', '156.97', 'images/5bfaf3533095c.jpg'),
+(9, 'AMAZON.COM INC', 2, '1812.27', '-1.06', 1604422, '1830.15', '1810.59', 'images/5bfaf3533095c.jpg'),
+(10, 'CISCO SYSTEMS INC', 2, '370.20', '1.42', 22112, '370.20', '370.20', 'images/5bfaf3533095c.jpg'),
+(11, 'IFM INVESTMENTS LTD-ADS', 23, '0.68', '-11.69', 14355, '0.75', '0.66', 'images/5bfaf13b3f4e4.jpg'),
+(12, 'CIA PARANAENSE ENER-SP ADR P', 65, '6.71', '-1.18', 202508, '6.77', '6.64', 'images/5bfaf16cdf372.jpg'),
+(13, 'DANAOS CORP', 66, '1.15', '-4.70', 24106, '1.17', '1.14', 'images/5bfaefddba4cd.jpg'),
+(14, 'ENI SPA-SPONSORED ADR', 67, '35.37', '-1.58', 312215, '35.65', '34.21', 'images/5bfaf02c13695.jpg'),
+(15, 'CHINA MOBILE LTD-SPON ADR', 7, '49.46', '-0.02', 240265, '49.62', '49.20', 'images/5bfaef8290fc6.jpg'),
+(16, 'HONDA MOTOR CO LTD-SPONS ADR', 10, '27.37', '-0.76', 245121, '27.60', '27.30', 'images/5bfaee8422739.jpg'),
+(17, 'OTRA', 10, '200000.00', '99.00', 99, '99.00', '99.00', 'images/5bfaee8422739.jpg'),
+(18, 'NUEVA', 10, '99.00', '99.00', 99, '99.00', '99.00', 'images/5bfaee8422739.jpg'),
+(19, 'HARMONY GOLD MNG-SPON ADR', 9, '85.00', '-15.00', 1233, '12.00', '11.00', 'images/5bfb17b7c187d.jpg'),
+(20, 'GOLD FIELDS LTD-SPONS ADR', 9, '123.00', '-12.00', 1561843, '15.00', '18.00', 'images/5bfaeb0f9b6ed.jpg'),
+(21, 'ANGLOGOLD ASHANTI-SPON ADR', 9, '23.00', '324.00', 423, '432.00', '456.00', 'images/5bfaeb0f9b6ed.jpg'),
+(22, 'SASOL LTD-SPONSORED ADR', 9, '85.00', '-1.18', 123, '71.00', '213.00', 'images/5bfaeb0f9b6ed.jpg'),
+(23, 'COMPAGNIE G', 67, '432.00', '12.00', 123, '1538.10', '1538.10', 'images/5bfaf03a6090f.jpg'),
+(24, 'CORE LABORATORIES N.V.', 11, '11.00', '22.00', 33, '44.00', '55.00', 'images/5bfaefb493be5.jpg');
 
 -- --------------------------------------------------------
 
