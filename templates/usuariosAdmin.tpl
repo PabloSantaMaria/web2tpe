@@ -25,12 +25,9 @@
         </table>
     </div>
 
+    <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Editar usuarios</button>
    
-    {* <div class="container"> *}
-        <button class="btn btn-primary btn-sm" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">Editar usuarios</button>
-    {* </div> *}
-   
-
+   {* COLLAPSE *}
     <div class="collapse" id="collapseExample">
         <div class="card bg-dark">
             <div class="card-header">
@@ -46,13 +43,13 @@
                         </select>
                     </div>
                     <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
-                    <button type="submit" name="hacerAdmin" class="btn btn-sm btn-success">Hacer Administrador</button>
-                    <button type="submit" name="quitarAdmin" class="btn btn-sm btn-warning">Quitar Administrador</button>
-                    <button type="submit" name="borrarUsuario" class="btn btn-sm btn-danger">Borrar Usuario</button>
+                        <button type="submit" name="hacerAdmin" class="btn btn-sm btn-success">Hacer Administrador</button>
+                        <button type="submit" name="quitarAdmin" class="btn btn-sm btn-warning">Quitar Administrador</button>
+                        <button type="submit" name="borrarUsuario" class="btn btn-sm btn-danger">Borrar Usuario</button>
                     </div>
                 </form>
             </div>
-          </div>
-
+        </div>
     </div>
+
 </div>

@@ -6,15 +6,14 @@
         <h1 class="text-center text-white text-monospace">Check in</h1>
     </div>
     <div class="row">
-
-            <div class="card text-white bg-secondary loginForm">
-                {* HEADER CON MENSAJE *}
-                <div class="card-header bg-success">
-                    {$mensaje}
-                </div>
-                {* FORM *}
-                <div class="card-body">
-                  <form class="needs-validation" method="post" action="verifyRegister" novalidate>
+        <div class="card text-white bg-secondary loginForm">
+            {* HEADER CON MENSAJE *}
+            <div class="card-header bg-success">
+                {$mensaje}
+            </div>
+            {* FORM *}
+            <div class="card-body">
+                <form class="needs-validation" method="post" action="verifyRegister" novalidate>
                     <div class="form-group">
                         <label for="user">Usuario</label>
                         <input type="text" class="form-control" id="user" name="user" placeholder="Email" required>
@@ -31,11 +30,10 @@
                             </div>
                         </div>
                     </div>
-                      <button type="submit" class="btn btn-dark btn-center">Registrarse</button>
-                  </form>
-                </div>
+                    <button type="submit" class="btn btn-dark btn-center">Registrarse</button>
+                </form>
             </div>
-
+        </div>
     </div>
 </div>
 

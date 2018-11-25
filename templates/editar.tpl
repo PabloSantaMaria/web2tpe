@@ -47,7 +47,7 @@
                         <input type="text" id="editNombre" name="editNombre" class="form-control form-control-sm" value="{$valor['accion']}">
                         <small class="form-text text-muted">Nombre</small>
                     </div>
-                    <div class="col-3">
+                    <div class="col-2">
                         <select id="editPais" name="editPais" class="form-control form-control-sm">
                             <option selected>{$valor['pais']}</option>
                             {foreach from=$paises item=pais}
@@ -77,16 +77,25 @@
                         <small class="form-text text-muted">Mínimo</small>
                     </div>
                     <div class="col">
-                        <input type="file" id="imagen" name="imagen">
+                        <button class="btn btn-sm btn-outline-danger" type="submit" name="borrarImagen" id="inputGroupFileAddon04">Borrar imágen</button>
                         <small class="form-text text-muted">Imágen</small>
                     </div>
-                    <div class="col">
-                        <button type="submit" class="btn btn-success btn-sm">Editar registro</button>
-                    </div>
+                    {* <div class="col">
+                        <input type="file" id="imagen" name="imagen">
+                        <small class="form-text text-muted">Imágen</small>
+                    </div> *}
                 </div>
             </div>
-            
-            <a class="btn btn-danger" href="admin" role="button">Salir de la vista de modificación</a>
+            <div class="input-group input-group-sm mb-3 w-25">
+                <div class="custom-file">
+                    <input type="file" class="custom-file-input form-control-sm" id="imagen" name="imagen" aria-describedby="inputGroupFileAddon04">
+                    <label class="custom-file-label" for="inputGroupFile04">Subir imágen</label>
+                </div>
+            </div>
+            <div class="container">
+                <button type="submit" name="editarRegistro" class="btn btn-success btn-sm">Editar registro</button>
+                <a class="btn btn-danger btn-sm" href="admin" role="button">Salir de la vista de modificación</a>
+            </div>
         </form>
     </div>
 </div>

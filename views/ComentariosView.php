@@ -6,7 +6,9 @@ class ComentariosView extends BaseView {
   function __construct() {
     parent::__construct();
   }
-
+  /**
+   * Template vista comentarios
+   */
   function verComentarios($title, $acciones, $regiones, $user, $id_usuario, $logueado, $isAdmin) {
     $this->smarty->assign('title', $title);
     $this->smarty->assign('acciones', $acciones);

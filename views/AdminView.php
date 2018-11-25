@@ -40,4 +40,3 @@ class AdminView extends BaseView {
     $this->smarty->display('./templates/editar.tpl');
   }
 }
-?>

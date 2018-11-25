@@ -32,7 +32,9 @@ class NavView extends BaseView {
     $this->smarty->assign('regiones', $regiones);
     $this->smarty->display('./templates/acerca.tpl');
   }
-
+  /**
+   * muestra template detalle de acción
+   */
   function detalleAccion($title, $regiones, $accion) {
     $this->smarty->assign('title', $title);
     $this->smarty->assign('regiones', $regiones);
@@ -48,7 +50,9 @@ class NavView extends BaseView {
     $this->smarty->assign('mensaje', $mensaje);
     $this->smarty->display('./templates/login.tpl');
   }
-
+  /**
+   * muestra template de página de sign in
+   */
   function displaySignin($title, $regiones, $mensaje = '') {
     $this->smarty->assign('title', $title);
     $this->smarty->assign('regiones', $regiones);
@@ -56,4 +60,3 @@ class NavView extends BaseView {
     $this->smarty->display('./templates/signIn.tpl');
   }
 }
-?>

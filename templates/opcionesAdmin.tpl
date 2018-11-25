@@ -3,6 +3,7 @@
   
   {* VER COTIZACIONES *}
   <div class="card text-white bg-secondary">
+
     <div class="card-header bg-dark" id="headingOne">
       <h5 class="mb-0">
         <button class="btn btn-link btn-sm text-white" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">Ver cotizaciones</button>
@@ -21,7 +22,7 @@
           <div class="form-group mx-sm-3 mb-2">
             <select id="region" name="region" class="form-control-sm">
               {foreach from=$regiones item=region}
-              <option>{$region['region']}</option>
+                <option>{$region['region']}</option>
               {/foreach}
             </select>
           </div>
@@ -37,7 +38,7 @@
           <div class="form-group mx-sm-3 mb-2">
             <select name="pais" class="form-control-sm">
               {foreach from=$paises item=pais}
-              <option>{$pais['pais']}</option>
+                <option>{$pais['pais']}</option>
               {/foreach}
             </select>
           </div>
@@ -87,11 +88,10 @@
           <label>Borrar región</label>
         </div>
         <form class="form-inline" method="post" action="borrarRegion">
-          
           <div class="form-group mx-sm-3 mb-2">
             <select name="borrarRegion" class="form-control-sm">
               {foreach from=$regiones item=region}
-              <option>{$region['region']}</option>
+                <option>{$region['region']}</option>
               {/foreach}
             </select>
           </div>
@@ -103,7 +103,6 @@
           <label for="exampleInputEmail1">Agregar nuevo país</label>
         </div>
         <form class="form-inline" method="post" action="adminControl/guardarPais">
-          
           <div class="form-group mx-sm-3 mb-2">
             <input class="form-control form-control-sm" type="text" placeholder="" name="nuevoPais">
           </div>
@@ -111,7 +110,7 @@
             <select name="perteneceRegion" class="form-control-sm">
               <option selected>Pertenece a la región</option>
               {foreach from=$regiones item=region}
-              <option>{$region['region']}</option>
+                <option>{$region['region']}</option>
               {/foreach}
             </select>
           </div>

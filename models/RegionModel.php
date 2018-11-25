@@ -28,7 +28,9 @@ class RegionModel extends BaseModel {
         $sentencia = $this->db->prepare("INSERT INTO region(region) VALUES(?)");
         $sentencia->execute(array($region));
     }
-    
+    /**
+     * borra una región por id
+     */
     function deleteRegion($id_region) {
         $sentencia = $this->db->prepare("DELETE FROM region WHERE id_region=?");
         $sentencia->execute(array($id_region));

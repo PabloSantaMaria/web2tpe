@@ -31,4 +31,3 @@ if (isset($_GET['action'])) {
         echo $controller->home();
     }
 }
-?>

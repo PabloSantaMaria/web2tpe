@@ -28,12 +28,14 @@
             </select>
           </div>
 
-          <div class="form-group mx-sm-3 mb-2">
+          <div class="input-group mx-sm-3 mb-2">
+            <div class="input-group-prepend">
+              <label class="input-group-text" for="inputGroupSelect01">Puntaje</label>
+            </div>
             <select class="custom-select col-3 form-control-sm" id="ratingOrder">
                 <option value="DESC" selected>Descendente</option>
                 <option value="ASC">Ascendente</option>
             </select>
-            <label for="ratingOrder">Ordenar por puntaje</label>
           </div>  
 
           <div class="form-group mx-sm-3 mb-2">

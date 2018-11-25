@@ -1,5 +1,4 @@
 <?php
-
 require_once './models/BaseModel.php';
 
 class PaisModel extends BaseModel {
@@ -21,7 +20,9 @@ class PaisModel extends BaseModel {
         $acciones = $sentencia->fetchAll(PDO::FETCH_ASSOC);
         return $acciones;
     }
-    
+    /**
+     * trae los países de una región
+     */
     function fetchPaisesPorRegion($region) {
         $sentencia = $this->db->prepare("SELECT pais.*, region.region FROM pais, region WHERE region.region=? AND pais.id_region = region.id_region");
         $sentencia->execute(array($region));
@@ -44,7 +45,9 @@ class PaisModel extends BaseModel {
         $sentencia = $this->db->prepare("INSERT INTO pais(pais, id_region) VALUES(?,?)");
         $sentencia->execute(array($pais, $id_region));
     }
-    
+    /**
+     * borra un país por id
+     */
     function deletePais($id_pais) {
         $sentencia = $this->db->prepare("DELETE FROM pais WHERE id_pais=?");
         $sentencia->execute(array($id_pais));

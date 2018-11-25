@@ -24,5 +24,3 @@ class Database {
         return self::$dbInstance;
     }
 }
-
-?>

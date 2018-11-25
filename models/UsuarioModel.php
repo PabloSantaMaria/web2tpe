@@ -1,10 +1,9 @@
 <?php
-
 require_once './models/BaseModel.php';
 
 class UsuarioModel extends BaseModel {
     /**
-    * trae los datos de un usuario existente
+    * trae los datos de un usuario por nombre
     */
     function fetchUser($user) {
         $sentencia = $this->db->prepare("SELECT * FROM usuario WHERE usuario=?");
@@ -12,19 +11,27 @@ class UsuarioModel extends BaseModel {
         $dbUser = $sentencia->fetch(PDO::FETCH_ASSOC);
         return $dbUser;
     }
+    /**
+    * trae los datos de un usuario por id
+    */
     function fetUserById($id_usuario) {
         $sentencia = $this->db->prepare("SELECT FROM usuario WHERE id_usuario=?");
         $sentencia->execute(array($id_usuario));
         $dbUser = $sentencia->fetch(PDO::FETCH_ASSOC);
         return $dbUser;
     }
+    /**
+     * trae todos los usuarios
+     */
     function getUsuarios() {
         $sentencia = $this->db->prepare("SELECT usuario.id_usuario, usuario.usuario, usuario.admin FROM usuario");
         $sentencia->execute(array());
         $usuarios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
         return $usuarios;
     }
-
+    /**
+     * devuelve boolean si el usuario es o no administrador
+     */
     function isAdmin($user) {
         $sentencia = $this->db->prepare("SELECT * FROM usuario WHERE usuario=?");
         $sentencia->execute(array($user));
@@ -43,18 +50,22 @@ class UsuarioModel extends BaseModel {
         $sentencia->execute(array($user, $hash, $isAdmin));
     }
     /**
-    * borra un usuario existente
+    * borra un usuario por nombre
     */
     function deleteUser($user) {
         $sentencia = $this->db->prepare("DELETE FROM usuario WHERE usuario=?");
         $sentencia->execute(array($user));
     }
-
+    /**
+    * borra un usuario por id
+    */
     function deleteUserById($id_usuario) {
         $sentencia = $this->db->prepare("DELETE FROM usuario WHERE id_usuario=?");
         $sentencia->execute(array($id_usuario));
     }
-
+    /**
+     * cambia permiso de admin a un usuario
+     */
     function editarPermisos($id_usuario, $isAdmin) {
         $sentencia = $this->db->prepare("UPDATE usuario SET usuario.admin = ? WHERE usuario.id_usuario = ?");
         $sentencia->execute(array($isAdmin, $id_usuario));
