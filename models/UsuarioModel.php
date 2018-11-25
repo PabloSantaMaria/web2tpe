@@ -55,11 +55,10 @@ class UsuarioModel extends BaseModel {
     /**
     * devuelve la id de un dato en una tabla
     */
-    function getID($tabla, $item) {
-        $campoID = "id_" . $tabla;
-        $sentencia = $this->db->prepare("SELECT $tabla.$campoID FROM $tabla WHERE $tabla.$tabla = '$item'");
-        $sentencia->execute(array());
-        $id_item = $sentencia->fetch(PDO::FETCH_ASSOC);
-        return $id_item[$campoID];
+    function getID($usuario) {
+        $sentencia = $this->db->prepare("SELECT usuario.id_usuario FROM usuario WHERE usuario.usuario = ?");
+        $sentencia->execute(array($usuario));
+        $id_usuario = $sentencia->fetch(PDO::FETCH_ASSOC);
+        return $id_usuario['id_usuario'];
     }
 }

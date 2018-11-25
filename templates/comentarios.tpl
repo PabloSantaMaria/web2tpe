@@ -1,10 +1,12 @@
 {include file="header.tpl"}
 
+
 <div class="cuerpoComentarios">
   <div class="container">
     {* Titulo *}
     <div class="card w-75 mx-auto bg-dark text-white">
       <h5 class="card-header text-primary" id="user">{$user}</h5>
+      <div hidden id="id_usuario" type="hidden" value="{$id_usuario}">{$id_usuario}</div>
       <h5 class="card-header bg-info">Bienvenido a la sección de comentarios</h5>
       <div class="card-body">
         <h6 class="card-title text-center">Elija una cotización para ver los comentarios</h6>
@@ -12,6 +14,7 @@
         {* SELECTOR DE COTIZACION *}
         <form class="form" name="getComentarios">
           <input id="isAdmin" type="hidden" value="{$isAdmin}">
+          
           <div class="form-group mb-2">
             {* <label for="acciones">Acciones</label> *}
             <input type="text" readonly class="form-control-plaintext text-white text-center" value="">

@@ -214,7 +214,7 @@ class AdminController extends SecureController {
         $this->accionModel->updateAccion($id_accion, $accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo);
         $accion = $this->accionModel->fetchAccion($id_accion);
         $paises = $this->paisModel->fetchPaises();
-        $this->view->displayUpdateForm($accion, $paises);
+        $this->view->displayUpdateForm($accion, $paises, $this->regiones);
     }
     /**
     * borra una acción

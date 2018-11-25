@@ -1,17 +1,10 @@
 <?php
-require_once "./libs/Smarty.class.php";
+require_once "BaseView.php";
 
-class NavView {
-  private $smarty;
-  private $baseURL;
+class NavView extends BaseView {
   
-  /**
-   * inicializa template engine Smarty
-   * asigna base url para insertar en head de htmls
-   */
   function __construct() {
-    $this->smarty = new Smarty();
-    $this->baseURL = '//'.$_SERVER['SERVER_NAME'] . dirname($_SERVER['PHP_SELF']).'/';
+    parent::__construct();
   }
   /**
    * muestra template de página principal
@@ -19,7 +12,6 @@ class NavView {
   function home($title, $regiones) {
     $this->smarty->assign('title', $title);
     $this->smarty->assign('regiones', $regiones);
-    $this->smarty->assign('baseURL', $this->baseURL);
     $this->smarty->display('./templates/home.tpl');
   }
   /**
@@ -30,7 +22,6 @@ class NavView {
     $this->smarty->assign('acciones', $acciones);
     $this->smarty->assign('regiones', $regiones);
     $this->smarty->assign('region', $region);
-    $this->smarty->assign('baseURL', $this->baseURL);
     $this->smarty->display('./templates/cotizaciones.tpl');
   }
   /**
@@ -39,7 +30,6 @@ class NavView {
   function acerca($title, $regiones) {
     $this->smarty->assign('title', $title);
     $this->smarty->assign('regiones', $regiones);
-    $this->smarty->assign('baseURL', $this->baseURL);
     $this->smarty->display('./templates/acerca.tpl');
   }
 
@@ -47,7 +37,6 @@ class NavView {
     $this->smarty->assign('title', $title);
     $this->smarty->assign('regiones', $regiones);
     $this->smarty->assign('accion', $accion);
-    $this->smarty->assign('baseURL', $this->baseURL);
     $this->smarty->display('./templates/detalleAccion.tpl');
   }
   /**
@@ -57,7 +46,6 @@ class NavView {
     $this->smarty->assign('title', $title);
     $this->smarty->assign('regiones', $regiones);
     $this->smarty->assign('mensaje', $mensaje);
-    $this->smarty->assign('baseURL', $this->baseURL);
     $this->smarty->display('./templates/login.tpl');
   }
 
@@ -65,7 +53,6 @@ class NavView {
     $this->smarty->assign('title', $title);
     $this->smarty->assign('regiones', $regiones);
     $this->smarty->assign('mensaje', $mensaje);
-    $this->smarty->assign('baseURL', $this->baseURL);
     $this->smarty->display('./templates/signIn.tpl');
   }
 }

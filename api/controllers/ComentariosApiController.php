@@ -4,19 +4,19 @@ require_once 'models/ComentarioModel.php';
 require_once 'models/UsuarioModel.php';
 
 class ComentariosApiController extends Api {
-    private $comentariosModel;
-    private $usuariosModel;
+    private $comentarioModel;
+    private $usuarioModel;
     
     function __construct(){
         parent::__construct();
-        $this->comentariosModel = new ComentarioModel();
-        $this->usuariosModel = new UsuarioModel();
+        $this->comentarioModel = new ComentarioModel();
+        $this->usuarioModel = new UsuarioModel();
     }
     
     function comentariosAccion($params) {
         $id_accion = $params[0];
         $ratingOrder = $params[1];
-        $data = $this->comentariosModel->getComentarios($id_accion, $ratingOrder);
+        $data = $this->comentarioModel->getComentarios($id_accion, $ratingOrder);
         if ($data != null) {
             return $this->json_response($data, 200);
         }
@@ -27,16 +27,16 @@ class ComentariosApiController extends Api {
     
     function postComentario($param) {
         session_start();
-        if (isset($param) && isset($_SESSION['user'])) {
+        if (isset($param[0]) && isset($_SESSION['user'])) {
             $id_accion = $param[0];
             $body = $this->getData();
-            $usuario = $body->usuario;
-            $id_usuario = $this->usuariosModel->getID('usuario', $usuario);
+            $usuario = $_SESSION['user'];
+            $id_usuario = $body->id_usuario;
             $titulo = $body->titulo;
             $cuerpo = $body->cuerpo;
             $puntaje = $body->puntaje;
             
-            $comentarioNuevo = $this->comentariosModel->postComentario($titulo, $cuerpo, $puntaje, $id_accion, $id_usuario);
+            $comentarioNuevo = $this->comentarioModel->postComentario($titulo, $cuerpo, $puntaje, $id_accion, $id_usuario);
             if (!$comentarioNuevo) {
                 return $this->json_response("comentario vacío", 300);
             }
@@ -52,14 +52,14 @@ class ComentariosApiController extends Api {
     function deleteComentario($param) {
         session_start();
         if (isset($_SESSION['user'])) {
-            $isAdmin = $this->usuariosModel->isAdmin($_SESSION['user']);
+            $isAdmin = $this->usuarioModel->isAdmin($_SESSION['user']);
         }
         else {
             $isAdmin = false;
         }
-        if (isset($param) && $isAdmin) {
+        if (isset($param[0]) && $isAdmin) {
             $id_comentario = $param[0];
-            $result = $this->comentariosModel->deleteComentario($id_comentario);
+            $result = $this->comentarioModel->deleteComentario($id_comentario);
             if (!$result) {
                 return $this->json_response("no especifica accion", 300);
             }
@@ -69,7 +69,7 @@ class ComentariosApiController extends Api {
             
         }
         else {
-            return $this->json_response("no especifica accion", 300);
+            return $this->json_response("Server error", 500);
         }
     }
 }

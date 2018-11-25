@@ -5,21 +5,21 @@ require_once './models/BaseModel.php';
 class ComentarioModel extends BaseModel {
     
     function getComentario($id_comentario) {
-        $sentencia = $this->db->prepare("SELECT comentario.*, usuario.usuario FROM comentario, usuario WHERE comentario.id_comentario = ? AND comentario.id_usuario = usuario.id_usuario");
+        $sentencia = $this->db->prepare("SELECT comentario.* FROM comentario WHERE comentario.id_comentario = ?");
         $sentencia->execute(array($id_comentario));
-        $comentario = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+        $comentario = $sentencia->fetch(PDO::FETCH_ASSOC);
         return $comentario;
     }
     
     function getComentarios($id_accion, $ratingOrder) {
         if ($ratingOrder == 'ASC') {
-            $sentencia = $this->db->prepare("SELECT comentario.*, accion.accion, usuario.usuario FROM comentario, accion, usuario WHERE accion.id_accion = ? AND accion.id_accion = comentario.id_accion ORDER BY comentario.puntaje ASC");
+            $sentencia = $this->db->prepare("SELECT comentario.*, accion.accion, usuario.usuario FROM comentario, accion, usuario WHERE accion.id_accion = ? AND accion.id_accion = comentario.id_accion AND comentario.id_usuario = usuario.id_usuario ORDER BY comentario.puntaje ASC");
         }
         elseif ($ratingOrder == 'DESC') {
-            $sentencia = $this->db->prepare("SELECT comentario.*, accion.accion, usuario.usuario FROM comentario, accion, usuario WHERE accion.id_accion = ? AND accion.id_accion = comentario.id_accion ORDER BY comentario.puntaje DESC");
+            $sentencia = $this->db->prepare("SELECT comentario.*, accion.accion, usuario.usuario FROM comentario, accion, usuario WHERE accion.id_accion = ? AND accion.id_accion = comentario.id_accion AND comentario.id_usuario = usuario.id_usuario ORDER BY comentario.puntaje DESC");
         }
         else {
-            $sentencia = $this->db->prepare("SELECT comentario.*, accion.accion, usuario.usuario FROM comentario, accion, usuario WHERE accion.id_accion = ? AND accion.id_accion = comentario.id_accion ORDER BY comentario.date ASC");
+            $sentencia = $this->db->prepare("SELECT comentario.*, accion.accion, usuario.usuario FROM comentario, accion, usuario WHERE accion.id_accion = ? AND accion.id_accion = comentario.id_accion AND comentario.id_usuario = usuario.id_usuario ORDER BY comentario.date ASC");
         }
         
         
@@ -33,7 +33,7 @@ class ComentarioModel extends BaseModel {
         $sentencia->execute(array($titulo, $cuerpo, $puntaje, $id_accion, $id_usuario));
         $lastInsertId = $this->db->lastInsertId();
         $comentarioNuevo = $this->getComentario($lastInsertId);
-        return $comentarioNuevo[0];
+        return $comentarioNuevo;
     }
     
     function deleteComentario($id_comentario) {
@@ -41,7 +41,7 @@ class ComentarioModel extends BaseModel {
         if (isset($comentario)) {
             $sentencia = $this->db->prepare("DELETE FROM comentario WHERE id_comentario = ?");
             $sentencia->execute(array($id_comentario));
-            return $comentario[0];
+            return $comentario;
         }
     }
 }
