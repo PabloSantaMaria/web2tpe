@@ -35,11 +35,29 @@ class AccionModel extends BaseModel {
     * actualiza una acción por id
     * se puede asignar un nuevo país, si el país ya existe
     */
-    function updateAccion($id_accion, $accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo) {
-        $sentencia = $this->db->prepare("UPDATE accion SET accion = ?, id_pais = ?, precio = ?, variacion = ?, volumen = ?, maximo = ?, minimo = ? WHERE id_accion = ?");
-        $sentencia->execute(array($accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo, $id_accion));
+    // function updateAccion($id_accion, $accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo) {
+    //     $sentencia = $this->db->prepare("UPDATE accion SET accion = ?, id_pais = ?, precio = ?, variacion = ?, volumen = ?, maximo = ?, minimo = ? WHERE id_accion = ?");
+    //     $sentencia->execute(array($accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo, $id_accion));
+    //     return $this->fetchAccion($id_accion);
+    // }
+
+    function updateAccion($id_accion, $accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo,$rutaTempImagenes) {
+      echo "entro al modem";
+        $ruta = $this->subirImagenes($rutaTempImagenes);
+        $sentencia = $this->db->prepare("UPDATE accion SET accion = ?, id_pais = ?, precio = ?, variacion = ?, volumen = ?, maximo = ?, minimo = ?, rutaImg = ? WHERE id_accion = ?");
+        $sentencia->execute(array($accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo, $ruta, $id_accion));
         return $this->fetchAccion($id_accion);
     }
+    private function subirImagenes($imagen){
+      echo "entro a subir img";
+       $destino_final = 'images/' . uniqid() . '.jpg';
+       move_uploaded_file($imagen, $destino_final);
+        $ruta = $destino_final;
+        var_dump($ruta);
+       return $ruta;
+     }
+
+
     /**
     * borra una acción por id
     */

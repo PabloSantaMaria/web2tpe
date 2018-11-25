@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="col-sm">
-            <img src="images/agente-bolsa.jpg" class="img-fluid" alt="Responsive image">
+            <img src="{$accion[0]['rutaImg']}" class="img-fluid" alt="Responsive image">
         </div>
     </div>
         

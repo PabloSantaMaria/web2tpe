@@ -12,6 +12,7 @@
             <table class="table table-sm table-hover table-dark">
                 <thead>
                     <tr>
+                        <th scope="col"></th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Región</th>
                         <th scope="col">País</th>
@@ -22,6 +23,7 @@
                 <tbody id="tabla" class="cotizaciones">
 	                {foreach from=$acciones item=accion}
                         <tr id='row{$accion['id_accion']}'>
+                            <td><img src="{$accion['rutaImg']}" alt="" width="50" height="35"></td>
                             <td><a class="text-info" href="detalleAccion/{$accion['id_accion']}">{$accion['accion']}</a></td>
                             <td>{$accion['region']}</td>
                             <td>{$accion['pais']}</td>
