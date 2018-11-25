@@ -4,6 +4,7 @@
             <table class="table table-sm table-hover table-dark">
                 <thead>
                     <tr>
+                        <th scope="col"></th>
                         <th scope="col">Nombre</th>
                         <th scope="col">País</th>
                         <th scope="col">Precio</th>
@@ -16,6 +17,7 @@
                 <tbody id="tabla" class="cotizaciones">
 	                {foreach from=$acciones item=accion}
                         <tr id='row{$accion['id_accion']}'>
+                            <td><img src="{$accion['rutaImg']}" alt="" width="50" height="35"></td>
                             <td>{$accion['accion']}</td>
                             <td>{$accion['pais']}</td>
                             <td>$ {$accion['precio']}</td>

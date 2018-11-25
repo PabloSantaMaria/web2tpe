@@ -217,10 +217,38 @@ class AdminController extends SecureController {
         $paises = $this->paisModel->fetchPaises();
         $this->view->displayUpdateForm($accion, $paises, $this->regiones);
     }
+
+    function sonJPG($ruta){
+        $valor=false;
+        $tamaño = strlen($ruta)-3;
+        $ext = substr($ruta, $tamaño);
+        if(($ext == "jpg") || ($ext == "png")){
+        $valor=true;
+        }
+        return $valor;
+    }
+
     /**
     * actualiza una acción
     * vuelve al form para seguir editándola si es necesario
     */
+    // function updateAccion(){
+    //     $id_accion = $_POST["id_accion"];
+    //     $accion = $_POST["editNombre"];
+    //     $pais = $_POST["editPais"];
+    //     $id_pais = $this->getID("pais", $pais);
+    //     $precio = $_POST["editPrecio"];
+    //     $variacion = $_POST["editVariacion"];
+    //     $volumen = $_POST["editVolumen"];
+    //     $maximo = $_POST["editMaximo"];
+    //     $minimo = $_POST["editMinimo"];
+        
+    //     $this->accionModel->updateAccion($id_accion, $accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo);
+    //     $accion = $this->accionModel->fetchAccion($id_accion);
+    //     $paises = $this->paisModel->fetchPaises();
+    //     $this->view->displayUpdateForm($accion, $paises, $this->regiones);
+    // }
+
     function updateAccion(){
         $id_accion = $_POST["id_accion"];
         $accion = $_POST["editNombre"];
@@ -231,12 +259,20 @@ class AdminController extends SecureController {
         $volumen = $_POST["editVolumen"];
         $maximo = $_POST["editMaximo"];
         $minimo = $_POST["editMinimo"];
-        
-        $this->accionModel->updateAccion($id_accion, $accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo);
-        $accion = $this->accionModel->fetchAccion($id_accion);
-        $paises = $this->paisModel->fetchPaises();
-        $this->view->displayUpdateForm($accion, $paises, $this->regiones);
+        $ruta = $_FILES["imagen"]["name"];
+        $variable = $this->sonJPG($ruta);
+        if(($variable) || $ruta==null){
+            $rutaTempImagenes=$_FILES['imagen']['tmp_name'];
+            $this->accionModel->updateAccion($id_accion, $accion, $id_pais, $precio, $variacion, $volumen, $maximo, $minimo, $rutaTempImagenes);
+            $accion = $this->accionModel->fetchAccion($id_accion);
+            $paises = $this->paisModel->fetchPaises();
+            $this->view->displayUpdateForm($accion, $paises, $this->regiones);
+        }
+        // $accion = $this->accionModel->fetchAccion($id_accion);
+        // $paises = $this->paisModel->fetchPaises();
+        // $this->view->displayUpdateForm($accion, $paises);
     }
+
     /**
     * borra una acción
     * muestra las acciones de la región a la que pertenecía

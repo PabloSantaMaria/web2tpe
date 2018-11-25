@@ -16,6 +16,7 @@
                         <th scope="col">Volumen</th>
                         <th scope="col">MAX</th>
                         <th scope="col">MIN</th>
+                        <th scope="col">Imágen</th>
                     </tr>    
                 </thead>
                 <tbody id="tabla" class="cotizaciones">
@@ -28,6 +29,7 @@
                             <td>$ {$valor['volumen']}</td>
                             <td>$ {$valor['maximo']}</td>
                             <td>$ {$valor['minimo']}</td>
+                            <td><img src="{$valor['rutaImg']}" alt="" width="50" height="35"></td>
                         </tr>
                     {/foreach}
                 </tbody>
@@ -37,7 +39,7 @@
     
     {* FORM EDITAR *}
     <div class="editar bg-dark" id="editar">
-        <form method="post" action="actualizar">
+        <form method="post" action="actualizar" enctype="multipart/form-data">
             <input type="hidden" class="form-control" id="id_accion" name="id_accion" value="{$valor['id_accion']}">
             <div class="form-group">
                 <div class="form-row">
@@ -73,6 +75,10 @@
                     <div class="col">
                         <input type="text" id="editMinimo" name="editMinimo" class="form-control form-control-sm" value="{$valor['minimo']}">
                         <small class="form-text text-muted">Mínimo</small>
+                    </div>
+                    <div class="col">
+                        <input type="file" id="imagen" name="imagen">
+                        <small class="form-text text-muted">Imágen</small>
                     </div>
                     <div class="col">
                         <button type="submit" class="btn btn-success btn-sm">Editar registro</button>
