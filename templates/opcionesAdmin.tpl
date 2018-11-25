@@ -197,6 +197,9 @@
     <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
       <div class="card-body">
 
+
+      
+
       <div class="row">
         <div class="col">
 
@@ -226,26 +229,10 @@
           
         </div>
         <div class="col">
-
-          {* ELIMINAR USUARIO *}
-          <div class="card bg-dark">
-            <div class="card-header">
-              Eliminar usuario
-            </div>
-            <div class="card-body">
-              <form method="post" action="adminControl/borrarUsuario" novalidate>
-                <div class="form-group">
-                  <label for="Email">Email</label>
-                  <input type="email" class="form-control" name="userBorrar" aria-describedby="emailHelp" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                  <label for="Password">Contraseña</label>
-                  <input type="password" class="form-control" name="passBorrar" placeholder="Password">
-                </div>
-                <button type="submit" class="btn btn-sm btn-danger">Eliminar</button>
-              </form>
-            </div>
+          <div id="tablaUsuarios">
+            {include file="usuariosAdmin.tpl"}
           </div>
+          
           
         </div>
 

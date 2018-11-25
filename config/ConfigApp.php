@@ -33,7 +33,7 @@ class ConfigApp
         'editar' => 'AdminController#editAccion', //editar de admin
         'actualizar' => 'AdminController#updateAccion', //actualizar de admin
         'borrar' => 'AdminController#deleteAccion', //borrar de admin
-        'borrarRegion' => 'AdminController#deleteRegion' //borrar región de admin
+        'borrarRegion' => 'AdminController#deleteRegion', //borrar región de admin
     ];
 }
 ?>
