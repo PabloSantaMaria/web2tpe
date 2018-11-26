@@ -30,11 +30,13 @@
 
           <div class="input-group mx-sm-3 mb-2">
             <div class="input-group-prepend">
-              <label class="input-group-text" for="inputGroupSelect01">Puntaje</label>
+              <label class="input-group-text" for="inputGroupSelect01">Ordenar</label>
             </div>
             <select class="custom-select col-3 form-control-sm" id="ratingOrder">
-                <option value="DESC" selected>Descendente</option>
-                <option value="ASC">Ascendente</option>
+                <option value="PUNTAJE_DESC" selected>Por puntaje (Descendente)</option>
+                <option value="PUNTAJE_ASC">Por puntaje (Ascendente)</option>
+                <option value="DATE_DESC">Por fecha (Descendente)</option>
+                <option value="DATE_ASC">Por fecha (Ascendente)</option>
             </select>
           </div>  
 

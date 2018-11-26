@@ -63,7 +63,12 @@ class LoginController extends NavController {
                 $this->logout();
                 session_start();
                 $_SESSION['user'] = $user;
-                header(HOME);
+                if ($dbUser['admin'] == 1) {
+                    header(ADMIN);
+                }
+                else {
+                    header(HOME);
+                }
             }
             else {
                 $title = 'Login';
@@ -84,5 +89,6 @@ class LoginController extends NavController {
     function logout() {
         session_start();
         session_destroy();
+        header(HOME);
     }
 }

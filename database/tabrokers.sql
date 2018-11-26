@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 25, 2018 at 11:14 PM
+-- Generation Time: Nov 26, 2018 at 04:24 PM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.8
 
@@ -53,10 +53,10 @@ INSERT INTO `accion` (`id_accion`, `accion`, `id_pais`, `precio`, `variacion`, `
 (4, 'AMERICAN EXPRESS COMPANY', 1, '407.00', '44.87', 62290, '412.00', '407.00', 'images/5bfaec8779512.jpg'),
 (5, 'AMERICAN INTERNATIONAL GROUP', 1, '405.00', '-4.71', 2270025, '405.00', '405.00', 'images/5bfaec8779512.jpg'),
 (6, 'CATERPILLAR INC', 1, '1030.50', '-11.16', 517343, '1170.00', '1030.50', 'images/5bfaec8779512.jpg'),
-(7, 'APPLE INC', 2, '802.00', '-0.99', 184570, '820.00', '800.00', 'images/5bfaf3533095c.jpg'),
-(8, 'ACCENTURE PLC', 2, '157.43', '-1.47', 603765, '158.44', '156.97', 'images/5bfaf3533095c.jpg'),
-(9, 'AMAZON.COM INC', 2, '1812.27', '-1.06', 1604422, '1830.15', '1810.59', 'images/5bfaf3533095c.jpg'),
-(10, 'CISCO SYSTEMS INC', 2, '370.20', '1.42', 22112, '370.20', '370.20', 'images/5bfaf3533095c.jpg'),
+(7, 'APPLE INC', 2, '802.00', '-0.99', 184570, '820.00', '800.00', 'images/5bfc0e5522363.jpg'),
+(8, 'ACCENTURE PLC', 2, '157.43', '-1.47', 603765, '158.44', '156.97', 'images/5bfc0a2006e2c.jpg'),
+(9, 'AMAZON.COM INC', 2, '1812.27', '-1.06', 1604422, '1830.15', '1810.59', 'images/5bfc0a2006e2c.jpg'),
+(10, 'CISCO SYSTEMS INC', 2, '370.20', '1.42', 22112, '370.20', '370.20', 'images/5bfc0a2006e2c.jpg'),
 (11, 'IFM INVESTMENTS LTD-ADS', 23, '0.68', '-11.69', 14355, '0.75', '0.66', 'images/5bfaf13b3f4e4.jpg'),
 (12, 'CIA PARANAENSE ENER-SP ADR P', 65, '6.71', '-1.18', 202508, '6.77', '6.64', 'images/5bfaf16cdf372.jpg'),
 (13, 'DANAOS CORP', 66, '1.15', '-4.70', 24106, '1.17', '1.14', 'images/5bfaefddba4cd.jpg'),
@@ -65,10 +65,10 @@ INSERT INTO `accion` (`id_accion`, `accion`, `id_pais`, `precio`, `variacion`, `
 (16, 'HONDA MOTOR CO LTD-SPONS ADR', 10, '27.37', '-0.76', 245121, '27.60', '27.30', 'images/5bfaee8422739.jpg'),
 (17, 'OTRA', 10, '200000.00', '99.00', 99, '99.00', '99.00', 'images/5bfaee8422739.jpg'),
 (18, 'NUEVA', 10, '99.00', '99.00', 99, '99.00', '99.00', 'images/5bfaee8422739.jpg'),
-(19, 'HARMONY GOLD MNG-SPON ADR', 9, '85.00', '-15.00', 1233, '12.00', '11.00', 'images/5bfb17b7c187d.jpg'),
-(20, 'GOLD FIELDS LTD-SPONS ADR', 9, '123.00', '-12.00', 1561843, '15.00', '18.00', 'images/5bfaeb0f9b6ed.jpg'),
-(21, 'ANGLOGOLD ASHANTI-SPON ADR', 9, '23.00', '324.00', 423, '432.00', '456.00', 'images/5bfaeb0f9b6ed.jpg'),
-(22, 'SASOL LTD-SPONSORED ADR', 9, '85.00', '-1.18', 123, '71.00', '213.00', 'images/5bfaeb0f9b6ed.jpg'),
+(19, 'HARMONY GOLD MNG-SPON ADR', 9, '85.00', '-15.00', 1233, '12.00', '11.00', 'images/5bfc0971a27bb.jpg'),
+(20, 'GOLD FIELDS LTD-SPONS ADR', 9, '123.00', '-12.00', 1561843, '15.00', '18.00', 'images/5bfc0971a27bb.jpg'),
+(21, 'ANGLOGOLD ASHANTI-SPON ADR', 9, '23.00', '324.00', 423, '432.00', '456.00', 'images/5bfc0971a27bb.jpg'),
+(22, 'SASOL LTD-SPONSORED ADR', 9, '85.00', '-1.18', 123, '71.00', '213.00', 'images/5bfc0971a27bb.jpg'),
 (23, 'COMPAGNIE G', 67, '432.00', '12.00', 123, '1538.10', '1538.10', 'images/5bfaf03a6090f.jpg'),
 (24, 'CORE LABORATORIES N.V.', 11, '11.00', '22.00', 33, '44.00', '55.00', 'images/5bfaefb493be5.jpg');
 
@@ -147,7 +147,6 @@ INSERT INTO `comentario` (`id_comentario`, `titulo`, `cuerpo`, `puntaje`, `id_ac
 (228, 'Section 1.10.32 of \"de Finibus Bonorum et Malorum\"', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 5, 18, 4, '2018-11-25 15:34:53'),
 (229, 'The standard Lorem Ipsum passage', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 4, 19, 2, '2018-11-25 15:35:04'),
 (230, 'Section 1.10.32 of \"de Finibus Bonorum et Malorum\"', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 2, 19, 3, '2018-11-25 15:35:04'),
-(231, 'Section 1.10.32 of \"de Finibus Bonorum et Malorum\"', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 5, 19, 4, '2018-11-25 15:35:04'),
 (232, 'The standard Lorem Ipsum passage', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 4, 20, 2, '2018-11-25 15:43:26'),
 (233, 'Section 1.10.32 of \"de Finibus Bonorum et Malorum\"', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 2, 20, 3, '2018-11-25 15:43:26'),
 (234, 'Section 1.10.32 of \"de Finibus Bonorum et Malorum\"', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum', 5, 20, 4, '2018-11-25 15:43:26'),
@@ -289,7 +288,7 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT for table `accion`
 --
 ALTER TABLE `accion`
-  MODIFY `id_accion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+  MODIFY `id_accion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- AUTO_INCREMENT for table `comentario`
@@ -313,7 +312,7 @@ ALTER TABLE `region`
 -- AUTO_INCREMENT for table `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables

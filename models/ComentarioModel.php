@@ -15,16 +15,18 @@ class ComentarioModel extends BaseModel {
      * trae los comentarios de una acción, ordenados por puntaje
      */
     function getComentarios($id_accion, $ratingOrder) {
-        if ($ratingOrder == 'ASC') {
+        if ($ratingOrder == 'PUNTAJE_ASC') {
             $sentencia = $this->db->prepare("SELECT comentario.*, accion.accion, usuario.usuario FROM comentario, accion, usuario WHERE accion.id_accion = ? AND accion.id_accion = comentario.id_accion AND comentario.id_usuario = usuario.id_usuario ORDER BY comentario.puntaje ASC");
         }
-        elseif ($ratingOrder == 'DESC') {
+        elseif ($ratingOrder == 'PUNTAJE_DESC') {
             $sentencia = $this->db->prepare("SELECT comentario.*, accion.accion, usuario.usuario FROM comentario, accion, usuario WHERE accion.id_accion = ? AND accion.id_accion = comentario.id_accion AND comentario.id_usuario = usuario.id_usuario ORDER BY comentario.puntaje DESC");
         }
-        else {
+        elseif ($ratingOrder == 'DATE_ASC') {
             $sentencia = $this->db->prepare("SELECT comentario.*, accion.accion, usuario.usuario FROM comentario, accion, usuario WHERE accion.id_accion = ? AND accion.id_accion = comentario.id_accion AND comentario.id_usuario = usuario.id_usuario ORDER BY comentario.date ASC");
         }
-        
+        elseif ($ratingOrder == 'DATE_DESC') {
+            $sentencia = $this->db->prepare("SELECT comentario.*, accion.accion, usuario.usuario FROM comentario, accion, usuario WHERE accion.id_accion = ? AND accion.id_accion = comentario.id_accion AND comentario.id_usuario = usuario.id_usuario ORDER BY comentario.date DESC");
+        }
         $sentencia->execute(array($id_accion));
         $comentarios = $sentencia->fetchAll(PDO::FETCH_ASSOC);
         return $comentarios;
